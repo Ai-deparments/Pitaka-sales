@@ -30,6 +30,7 @@ import * as totp from "./lib/totp.mjs";
 import * as RL from "./lib/roles.mjs";
 import * as sifat from "./lib/sifat.mjs";     // AI lid sifati
 import * as voronka from "./lib/voronka.mjs"; // sotuv voronkasi (TZ «Sales OS» 2-bosqich)
+import * as nazorat from "./lib/nazorat.mjs"; // Pitaka: CRM vs suhbat (KVAL) va menejerlar qoidabuzarliklari
 import * as murabbiy from "./lib/murabbiy.mjs"; // Telegram «shaxsiy murabbiy» (2026-09-30)
 import * as olchov from "./lib/olchov.mjs";     // v2: yagona ko'rsatkichlar (2026-10-03)
 import { cached, stats as cacheStats, invalidate } from "./lib/cache.mjs";
@@ -905,6 +906,16 @@ const server = http.createServer(async (req, res) => {
       const ow = mineCall || String(q.get("owner") || "").replace(/[^\w-]/g, "").slice(0, 20);
       if (!ow) return fail(res, 400, "owner kerak", cid);
       return json(res, 200, await calls.radar(bx, db, { range: 30, owner: ow }), cid);
+    }
+    // ---- Pitaka nazorati (2026-11-10, lib/nazorat.mjs) ----
+    // Sotuvchi/operator — faqat o'zi (mineCall); rahbar — hammasi yoki ?menejer=<Bitrix ID> bo'yicha.
+    if (p === "/api/nazorat/kval" || p === "/api/nazorat/menejerlar") {
+      if (req.method !== "GET") return fail(res, 405, "Faqat GET", cid);
+      const men = mineCall ? null : (String(q.get("menejer") || "").replace(/[^\w-]/g, "").slice(0, 20) || null);
+      const ow = mineCall || men;
+      return json(res, 200, p === "/api/nazorat/kval"
+        ? await nazorat.kvalCheck(bx, db, { range: range(30), owner: ow })
+        : await nazorat.violations(bx, db, { range: range(30), owner: ow }), cid);
     }
     // ---- Telegram «shaxsiy murabbiy» (2026-09-30, lib/murabbiy.mjs) ----
     // Holat: har kim o'zinikini; rahbar — jamoa va bot holati. Namuna: operator — faqat o'z kartasi.

@@ -49,6 +49,19 @@ keyingi qadam, kelishuvni tasdiqlash. Ssenariy — mijozning ProAudit «oltin ss
 `data/pitaka-scenarios.json` (mijoz materiali, **repoga tushmaydi**, `data/` git'dan chiqarilgan) va
 uning telefon qismi `tools/sotuv-skript.md` (panel «Skript» oynasi va Murabbiy shu fayldan oladi).
 
+## Nazorat hisobotlari (lib/nazorat.mjs)
+
+- `GET /api/nazorat/kval` — **CRM vs suhbat**: lidning Bitrix holati (Kvalifikatsiya/Bitim → kval, NE KVAL → nekval,
+  Bekor/Arxiv → rad) qo'ng'iroq suhbatidan chiqqan AI bahosi bilan solishtiriladi (avval qo'ng'iroq tahlilidagi
+  iqtibosli `kval`, bo'lmasa lid sifati). **A** — CRM'da NE KVAL/bekor, suhbatda kval (yaxshi lid yo'qotilgan);
+  **B** — CRM'da kval, suhbatda sifatsiz. Menejerlar kesimi va iqtibosli ro'yxat.
+- `GET /api/nazorat/menejerlar` — har menejer bo'yicha: tahlil qilingan qo'ng'iroqlar, o'rtacha ball, 8 mezon
+  (o'rtacha % va necha qo'ng'iroqda 50% dan past), eng zaif 3 mezon, o'tkazib yuborilgan ssenariy bosqichlari,
+  suhbatdagi yo'qotish sabablari, eng yomon 5 qo'ng'iroq.
+- Ikkalasi: `?days=` yoki `?from=&to=`, rahbar uchun `?menejer=<Bitrix ID>`; sotuvchi/operator faqat o'zini ko'radi.
+  AI chaqirilmaydi, Bitrix faqat o'qiladi. Qo'ng'iroq Bitrix'dagi RESPONSIBLE_ID ga yoziladi — u gapirgan operator
+  emas, lid egasi bo'lishi mumkin (ochiq savol).
+
 ## Nima bilan qurilgan
 
 Node.js 24, tashqi paketsiz (`node:http`, `node:sqlite`, `node:crypto`). Build va `node_modules` yo'q.
