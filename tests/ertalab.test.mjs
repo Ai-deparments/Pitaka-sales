@@ -16,8 +16,8 @@ const qatorlar = (html) => html.split("\n").filter((s) => s.startsWith("• "));
 // ---------------------------------------------------------------- xabar
 test("faqat o'z bitimlari sanaladi", () => {
   const rows = [
-    bitim({ id: "1", title: "Aziz uyi 10 kVt" }),
-    bitim({ id: "2", title: "Bekzod fermer 30 kVt" }),
+    bitim({ id: "1", title: "Aziz — iPhone 17 Pro chexol" }),
+    bitim({ id: "2", title: "Bekzod — Samsung S24 Ultra chexol" }),
     bitim({ id: "3", title: "Ofis Chilonzor", owner: 14 }),          // raqam ko'rinishidagi owner ham o'ziniki
     bitim({ id: "4", title: "BOSHQANIKI", owner: "155" }),
     bitim({ id: "5", title: "YANA BOSHQANIKI", owner: "?" }),

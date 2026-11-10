@@ -15,7 +15,7 @@ import { DatabaseSync } from "node:sqlite";
 const BASE = process.env.AI_AGENT_HOME || "/home/claude";
 const APP = process.env.SOTUV_APP || `${BASE}/projects/sotuv-web`;
 const BOT_ENV = process.env.BOT_ENV || `${BASE}/.claude-sotuv/channels/telegram/.env`;
-const PANEL = process.env.PANEL_URL || "https://sotuv.81-85-51-135.sslip.io";
+const PANEL = String(process.env.PANEL_URL || "").replace(/\/+$/, "");   // bo'sh bo'lsa havola qatori chiqmaydi
 const DRY = process.argv.includes("--dry");
 const MAX = Number(process.env.ALERT_MAX || 10);
 // Guruh: GROUP_CHAT_ID env, bo'lmasa bo'lim boshi agentining .env faylidagi GROUP_CHAT_ID (§7.4 kelishuvi).
@@ -66,7 +66,7 @@ function message(a) {
   L.push(d.next?.text ? `Keyingi qadam: ${d.next.text}${d.next.due ? ` (${d.next.due})` : ""}`
                       : "⚠️ Keyingi qadam belgilanmagan");
   L.push("");
-  L.push(`Tahlil: ${PANEL}  →  Qo'ng'iroqlar → #${a.call_id}`);
+  L.push(PANEL ? `Tahlil: ${PANEL}  →  Qo'ng'iroqlar → #${a.call_id}` : `Tahlil: panel → Qo'ng'iroqlar → #${a.call_id}`);
   L.push("");
   L.push("AI tavsiyasi — yakuniy qaror insonniki. Chora ko'rishdan oldin audioni eshiting.");
   return L.join("\n");

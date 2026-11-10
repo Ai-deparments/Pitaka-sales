@@ -16,7 +16,7 @@ if (!savol) { console.error('Foydalanish: tezkor.sh "<savol>"'); process.exit(1)
 
 const [{ Bitrix }, api, hyg, sla, calls, rng, tezkor] = await Promise.all(
   ["bitrix.mjs", "api.mjs", "hygiene.mjs", "sla.mjs", "calls.mjs", "range.mjs", "tezkor.mjs"].map(lib));
-const bx = new Bitrix(process.env.BITRIX_WEBHOOK_URL || "http://127.0.0.1:8098/rest/1/odoo/");
+const bx = new Bitrix(process.env.BITRIX_WEBHOOK_URL || "http://127.0.0.1:8099/rest/1/demo/");
 
 let db = null;
 try { db = new DatabaseSync(process.env.SOTUV_DB || path.join(APP, "data", "sotuv.db"), { readOnly: true }); } catch { /* reja va hisoblar javobsiz qoladi */ }

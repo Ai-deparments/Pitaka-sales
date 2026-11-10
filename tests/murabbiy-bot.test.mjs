@@ -82,7 +82,7 @@ function qongiroq(db, { owner = "155", at = hozir(), dur = 95, out = 1, eid = "5
   const a = TAHLIL(o);
   db.prepare("INSERT INTO call_analyses (call_id, status, json, urgency, analyzed_at) VALUES (?, 'ready', ?, ?, datetime('now'))")
     .run(id, JSON.stringify(a), o.urgency || null);
-  M.qayd(db, id, a, { owner, at, dur, out, entity: eid ? { title: "Aziz uyi 10 kVt", kind: "deal", id: eid } : null });
+  M.qayd(db, id, a, { owner, at, dur, out, entity: eid ? { title: "Aziz — iPhone 17 Pro chexol", kind: "deal", id: eid } : null });
   return id;
 }
 const qatorOf = (db, id) => db.prepare("SELECT * FROM coach_calls WHERE call_id=?").get(id);

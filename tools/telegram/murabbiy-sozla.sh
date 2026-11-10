@@ -6,7 +6,7 @@
 #
 # Token @BotFather dan olinadi (/newbot). Skript uni Telegram'da tekshiradi va
 # /home/claude/secrets/murabbiy-bot.env ga (faqat claude o'qiydi, 600) yozadi.
-# Sotuv Desk paneli faylni daqiqasiga bir marta tekshiradi — qayta ishga tushirish shart emas.
+# Pitaka sotuv paneli faylni daqiqasiga bir marta tekshiradi — qayta ishga tushirish shart emas.
 # O'chirish: ... murabbiy-sozla.sh --ochir
 set -euo pipefail
 F=/home/claude/secrets/murabbiy-bot.env

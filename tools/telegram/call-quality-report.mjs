@@ -16,7 +16,7 @@ const BOT_ENV = process.env.BOT_ENV || `${BASE}/.claude-sotuv/channels/telegram/
 // Guruh: GROUP_CHAT_ID env, bo'lmasa BOT_ENV (bo'lim boshi agenti) dagi GROUP_CHAT_ID.
 // Ilgari qattiq yozilgan -5550106577 — Telegram'da yo'q guruh edi.
 let GROUP = process.env.GROUP_CHAT_ID || "";
-const PANEL = process.env.PANEL_URL || "https://sotuv.81-85-51-135.sslip.io";
+const PANEL = String(process.env.PANEL_URL || "").replace(/\/+$/, "");   // bo'sh bo'lsa havola qatori chiqmaydi
 const DAYS = Number(process.env.REPORT_DAYS || 7);
 const DRY = process.argv.includes("--dry");
 
@@ -90,7 +90,7 @@ if (!q.analyzed) {
   }
 }
 L.push("");
-L.push(`Batafsil: ${PANEL} → Qo'ng'iroqlar → AI tahlil`);
+L.push(PANEL ? `Batafsil: ${PANEL} → Qo'ng'iroqlar → AI tahlil` : "Batafsil: panel → Qo'ng'iroqlar → AI tahlil");
 if (!q.namesResolved) L.push("(Ismlar o'rniga ID — Bitrix'da «Пользователи» ruxsati yoqilmagan)");
 L.push("");
 L.push("AI tavsiyasi — yakuniy qaror insonniki. Ball dalilga asoslangan, lekin audiosiz chora ko'rilmasin.");

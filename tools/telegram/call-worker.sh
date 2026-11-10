@@ -14,7 +14,7 @@ run_node() {
   if [ "$(id -un)" = "claude" ]; then node "$@"; else sudo -u claude env HOME="$BASE" node "$@"; fi
 }
 cd "$APP" || exit 1
-# 2026-09-23: Odoo'dagi SUN qo'ng'iroqlari (fevral–iyul, ~2 900 ta) ham AI tahlildan o'tsin.
+# Bitrix'dagi Pitaka qo'ng'iroqlari AI tahlildan o'tsin.
 # Eng yangisidan boshlab; kunduzi sekin (8 ta sotuv agenti ham `claude` dan foydalanadi),
 # kechasi tezroq. Yangi qo'ng'iroq kelsa — u eng yangi, shuning uchun birinchi tahlil qilinadi.
 SOAT=$(TZ=Asia/Tashkent date +%H)

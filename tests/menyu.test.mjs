@@ -178,7 +178,7 @@ test("bot: buyruq tugmasi Murabbiy'ning mavjud buyrug'ini bajaradi", async () =>
 // ---------------------------------------------------------------- ertalabki xabar (lib/ertalab.mjs) — bot ichida
 const T0930 = Date.UTC(2026, 9, 27, 4, 30);   // seshanba 09:30 Toshkent
 const ROWS = [
-  { id: 1, title: "Uy 10 kVt", owner: "155", stage: "Taklif", amount: 12e6, currency: "UZS", idleDays: 3, issues: ["qadam"], archive: false },
+  { id: 1, title: "iPhone 17 Pro Max chexol", owner: "155", stage: "Taklif", amount: 12e6, currency: "UZS", idleDays: 3, issues: ["qadam"], archive: false },
   { id: 2, title: "Boshqa menejer", owner: "14", stage: "Taklif", amount: 9e6, currency: "UZS", idleDays: 1, issues: ["qadam"], archive: false },
 ];
 test("ertalab: MURABBIY_ERTALAB yoqilmagan — hech kimga xabar yo'q", async () => {
@@ -197,7 +197,7 @@ test("ertalab: yoqilgan — sotuvchiga faqat o'z bitimi, kuniga bir marta; CRM x
     assert.equal(s.length, 1);                                         // rahbar (CRM'siz) olmaydi, sotuvchi oladi
     assert.equal(s[0].body.chat_id, "2002");
     assert.match(s[0].body.text, /Xayrli tong/);
-    assert.ok(s[0].body.text.includes("Uy 10 kVt") && !s[0].body.text.includes("Boshqa menejer"));
+    assert.ok(s[0].body.text.includes("iPhone 17 Pro Max chexol") && !s[0].body.text.includes("Boshqa menejer"));
     assert.equal(sends(await yangi(() => b.ertalabTick(T0930 + 60e3))).length, 0);   // bugun yuborilgan
   } finally { delete process.env.MURABBIY_ERTALAB; }
 });
