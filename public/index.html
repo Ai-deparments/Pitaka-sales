@@ -1820,7 +1820,7 @@ a.mb-kb:hover{filter:brightness(1.1)}
 .mb-h-tel{display:none}
 @media(max-width:560px){.mb-f div{padding:8px 9px;font-size:12px;gap:6px}.mb-link{grid-template-columns:1fr;justify-items:start}.mb-link.self .mb-qr,.mb-h-qr{display:none}.mb-h-tel{display:inline}.mb-hero{padding:14px}.mb-tg{margin:10px}.mb-prevh{flex-wrap:wrap}.mb-prevh .sel{max-width:none!important;width:100%}}
 
-/* ===== v2 dizayn bo'laklari (2026-10-03) — pingy uslubi, SUN tokenlari (yorug' va qorong'i) ===== */
+/* ===== v2 dizayn bo'laklari (2026-10-03) — pingy uslubi, dizayn tokenlari (yorug' va qorong'i) ===== */
 .v2{display:flex;flex-direction:column;gap:14px}
 .v2-k{display:grid;grid-template-columns:repeat(var(--n,6),minmax(0,1fr));gap:10px}
 .v2-kpi{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:12px 14px;min-width:0;text-align:left;color:inherit;font:inherit;display:block;width:100%}
@@ -1893,6 +1893,36 @@ a.mb-kb:hover{filter:brightness(1.1)}
 .v2-tg{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:10px 12px;font-size:13px;line-height:1.5;white-space:pre-wrap;word-break:break-word}
 .v2-tg pre{white-space:pre;overflow-x:auto;font:11.5px/1.4 ui-monospace,Menlo,monospace;margin:2px 0}
 .v2-sk{height:var(--h,90px);border-radius:12px}
+/* Nazorat (Pitaka) */
+.nz-bar{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.nz-note{border:1px solid var(--line);background:var(--surface-2);border-radius:12px;padding:10px 12px;font-size:12.5px;line-height:1.5;color:var(--ink-2)}
+.nz-note b{color:var(--ink)}.nz-note>b:first-child{display:block;font-size:13px;margin-bottom:2px}.nz-note b.n{font-variant-numeric:tabular-nums;margin:0 6px 0 2px}
+.nz-note.w{border-color:var(--warning);background:var(--warning-soft)}
+.nz-tw{overflow-x:auto}
+.nz-t{width:100%;border-collapse:collapse;font-size:13px}
+.nz-t th{font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);text-align:right;font-weight:800;padding:6px 8px;white-space:nowrap}
+.nz-t th:first-child,.nz-t td:first-child{text-align:left}
+.nz-t td{padding:9px 8px;border-top:1px solid var(--rule);text-align:right;font-variant-numeric:tabular-nums}
+.nz-t td.risk{color:var(--risk-text,var(--risk));font-weight:800}
+.nz-mm{border-top:1px solid var(--rule);padding:12px 0;display:flex;flex-direction:column;gap:8px}.nz-mm:first-child{border-top:0;padding-top:2px}
+.nz-mh{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.nz-mh b{font-size:14px}.nz-mh .mg{font-size:12px;color:var(--ink-3)}
+.nz-mr{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:10px}
+.nz-side{background:var(--surface-2);border-radius:10px;padding:8px 10px;font-size:12.5px;min-width:0;color:var(--ink-2)}
+.nz-side .l{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.06em;color:var(--ink-3);font-weight:800}
+.nz-side b{display:block;font-size:13.5px;color:var(--ink)}
+.nz-q{display:block;font-style:italic;color:var(--ink-2);font-size:12.5px;line-height:1.45}
+.nz-act{display:flex;gap:8px;flex-wrap:wrap}.nz-act a.v2-btn{text-decoration:none}
+.nz-cap{margin:8px 0 0;font-size:11.5px;color:var(--ink-3)}
+.nz-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(360px,1fr));gap:14px}
+.nz-h{display:flex;align-items:center;gap:10px}.nz-hn{flex:1;min-width:0}.nz-hn b{display:block;font-size:15px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.nz-hn span{font-size:12px;color:var(--ink-3)}
+.nz-sc{text-align:right}.nz-sc b{display:block;font-size:26px;font-weight:800;line-height:1;font-variant-numeric:tabular-nums}.nz-sc span{font-size:10.5px;color:var(--ink-3)}
+.nz-sc b.risk{color:var(--risk-text,var(--risk))}.nz-sc b.warn{color:var(--warning-text,var(--warning))}.nz-sc b.ok{color:var(--success-text,var(--success))}
+.nz-sec{margin-top:12px}.nz-st{display:block;font-size:10.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink-3);font-weight:800;margin-bottom:6px}
+.nz-chips{display:flex;flex-wrap:wrap;gap:6px}.nz-chips .v2-chip b{margin-left:4px}
+.nz-f{font-size:11px;color:var(--ink-3)}
+.nz-lr{padding:7px 0;border-top:1px solid var(--rule)}.nz-lr:first-of-type{border-top:0}.nz-lr>b{display:block;font-size:13px}.nz-lr .v2-lnk{margin-top:4px}
+.nz-m.team{border-color:var(--primary-line,var(--line-2))}
+@media(max-width:560px){.nz-mr{grid-template-columns:1fr}.nz-grid{grid-template-columns:1fr}.nz-t{font-size:12px}}
 @media(max-width:1180px){.v2-k{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:1000px){.v2-g2{grid-template-columns:1fr}}
 @media(max-width:560px){
@@ -2349,6 +2379,7 @@ button.who{border-radius:18px}
     </div></div>
     <div class="navgroup"><div class="navlabel">Sotuv</div><div class="nav">
       <button class="navbtn" data-v="voronka" data-owner data-tip="Sotuv voronkasi"><svg viewBox="0 0 24 24"><path d="M3 4h18l-7 8v6l-4 2v-8L3 4Z"/></svg><span class="nl">Voronka</span></button>
+      <button class="navbtn" data-v="nazorat" data-tip="Nazorat: CRM va suhbat, menejerlar xatolari"><svg viewBox="0 0 24 24"><path d="M12 3l8 3v6c0 4.5-3.4 8.2-8 9-4.6-.8-8-4.5-8-9V6l8-3Z"/><path d="M8.5 12l2.5 2.5 4.5-5"/></svg><span class="nl">Nazorat</span></button>
       <button class="navbtn" data-v="lidlar" data-tip="Lidlar"><svg viewBox="0 0 24 24"><path d="M12 3v18M3 8h18M3 16h18"/></svg><span class="nl">Lidlar</span><span class="badge none" id="bd-leads" title="24 soatdan javobsiz lidlar">—</span></button>
       <button class="navbtn" data-v="bitimlar" data-tip="Bitimlar"><svg viewBox="0 0 24 24"><path d="M4 5h5v14H4zM10 5h5v9h-5zM16 5h4v6h-4z"/></svg><span class="nl">Bitimlar</span></button>
       <button class="navbtn" data-v="qongiroq" data-tip="Qo‘ng‘iroqlar"><svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg><span class="nl">Qo‘ng‘iroqlar</span></button>
@@ -2461,6 +2492,7 @@ button.who{border-radius:18px}
     </section>
     <section class="view" id="v-operator"><div id="op-box"></div></section>
     <section class="view" id="v-voronka"><div id="vr-box"></div></section>
+    <section class="view" id="v-nazorat"><div id="nz-box"></div></section>
 
     <!-- LIDLAR -->
     <section class="view" id="v-lidlar">
@@ -2844,7 +2876,7 @@ $("#rngApply").onclick=()=>{
 /* Sana filtri faqat vaqtga bog‘liq bo‘limlarda ma’noga ega. */
 // Sana tugmasi ma'lumot ko'rsatadigan har bir bo'limda turadi. Qabul mezonlari,
 // agentlar chati va yo'l xaritasi — ma'lumot emas, ularda tugma ma'nosiz.
-const RANGE_VIEWS=new Set(["command","lidlar","bitimlar","voronka","qongiroq","jamoa","tizim"]);
+const RANGE_VIEWS=new Set(["command","lidlar","bitimlar","voronka","nazorat","qongiroq","jamoa","tizim"]);
 
 $("#loginForm").addEventListener("submit",async e=>{
   e.preventDefault(); const b=$("#lgBtn"),er=$("#lgErr"),cw=$("#lgCodeWrap"),ci=$("#lgCode");
@@ -2932,6 +2964,7 @@ const TITLES={operator:["Mening ishim","Bugun kimga qo‘ng‘iroq qilish kerak"
   agentlar:["Agentlar","AI agentlar"],   /* TZI F08: son katalogdan keladi, qo'lda yozilmaydi */kampus:["Agent kampusi","Agentlarning jarayondagi o‘rni va tirik holati"],roadmap:["Yo‘l xaritasi","TZ v3.0 bo‘yicha holat"],
   qoriqchi:["Qo‘riqchi","Panelning o‘z xavfsizligi"],
   voronka:["Sotuv voronkasi","Liddan to‘lovgacha: bosqichlar, konversiya, qotib qolganlar va yo‘qotish sabablari"],
+  nazorat:["Nazorat","KVAL to‘g‘ri qo‘yilganmi va menejerlar ssenariydan qayerda chiqyapti"],
   parol:["Parolni o‘zgartirish","Login va joriy parol tasdig‘i, so‘ng yangi parol"]};
 let cur="command"; const loaded=new Set();
 // 2026-10-03 (v2): olib tashlangan/birlashtirilgan bo'limlarga eski havolalar shu yerda yangisiga yo'naltiriladi
@@ -3248,7 +3281,7 @@ async function mbLoad(){
 function mbDraw(){ const box=$("#tab-mb"); if(!box||!MB) return; box.innerHTML=mbHTML(MB); mbWire(); mbNamuna() }
 function mbSetupHTML(){
   return `<div class="mb-st warn">Bot hali sozlanmagan — 2 qadam, 3 daqiqa</div>
-    <ol class="mb-steps"><li>Telegram’da <b>@BotFather</b> → <code>/newbot</code> → nomi «SUN Murabbiy», username masalan <code>sun_murabbiy_bot</code>. BotFather token beradi.</li>
+    <ol class="mb-steps"><li>Telegram’da <b>@BotFather</b> → <code>/newbot</code> → nomi «Pitaka Murabbiy», username masalan <code>pitaka_murabbiy_bot</code>. BotFather token beradi.</li>
     <li>Tokenni serverga saqlang (chatga yozmang — buyruq tokenni yashirin so‘raydi):<div class="mb-cmd"><code>${esc(MB_CMD)}</code><button class="btn ghost sm" type="button" id="mbCp">Nusxa</button></div></li>
     <li>1–2 daqiqada shu yerda «Telegram’da ulash» tugmasi chiqadi — operatorlar o‘zi ulanadi.</li></ol>`;
 }
@@ -3538,7 +3571,8 @@ async function v2RejaKirit(s){
 }
 const invalidateV2=()=>fetch("/api/refresh",{method:"POST",credentials:"same-origin"}).catch(()=>{});
 function v2mOperator(o){
-  if(!o.ulangan){ V2.qoy("#v2mO .v2-cb",V2.bosh("Kunlik hisobot ma’lumoti yo‘q",o.sabab||"")); return }
+  // Pitaka: kunlik hisobot ulanmagan — karta ko'rsatilmaydi, qo'shnisi butun kenglikni oladi
+  if(!o.ulangan){ const c=$("#v2mO"); if(c){ c.hidden=true; if(c.parentElement) c.parentElement.style.gridTemplateColumns="minmax(0,1fr)" } return }
   const rows=(o.rows||[]).slice(0,6);
   V2.qoy("#v2mO .v2-cb",rows.length?rows.map((r,i)=>`<button class="v2-op" type="button" data-v2go="qongiroq">
       <div class="rk">${i+1}</div><div class="v2-av">${esc(V2.ism2(r.ism))}</div>
@@ -5353,7 +5387,104 @@ function renderKanban(){
 }
 
 /* ================= BOOT ================= */
-const VIEW={voronka:viewVoronka,operator:viewOperator2,command:viewCommand2,lidlar:viewLidlar,bitimlar:viewBitimlar,qongiroq:viewQongiroq,jamoa:viewJamoa,tizim:viewTizim};
+/* ---------- Nazorat (Pitaka, 2026-11-10) ----------
+   Mijozning ikki savoli: 1) menejer lidga KVAL / NE KVAL to'g'ri qo'yyaptimi (CRM holati ↔ suhbatdan AI bahosi),
+   2) har menejer ssenariydan qayerda chiqyapti (mezonlar, o'tkazilgan bosqichlar, suhbatdagi yo'qotish sababi).
+   Ma'lumot: /api/nazorat/kval va /api/nazorat/menejerlar (lib/nazorat.mjs). Matnlar butun satr bo'lib yoziladi —
+   ruscha qatlam (i18n.js) faqat butun satrni almashtiradi, shuning uchun son va matn alohida elementda. */
+let NZ_TAB="kval", NZ_MEN="", NZ_K=null, NZ_V=null, NZ_SEQ=0, NZ_MGRS=[];
+const NZ_FEW=20;   // shundan kam tahlil — foizlar hali ishonchsiz
+const NZ_KV={kval:"Kvalifikatsiyali",nekval:"Sifatsiz (ne kval)",noaniq:"Noaniq"};
+const NZ_CR={greeting:"Salomlashish va tanishtirish",needs:"Kvalifikatsiya: model va ehtiyoj",questions:"Ochiq savollar",listening:"Tinglash",
+  value:"Mini taqdimot (qiymat)",objection:"E’tirozlar bilan ishlash",nextStep:"Keyingi qadam",closing:"Dojim va xayrlashish"};
+const nzPc=x=>x==null?"—":String(x).replace(".",",")+"%";
+const nzD=s=>{ if(!s) return ""; const d=new Date(s); if(isNaN(d)) return "";
+  const t=new Date(d.getTime()+(d.getTimezoneOffset()+300)*6e4); return `${String(t.getDate()).padStart(2,"0")}.${String(t.getMonth()+1).padStart(2,"0")} ${hhmm(s)}` };
+const nzL=(t)=>`<span>${esc(t)}</span>`;
+async function viewNazorat(){
+  const box=$("#nz-box"); if(!box) return;
+  box.innerHTML=`<div class="v2" id="nz"></div>`;
+  await nzLoad();
+}
+async function nzLoad(){
+  const root=$("#nz"); if(!root) return; const seq=++NZ_SEQ;
+  root.innerHTML=`<div class="v2-k" style="--n:5">${Array.from({length:5},()=>V2.sk(86)).join("")}</div>${V2.sk(240)}`;
+  const m=NZ_MEN?"menejer="+encodeURIComponent(NZ_MEN):"";
+  const [k,v]=await Promise.all([api("/api/nazorat/kval?"+rq(m)),api("/api/nazorat/menejerlar?"+rq(m))]);
+  if(seq!==NZ_SEQ) return;
+  NZ_K=k; NZ_V=v; nzDraw();
+}
+function nzDraw(){
+  const root=$("#nz"); if(!root||!NZ_K||!NZ_V) return;
+  if(!NZ_MEN) NZ_MGRS=(NZ_K.managers||[]).map(m=>({id:m.id,name:m.name}));
+  const sel=IS_LEADER&&NZ_MGRS.length>1?`<select class="vr-sel" id="nzMen" aria-label="Menejer"><option value="">Menejer: hammasi</option>${NZ_MGRS.map(m=>`<option value="${esc(m.id)}"${NZ_MEN===m.id?" selected":""}>${esc(m.name)}</option>`).join("")}</select>`:"";
+  const tabs=[["kval","CRM va suhbat"],["men","Menejerlar"]];
+  root.innerHTML=`<div class="nz-bar"><span class="kn-seg">${tabs.map(([key,l])=>`<button type="button" class="ov-btn${NZ_TAB===key?" p":""}" data-nzt="${key}">${l}</button>`).join("")}</span>${sel}</div>
+    <div class="v2" id="nz-body">${NZ_TAB==="kval"?nzKval(NZ_K):nzMen(NZ_V)}</div>`;
+  $$("[data-nzt]").forEach(b=>b.onclick=()=>{ NZ_TAB=b.dataset.nzt; nzDraw() });
+  const s=$("#nzMen"); if(s) s.onchange=()=>{ NZ_MEN=s.value; yangiAvlod(); nzLoad().catch(e=>{ if(!e.bekor) toast(e.message) }) };
+}
+function nzKval(k){
+  const t=k.totals||{}, few=(t.compared||0)<NZ_FEW;
+  const kpis=`<div class="v2-k" style="--n:5">${[
+    V2.kpi({l:"Solishtirildi",n:fmt(t.compared||0),s:`${fmt(t.leads||0)} ${nzL("lid davrda kelgan")}`,info:"CRM holati yopilgan (Kvalifikatsiya, NE KVAL, bekor) va suhbatdan AI bahosi bor lidlar. Ochiq lidlar va «noaniq» baho solishtirilmaydi."}),
+    V2.kpi({l:"Mos keldi",n:t.compared?nzPc(t.agreePct):"—",ton:!t.compared||few?"":t.agreePct>=80?"ok":t.agreePct<60?"risk":"",s:t.compared?`${fmt(t.agree)} ${nzL("ta lid")}`:nzL("hali solishtirish yo‘q")}),
+    V2.kpi({l:"Yaxshi lid yo‘qotilgan",n:fmt(t.A||0),ton:t.A?"risk":"",s:nzL("CRM: NE KVAL yoki bekor, suhbatda — kval"),info:"Eng muhimi: menejer lidni NE KVAL yoki bekor qilgan, suhbatda esa mijoz qiziqqan (modelini aytgan, narx yoki rasm so‘ragan)."}),
+    V2.kpi({l:"Sifatsiz lid kvalifikatsiyada",n:fmt(t.B||0),ton:t.B?"risk":"",s:nzL("CRM: Kvalifikatsiya, suhbatda — sifatsiz")}),
+    V2.kpi({l:"AI bahosi yo‘q",n:fmt(t.noAi||0),s:nzL("qo‘ng‘irog‘i hali tahlil qilinmagan")}),
+  ].join("")}</div>`;
+  const warn=few?`<div class="nz-note w"><b>Ma’lumot hali kam</b><span>Hozircha solishtirilgan lidlar:</span> <b class="n">${fmt(t.compared||0)}</b><span>Qo‘ng‘iroqlar tahlil qilingan sari bu hisobot to‘lib boradi. Foizlarga kamida 20 ta lid solishtirilgandan keyin ishoning.</span></div>`:"";
+  const M=(k.managers||[]).filter(m=>m.compared||m.leads);
+  const tbl=M.length?`<div class="nz-tw"><table class="nz-t"><thead><tr><th>Menejer</th><th>Lidlar</th><th>Solishtirildi</th><th>Mos keldi</th><th>Yaxshi lid yo‘qotilgan</th><th>Sifatsiz lid kvalifikatsiyada</th></tr></thead><tbody>${M.map(m=>`<tr>
+      <td>${esc(m.name)}</td><td>${fmt(m.leads)}</td><td>${fmt(m.compared)}</td><td>${m.compared?nzPc(m.agreePct):"—"}</td>
+      <td class="${m.A?"risk":""}">${fmt(m.A)}</td><td class="${m.B?"risk":""}">${fmt(m.B)}</td></tr>`).join("")}</tbody></table></div>`:V2.bosh("Bu davrda lid yo‘q","");
+  const L=k.list||[];
+  const list=L.length?L.map(x=>`<div class="nz-mm">
+      <div class="nz-mh"><span class="v2-chip risk">${x.type==="A"?"Yaxshi lid yo‘qotilgan":"Sifatsiz lid kvalifikatsiyada"}</span><b>${esc(x.name)}</b><span class="mg">${esc(x.manager)}</span></div>
+      <div class="nz-mr">
+        <div class="nz-side"><span class="l">CRM’da</span><b>${esc(x.crm.statusName||x.crm.status)}</b>${x.crm.reason?`<span>${esc(x.crm.reason)}</span>`:""}</div>
+        <div class="nz-side"><span class="l">Suhbatda (AI)</span><b>${esc(NZ_KV[x.ai.verdict]||x.ai.verdict)}</b>${x.ai.reason?`<span>${esc(x.ai.reason)}</span>`:""}</div>
+      </div>
+      ${x.ai.quote?`<div class="nz-q">«${esc(x.ai.quote)}»</div>`:""}
+      <div class="nz-act">${x.ai.callId?`<button class="v2-btn" type="button" data-call="${esc(x.ai.callId)}">Qo‘ng‘iroq tahlili</button>`:""}${x.url?`<a class="v2-btn" href="${esc(x.url)}" target="_blank" rel="noopener">Bitrix’da ochish</a>`:""}</div>
+    </div>`).join(""):V2.bosh("Nomuvofiqlik topilmadi",t.compared?"Solishtirilgan lidlarda CRM holati suhbat bilan mos keldi.":"Hali solishtiriladigan lid yo‘q.");
+  return kpis+warn
+    +V2.card("nzMgrT",{t:"Menejerlar bo‘yicha",p:"KVAL / NE KVAL suhbat bilan qanchalik mos"},tbl)
+    +V2.card("nzList",{t:"Nomuvofiqliklar",p:"avval yo‘qotilgan yaxshi lidlar, keyin kvalifikatsiyaga o‘tgan sifatsizlar"},list+(k.listCapped?`<p class="nz-cap">Ro‘yxat 300 ta bilan cheklangan</p>`:""));
+}
+function nzMgr(m,team){
+  const few=(m.calls||0)<NZ_FEW;
+  const cr=(m.criteria||[]).map(c=>{ const cls=c.avgPct<50?"lo":c.avgPct<75?"mid":"";
+    return `<div class="v2-cl ${cls}"><span class="t" title="${esc(c.label||"")}">${esc(NZ_CR[c.id]||c.label||c.id)}</span><span class="bar"><i style="width:${Math.max(0,Math.min(100,c.avgPct))}%"></i></span>
+      <span class="v"><b>${c.avgPct}%</b> <span class="nz-f" title="Xato qilingan qo‘ng‘iroqlar / tahlil qilingan qo‘ng‘iroqlar">${fmt(c.failed)}/${fmt(c.of)}</span></span></div>` }).join("");
+  const weak=(m.weakest||[]).map(w=>`<span class="v2-chip risk">${esc(NZ_CR[w.id]||w.id)}</span>`).join("");
+  const miss=(m.missedSteps||[]).slice(0,8).map(s=>`<span class="v2-chip warn">${esc(s.step)} <b>${fmt(s.n)}</b></span>`).join("");
+  const kv=m.kval||{};
+  const kvs=`<span class="v2-chip ok">${nzL(NZ_KV.kval)} <b>${fmt(kv.kval||0)}</b></span><span class="v2-chip risk">${nzL(NZ_KV.nekval)} <b>${fmt(kv.nekval||0)}</b></span><span class="v2-chip n">${nzL(NZ_KV.noaniq)} <b>${fmt(kv.noaniq||0)}</b></span>`;
+  const lost=(m.lostReasons||[]).slice(0,5).map(r=>`<div class="nz-lr"><b>${esc(r.text)}</b>${r.quote?`<span class="nz-q">«${esc(r.quote)}»</span>`:""}${r.callId?`<button class="v2-lnk" type="button" data-call="${esc(r.callId)}">Qo‘ng‘iroq tahlili</button>`:""}</div>`).join("");
+  const worst=(m.worstCalls||[]).map(c=>`<button class="v2-li" type="button" data-call="${esc(c.id)}"><span class="v2-dot ${c.score<50?"risk":c.score<75?"warn":"ok"}"></span><div class="tx"><b>#${esc(c.id)}</b><span>${esc(nzD(c.at))}</span></div><span class="vq ${c.score<50?"risk":c.score<75?"warn":""}">${c.score==null?"—":c.score+"/100"}</span></button>`).join("");
+  const sec=(t,body)=>body?`<div class="nz-sec"><span class="nz-st">${t}</span>${body}</div>`:"";
+  return `<div class="v2-c nz-m${team?" team":""}">
+    <div class="nz-h"><div class="v2-av">${team?"Σ":esc(V2.ism2(m.name))}</div><div class="nz-hn"><b>${esc(team?"Jamoa":m.name)}</b><span>${fmt(m.calls)} ${nzL("ta tahlil qilingan qo‘ng‘iroq")}</span></div>
+      <div class="nz-sc"><b class="${m.avgScore==null?"":m.avgScore<50?"risk":m.avgScore<75?"warn":"ok"}">${m.avgScore==null?"—":m.avgScore}</b><span>o‘rtacha ball</span></div></div>
+    ${few?`<p class="nz-cap">Kam qo‘ng‘iroq — foizlar hali taxminiy</p>`:""}
+    ${sec("Ssenariy mezonlari",cr)}
+    ${sec("Eng zaif joylar",weak?`<div class="nz-chips">${weak}</div>`:"")}
+    ${sec("O‘tkazib yuborilgan bosqichlar",miss?`<div class="nz-chips">${miss}</div>`:"")}
+    ${sec("Suhbatdan lid sifati",`<div class="nz-chips">${kvs}</div>`)}
+    ${sec("Suhbatda yo‘qotish sabablari",lost)}
+    ${sec("Eng past ballli qo‘ng‘iroqlar",worst)}
+  </div>`;
+}
+function nzMen(v){
+  const note=`<div class="nz-note"><b>Qo‘ng‘iroq kimga yoziladi</b><span>${esc(v.attributionNote||"")}</span></div>`;
+  const cov=`<div class="v2-steps"><b>${fmt(v.analysed||0)}</b><span>tahlil qilingan qo‘ng‘iroq</span><span class="ar">/</span><b>${fmt(v.callsInRange||0)}</b><span>davrdagi qo‘ng‘iroq</span></div>`;
+  if(!v.analysed) return note+V2.card("nzMenE",{t:"Menejerlar qoidabuzarliklari"},cov+V2.bosh("Hozircha tahlil qilingan qo‘ng‘iroq yo‘q","Qo‘ng‘iroqlar tahlil qilingach, har menejerning xatolari shu yerda chiqadi."));
+  const few=v.analysed<NZ_FEW?`<div class="nz-note w"><b>Ma’lumot hali kam</b><span>Foizlar ishonchli bo‘lishi uchun har menejerda kamida 20 ta tahlil qilingan qo‘ng‘iroq kerak.</span></div>`:"";
+  return note+few+V2.card("nzCov",{t:"Qamrov"},cov)+(v.team?nzMgr(v.team,true):"")
+    +`<div class="nz-grid">${(v.managers||[]).map(m=>nzMgr(m,false)).join("")}</div>`;
+}
+const VIEW={voronka:viewVoronka,nazorat:viewNazorat,operator:viewOperator2,command:viewCommand2,lidlar:viewLidlar,bitimlar:viewBitimlar,qongiroq:viewQongiroq,jamoa:viewJamoa,tizim:viewTizim};
 function redraw(){}   // v2: grafiklar mavzu va enga o'zi moslashadi (CSS o'zgaruvchilari, ResizeObserver)
 // lib/roles.mjs bilan bir xil (server /api/users da ham beradi)
 const ROLE_LABEL={ega:"Bo‘lim boshlig‘i",ceo:"CEO",direktor:"Ijrochi direktor",rahbar:"Sotuv rahbari",sotuvchi:"Sotuvchi",b2b:"B2B sotuvchi",
