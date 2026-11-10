@@ -38,7 +38,7 @@ const SENT = { positive: "ijobiy", neutral: "neytral", negative: "salbiy" };
 
 // DAVR — QO'NG'IROQ SANASI bo'yicha (2026-09-23). Ilgari tahlil sanasi (analyzed_at) olinardi:
 // fevral–iyul qo'ng'iroqlari shu hafta tahlil qilingani uchun agentlar ularni majlisda «oxirgi 7 kun»
-// deb hisobot berdi. Endi davrdagi qo'ng'iroqlar CRM'dan (adapter — faqat SUN-HIGHTECH) olinadi va
+// deb hisobot berdi. Endi davrdagi qo'ng'iroqlar CRM'dan (Bitrix) olinadi va
 // faqat shularning tahlili hisoblanadi. Get-Green qo'ng'iroqlari ro'yxatga umuman kirmaydi.
 const URL_CRM = String(process.env.BITRIX_WEBHOOK_URL || "");
 const crm = (method, body) => JSON.parse(execSync(
@@ -104,8 +104,8 @@ const sarlavha = (nom, d) => {
 const bosh = (d) => {                      // davrda qo'ng'iroq yo'q bo'lsa — halol sabab
   if (_qamrov && _qamrov.davrda === 0) {
     const o = oxirgiQongiroq();
-    say(`${oyna(d)} — bu davrda SUN-HIGHTECH qo'ng'irog'i qayd etilmagan — o'lchanmadi (0 emas).`
-      + (o ? ` Eng oxirgi qo'ng'iroq: ${tkSana(o)}. Undan keyingi qo'ng'iroqlar Odoo'ga tushmagan.` : ""));
+    say(`${oyna(d)} — bu davrda qo'ng'iroq qayd etilmagan — o'lchanmadi (0 emas).`
+      + (o ? ` Eng oxirgi qo'ng'iroq: ${tkSana(o)}. Undan keyingi qo'ng'iroqlar Bitrix'ga tushmagan.` : ""));
     say(`Eski qo'ng'iroqlar tahlilini ko'rish uchun kattaroq davr bering (masalan 120).`);
     fin();
   }
@@ -288,7 +288,7 @@ if (cmd === "tahlilsiz") {
   const err = db.prepare("SELECT call_id, error FROM call_analyses WHERE status='error'").all();
   say(`Transkript kiritilgan: ${n} ta · tahlil tayyor: ${done} ta`);
   if (err.length) { say(`Xato bilan tugagan: ${err.length} ta`); for (const e of err.slice(0, 5)) say(`  #${e.call_id}: ${e.error}`); }
-  say("Audio Odoo telefoniyasidan avtomatik olinadi; konveyer har 10 daqiqada eng yangisidan tahlil qiladi.");
+  say("Audio Bitrix Diskidan avtomatik olinadi; konveyer har 10 daqiqada eng yangisidan tahlil qiladi.");
   fin();
 }
 

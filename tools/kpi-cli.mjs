@@ -48,7 +48,7 @@ try {
   const p = s.period;
   say(`SOTUV KPI · ${R.label} (${R.days} kun, Asia/Tashkent) · manba: Bitrix24 CRM, panel bilan bir xil hisob`);
   say("");
-  // Lid ta'rifi = Odoo dashboard «SUN-HTC Call Operators» → «Tushgan Lead» (2026-09-23, sotuv rahbari manbasi)
+  // Lid ta'rifi = davrda Bitrix'da yaratilgan lid
   say(`LIDLAR («Tushgan Lead», yaratilgan sana bo'yicha): jami ${n(p.total)} · sifatli ${n(p.quality)} · yaroqsiz/otkaz ${n(p.junk)} (${kasr(p.junk, p.total)})`);
   say(`  shu davrda kelib managerga o'tgan ${n(p.converted)} — jami liddan ${kasr(p.converted, p.total)}; sifatli liddan ${kasr(p.converted, p.quality)}`);
   J.lid = { jami: p.total || 0, sifatli: p.quality || 0, yaroqsiz: p.junk || 0, managerga: p.converted || 0 };
@@ -59,11 +59,11 @@ try {
     say(`LID TAQDIRI (shu davrda kelgan ${n(f.total)} lid): managerga o'tgan ${n(f.converted)} (${kasr(f.converted, f.total)}) → yutilgan ${n(f.won)} · bitim jarayonda ${n(f.dealOpen)} · yo'qotilgan ${n(f.lost)}`);
     if (j.byType.length) say(`  klient turi bo'yicha: ${j.byType.map((t) => `${t.name} ${n(t.n)} (yutildi ${t.won}, yo'q ${t.lost})`).join("; ")}`);
   } catch (e) { say(`LID TAQDIRI: olinmadi (${String(e.message).slice(0, 80)})`); }
-  if (p.arxiv) say(`  yaroqsizlardan ${n(p.arxiv)} tasi Odoo'da arxivlangan`);
+  if (p.arxiv) say(`  yaroqsizlardan ${n(p.arxiv)} tasi Bitrix'da arxivlangan`);
 
   const t = q.totals;
   say(`JAVOB TEZLIGI: 24 soatdan oshgan ochiq lid ${n(t.atRisk)} ta (haqiqiy lid ${n(t.real)} tadan)`);
-  if (q.qongiroqBor === false) say(`  SLA o'lchanmadi — davrda SUN qo'ng'irog'i ${q.davrQongiroq ? "lidlarga bog'lanmadi" : "qayd etilmagan"} (bu «javob berilmagan» degani emas)`);
+  if (q.qongiroqBor === false) say(`  SLA o'lchanmadi — davrda qo'ng'iroq ${q.davrQongiroq ? "lidlarga bog'lanmadi" : "qayd etilmagan"} (bu «javob berilmagan» degani emas)`);
   else say(`  SLA 24 soat: ${t.slaRate === null ? "o'lchanmadi" : kasr(t.withinSla, t.answered)} · kech ${n(t.breached)} ta`);
   J.sla = { olchandi: q.qongiroqBor !== false && t.slaRate !== null, ichida: t.withinSla || 0, javob: t.answered || 0,
     kech: t.breached || 0, ochiq24: t.atRisk || 0, haqiqiy: t.real || 0 };
@@ -107,7 +107,7 @@ try {
   } else {
     let oxirgi = null;
     try { const h = await (await fetch(String(process.env.BITRIX_WEBHOOK_URL).replace(/\/rest\/.*$/, "/healthz"), { signal: AbortSignal.timeout(3000) })).json(); oxirgi = h?.counts?.callsOxirgi || null; } catch {}
-    say(`QO'NG'IROQLAR: davrda qayd etilmagan — o'lchanmadi (0 emas)${oxirgi ? `. Eng oxirgi SUN qo'ng'irog'i ${tk(oxirgi)} — undan keyin Odoo'ga tushmagan` : ""}`);
+    say(`QO'NG'IROQLAR: davrda qayd etilmagan — o'lchanmadi (0 emas)${oxirgi ? `. Eng oxirgi qo'ng'iroq ${tk(oxirgi)} — undan keyin Bitrix'ga tushmagan` : ""}`);
   }
   console.log(out.join("\n"));
   if (process.env.KPI_JSON) { try { fs.writeFileSync(process.env.KPI_JSON, JSON.stringify(J)); } catch (e) { console.error(`KPI_JSON yozilmadi: ${e.message}`); } }

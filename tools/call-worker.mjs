@@ -10,11 +10,14 @@
 // Osilib qolsa keyingi chaqiruvda o'zi tiklanadi, qulf esa ustma-ust ketishni to'sadi.
 import fs from "node:fs";
 import path from "node:path";
+import { fileURLToPath, pathToFileURL } from "node:url";
 import { DatabaseSync } from "node:sqlite";
 
-const APP = process.env.SOTUV_APP || "/home/claude/projects/sotuv-web";
-// claude-oauth.env — AI qatlami (`claude -p`) uchun kirish tokeni. Panel xizmati uni systemd orqali
-// oladi, cron ishchisi esa olmasdi → «Not logged in» → hamma tahlil faqat qoida bilan chiqardi.
+// Loyiha papkasi: SOTUV_APP yoki shu faylning ota papkasi (lokal va serverda bir xil ishlaydi).
+const APP = process.env.SOTUV_APP || path.join(path.dirname(fileURLToPath(import.meta.url)), "..");
+const lib = (name) => pathToFileURL(path.join(APP, "lib", name)).href;
+// Kalitlar: loyihaning .env (Bitrix vebxuki, GEMINI_API_KEY). Qolgan fayllar — serverdagi eski joylar,
+// bo'lmasa o'tkazib yuboriladi. claude-oauth.env faqat Claude zaxirasi (CALLAI_CLAUDE_FALLBACK=1) uchun.
 for (const f of ["/home/claude/secrets/bitrix-sotuv.env", path.join(APP, ".env"),
                  "/home/claude/.claude-qongiroq/channels/telegram/.env", "/home/claude/secrets/claude-oauth.env"]) {
   if (!fs.existsSync(f)) continue;
@@ -23,12 +26,12 @@ for (const f of ["/home/claude/secrets/bitrix-sotuv.env", path.join(APP, ".env")
     if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
   }
 }
-const { Bitrix } = await import(`${APP}/lib/bitrix.mjs`);
-const calls = await import(`${APP}/lib/calls.mjs`);
-const store = await import(`${APP}/lib/callstore.mjs`);
-const pipe  = await import(`${APP}/lib/pipeline.mjs`);
-const dir   = await import(`${APP}/lib/directory.mjs`);
-const stt   = await import(`${APP}/lib/stt.mjs`);
+const { Bitrix } = await import(lib("bitrix.mjs"));
+const calls = await import(lib("calls.mjs"));
+const store = await import(lib("callstore.mjs"));
+const pipe  = await import(lib("pipeline.mjs"));
+const dir   = await import(lib("directory.mjs"));
+const stt   = await import(lib("stt.mjs"));
 
 const arg = (name, def) => {
   const i = process.argv.indexOf("--" + name);
@@ -125,8 +128,8 @@ if (!limitda && !FAQAT_SIFAT && UPG && stt.geminiOn && stt.geminiOn()) {
 let aiUpg = 0;
 const AI_UPG = Math.max(0, Number(process.env.WORKER_AI_UPGRADE ?? 3));
 if (!limitda && !FAQAT_SIFAT && AI_UPG && stt.geminiOn && stt.geminiOn()) {
-  const { runAnalysis } = await import(`${APP}/lib/callrun.mjs`);
-  const gem = await import(`${APP}/lib/gemini.mjs`);
+  const { runAnalysis } = await import(lib("callrun.mjs"));
+  const gem = await import(lib("gemini.mjs"));
   const AI_SEC = Number(process.env.PIPE_AI_SEC || 90);
   const nomzod = [];
   for (const r of db.prepare(`SELECT call_id, json, engine FROM call_analyses WHERE status = 'ready' AND call_id LIKE 'v%' ORDER BY CAST(substr(call_id, 2) AS INTEGER) DESC`).all()) {
@@ -152,7 +155,7 @@ if (!limitda && !FAQAT_SIFAT && AI_UPG && stt.geminiOn && stt.geminiOn()) {
 // Egasi: «sifatli lidni AI o'zi aniqlasin» (kunlik hisobot, TZ 1.1). Bir so'rovda SIFAT_BATCH ta lid —
 // bepul Gemini kvotasi tejaladi. Eng yangi qo'ng'irog'i bor liddan boshlab; lidga yangi transkript
 // qo'shilsa (basis o'zgaradi) — qayta baholanadi. Gemini limitda bo'lsa — keyingi siklda.
-const sifat = await import(`${APP}/lib/sifat.mjs`);
+const sifat = await import(lib("sifat.mjs"));
 sifat.initSifat(db);
 let sifatN = 0, sifatNavbat = 0;
 const SIF_BATCH = Math.max(1, Math.min(10, Number(process.env.SIFAT_BATCH || 6)));

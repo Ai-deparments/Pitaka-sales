@@ -4,7 +4,7 @@
 //   BITRIX_WEBHOOK_URL=http://127.0.0.1:8099/rest/1/demo/
 //
 // Ishga tushirish:
-//   node tools/mock-bitrix.mjs --seed 42 --port 8099 [--persist data/mock-bitrix.json] [--profile sun]
+//   node tools/mock-bitrix.mjs --seed 42 --port 8099 [--persist data/mock-bitrix.json] [--profile pitaka]
 //        [--no-user-scope] [--no-telephony] [--audio-dir tools/demo-audio] [--latency 0] [--flaky 0] [--dump]
 //
 // Qo'shimcha (Bitrix'da yo'q, faqat demo uchun):
@@ -40,7 +40,7 @@ const CFG = {
   port: Number(opt('port', 8099)),
   host: String(opt('host', '127.0.0.1')),
   persist: opt('persist', '') ? String(opt('persist', '')) : '',
-  profile: String(opt('profile', 'sun')),
+  profile: String(opt('profile', 'pitaka')),
   userScope: opt('no-user-scope', false) !== true,
   telephony: opt('no-telephony', false) !== true,
   audioDir: String(opt('audio-dir', path.join(__dirname, 'demo-audio'))),
@@ -103,37 +103,55 @@ function tkWeekday(d) { return new Date(d.getTime() + CFG.tzMin * 60000).getUTCD
 // Profil (kompaniyaga xos nomlar) — kod bir xil, faqat lug'at
 // ---------------------------------------------------------------------------
 const PROFILES = {
-  sun: {
-    // Haqiqiy SUN-HIGHTECH Odoo (2026-09-14 video) bosqich va segment nomlari — demo→real o'tish (§10.5) uchun bir xil lug'at
-    company: 'SUN-HIGHTECH',
+  pitaka: {
+    // Pitaka Bitrix24 (crm.smartworld.uz) bosqich va maydon nomlari — demo ma'lumot real portal bilan bir xil lug'atda.
+    // Ismlar, telefonlar va summalar SOXTA.
+    company: 'Pitaka (demo)',
     categories: [
-      { ID: '0', NAME: 'Savdo Sun High Tech' },
-      { ID: '1', NAME: 'Kuzatuv va servis' },
-      { ID: '2', NAME: 'Loyiha ijrosi' },
-      { ID: '3', NAME: 'Tender' },
+      { ID: '0', NAME: "Sotuv Bo'limi" },
+      { ID: '17', NAME: "G'amxo'rlik bo'limi" },
     ],
-    stages: [ // kod, nom, semantik — Odoo imkoniyat voronkasi
-      ['NEW', 'Сотув бўлими янги лид', 'P'], ['PREPARATION', 'Жавоб бермади', 'P'], ['PROPOSAL', 'Тижорат таклиф тайёрлаш', 'P'],
-      ['MEETING', 'Ўчрашув', 'P'], ['DOJIM', 'Дожим', 'P'], ['PREPAYMENT_INVOICE', 'Шартнома берилди', 'P'],
-      ['WON', 'Аванс тушди', 'S'], ['LOSE', 'Отказ', 'F'],
+    catWeights: [{ w: 0.85, id: '0' }, { w: 0.15, id: '17' }],
+    stages: [ // kod, nom, semantik — «Sotuv Bo'limi» voronkasi
+      ['UC_40RVM8', 'Prioritet', 'P'], ['UC_JLBURS', 'Yangi mijoz', 'P'], ['UC_ZJAZUB', 'Kvalifikatsiya', 'P'],
+      ['NEW', "Ma'lumot berildi", 'P'], ['UC_PZILMJ', 'Hisob berildi', 'P'], ['UC_934502', "100% to'lov", 'P'],
+      ['WON', 'Muvaffaqiyatli', 'S'], ['LOSE', 'Bekor qilindi', 'F'],
     ],
-    leadStatuses: [ // Odoo lid voronkasi
-      ['NEW', 'Янги лид', ''], ['IN_PROCESS', 'Жараёнда', ''], ['UC_1_6', '1-6 ой', ''], ['UC_KP', 'Кп', ''],
-      ['CONVERTED', 'Шартнома', 'S'], ['UC_SERVIS', 'Сервис', ''], ['UC_PEREZVON', 'Перезвон', ''], ['JUNK', 'Отказ', 'F'],
+    mainOnlyStages: ['UC_40RVM8', 'UC_JLBURS', 'UC_ZJAZUB'],   // qo'shimcha voronkada bo'lmaydi
+    leadStatuses: [
+      ['NEW', 'Prioritet', ''], ['UC_AEH2UE', 'Yangi mijoz', ''], ['UC_3D7LNB', 'Kvalifikatsiya', ''],
+      ['CONVERTED', "Muvaffaqiyatli bo'ldi", 'S'], ['JUNK', 'Bekor qilindi', 'F'], ['UC_7YH6KA', 'ARXIV', 'F'], ['UC_O11I30', 'NE KVAL', 'F'],
     ],
+    // Yoshiga qarab lid holati: yangilari hali ishlanmoqda, eskilari yopilgan
+    leadStatus: (age, conv) => {
+      if (age <= 3) return chance(0.6) ? 'UC_AEH2UE' : chance(0.5) ? 'UC_3D7LNB' : 'NEW';
+      const r = rnd();
+      if (r < conv) return 'CONVERTED';
+      if (r < conv + 0.35) return 'JUNK';
+      if (r < conv + 0.43) return 'UC_O11I30';
+      if (age > 120 && chance(0.4)) return 'UC_7YH6KA';
+      return chance(0.6) ? 'UC_3D7LNB' : 'UC_AEH2UE';
+    },
     sources: [ // id, nom, ulush, konversiya (S)
-      ['UC_INSTAGRAM', 'Instagram', 0.34, 0.035], ['UC_FACEBOOK', 'Facebook', 0.10, 0.03], ['CALL', "Qo'ng'iroq", 0.16, 0.05],
-      ['WEB', 'Sayt', 0.12, 0.06], ['TELEGRAM', 'Telegram bot', 0.14, 0.07], ['RECOMMENDATION', 'Tavsiya', 0.10, 0.12], ['ADVERTISING', 'Reklama', 0.04, 0.03],
+      ['WEBFORM', 'CRM-форма', 0.85, 0.14], ['CALL', 'Звонок', 0.1, 0.18], ['UC_INSTAGRAM', 'Instagram ipitaka.uz', 0.05, 0.1],
     ],
-    services: ['On-Grid', 'Off-Grid', 'Hybrid'],                                   // Станция тури
-    revenue: ['< 5 kVt', '5–20 kVt', '20–100 kVt', '100 kVt – 1 MVt', '> 1 MVt'],  // Тавсия қувват diapazoni
-    positions: ['B2C', 'B2B', 'B2G', 'Zaryatniy stansiya', 'GetGreen'],           // Клиент тури
-    dealTitle: (kw, city, cat) => cat === '3' ? `Tender: ${kw} kVt QES — ${city}` : cat === '1' ? `Servis: ${kw} kVt tizim — ${city}` : `Quyosh stansiyasi ${kw} kVt — ${city}`,
-    lossReasons: ['Narx qimmat', "Muddatli to'lov yo'q", 'Raqobatchi tanladi', 'Javob bermadi', 'Tarmoq ruxsati kechikdi'],
-    taskSubjects: ["Mijozga qo'ng'iroq qilish", 'КП yuborish', 'Obyektga chiqish (Agent Visit)', 'Shartnoma loyihasini yuborish', "Avansni eslatish", 'Montaj sanasini kelishish'],
+    models: ['iPhone 17 Pro Max', 'iPhone 17 Pro', 'iPhone 17', 'iPhone Air', 'iPhone 16 Pro Max', 'Samsung S25 Ultra'],
+    prices: [889000, 949000, 1029000, 1100000, 1179000],
+    volume: [['15011', 'Dona'], ['15012', 'Optom']],
+    regions: [['15001', 'Toshkent shahar'], ['15002', 'Toshkent viloyati'], ['15003', 'Samarqand viloyati'], ['15004', "Farg'ona viloyati"], ['15005', 'Andijon viloyati']],
+    leadReasons: [['15891', "Ko'tarmadi"], ['15892', 'Maqsadsiz'], ['15893', 'Xato raqam'], ['15894', 'Hozir emas'], ['15896', 'Dubl'], ['15897', 'Qimmat'], ['17045', 'Spam'], ['17054', 'Mavjud emas']],
+    dealReasons: [['16101', "Ko'tarmadi"], ['16102', 'Maqsadsiz'], ['16103', 'Xato raqam'], ['16104', 'Hozir emas'], ['16106', 'Dubl'], ['16107', 'Qimmat'], ['16108', 'Spam'], ['16109', 'Mavjud emas']],
+    fields: { lead: { reason: 'UF_CRM_1776932197903', region: 'UF_CRM_1776932053923', volume: 'UF_CRM_1776932137210' },
+              deal: { reason: 'UF_CRM_1776938212406' } },
+    dealTitle: (model, city, cat) => cat === '17' ? `${model} chexol — kafolat murojaati (${city})` : `${model} chexol — ${city}`,
+    leadComments: ["Instagram arizasi, iPhone 17 Pro Max uchun", "Narxni so'radi", "Telegram'ga rasm yuborildi", "Ofisga kelib ko'rmoqchi", "Optom so'radi"],
+    dealComments: ["Telegram'ga 3 ta rang yuborildi", 'Kuryer ertaga olib boradi', "Click orqali to'laydi", "Ofisga keladi, taqib ko'radi"],
+    taskSubjects: ["Mijozga qayta qo'ng'iroq", "Telegram'ga rasmlar yuborish", 'Yetkazib berishni kelishish', "To'lovni eslatish", 'Kafolat murojaatini tekshirish'],
   },
 };
-const P = PROFILES[CFG.profile] || PROFILES.sun;
+const P = PROFILES[CFG.profile] || PROFILES.pitaka;
+const enumItems = (pairs) => pairs.map(([ID, VALUE]) => ({ ID, VALUE }));
+const LEAD_SEM = Object.fromEntries(P.leadStatuses.map(([id, , sem]) => [id, sem || 'P']));
 
 const CITIES = ['Toshkent', 'Samarqand', 'Buxoro', 'Andijon', "Farg'ona", 'Namangan', 'Qashqadaryo', 'Surxondaryo', 'Xorazm', 'Navoiy', 'Jizzax', 'Sirdaryo', 'Nukus', 'Toshkent viloyati'];
 const FIRST = ['Aziz', 'Bobur', 'Dilnoza', 'Farrux', 'Gulnora', 'Jasur', 'Kamola', 'Lola', 'Malika', 'Nodir', 'Otabek', 'Rustam', 'Sardor', 'Shahnoza', 'Timur', 'Umid', 'Zarina', 'Sherzod', 'Nilufar', 'Iroda'];
@@ -162,13 +180,8 @@ function phoneSubject(p) { // "+998941075500" → "94 107 55 00" (Bitrix telefon
 }
 function multi(type, value, id) { return [{ ID: String(id), VALUE_TYPE: 'WORK', VALUE: value, TYPE_ID: type }]; }
 function money(n) { return (Math.round(n * 100) / 100).toFixed(2); }
-function kwFor(cat) {
-  if (cat === '3') return pick([100, 200, 300, 500, 1000]);
-  if (cat === '2') return pick([10, 20, 30, 50, 100, 200]);
-  const r = rnd();
-  return r < 0.5 ? pick([3, 5, 8, 10]) : r < 0.8 ? pick([15, 20, 30, 50]) : pick([100, 200, 500, 1000]);
-}
-function amountUZS(kw) { const perKw = kw >= 1000 ? 4.5e6 : kw >= 100 ? ri(45, 48) * 1e5 : kw >= 20 ? ri(46, 52) * 1e5 : ri(52, 61) * 1e5; return kw * perKw; }
+function qtyFor(cat) { return cat === '0' && chance(0.08) ? ri(5, 30) : chance(0.15) ? 2 : 1; } // dona; ba'zan optom
+function amountUZS(qty) { return qty * pick(P.prices); }
 
 // ---------------------------------------------------------------------------
 // Generator (§9.3)
@@ -191,7 +204,7 @@ function generate() {
     const ent = c.ID === '0' ? 'DEAL_STAGE' : `DEAL_STAGE_${c.ID}`;
     let sort = 10;
     for (const [code, NAME, SEM] of P.stages) {
-      if (c.ID !== '0' && (code === 'PROPOSAL' || code === 'MEETING' || code === 'DOJIM')) continue; // qo'shimcha voronkalarda 5 bosqich
+      if (c.ID !== '0' && P.mainOnlyStages.includes(code)) continue; // qo'shimcha voronkada qisqa bosqichlar
       DB.statuses.push({ ID: String(sid++), ENTITY_ID: ent, STATUS_ID: c.ID === '0' ? code : `C${c.ID}:${code}`, NAME, NAME_INIT: NAME, SORT: String(sort), SYSTEM: code === 'NEW' || code === 'WON' || code === 'LOSE' ? 'Y' : 'N', SEMANTICS: SEM === 'P' ? '' : SEM, COLOR: SEM === 'S' ? '#7BD500' : SEM === 'F' ? '#FF5752' : '#39A8EF' });
       sort += 10;
     }
@@ -223,28 +236,27 @@ function generate() {
       if (created > now) continue;
       const src = weighted(P.sources.map(([id, name, w, conv]) => ({ w, id, conv })));
       const age = d;
-      let status;
-      if (age <= 3) status = chance(0.7) ? 'NEW' : 'IN_PROCESS';
-      else if (age <= 30) status = chance(0.15) ? 'NEW' : chance(0.55) ? 'IN_PROCESS' : chance(0.6) ? 'UC_KP' : chance(0.5) ? 'JUNK' : 'CONVERTED';
-      else { const r = rnd(); status = r < src.conv * 0.8 ? 'CONVERTED' : r < 0.45 ? 'JUNK' : chance(0.5) ? 'IN_PROCESS' : chance(0.6) ? 'UC_KP' : 'UC_PEREZVON'; }
-      const sem = status === 'CONVERTED' ? 'S' : status === 'JUNK' ? 'F' : 'P';
+      const status = P.leadStatus(age, src.conv);
+      const sem = LEAD_SEM[status] || 'P';
       const NAME = pick(FIRST), LAST_NAME = pick(LAST);
       const isCompany = chance(0.3);
-      const kw = kwFor('0');
+      const qty = qtyFor('0');
+      const model = pick(P.models);
       const modify = new Date(Math.min(now.getTime(), created.getTime() + ri(0, Math.max(1, age)) * DAY));
       const lead = {
-        ID: String(lid), TITLE: isCompany ? `${pick(COMPANY_WORDS)} ${pick(COMPANY_FORMS)} — ${P.services[0].split(' ')[0]} so'rovi` : `${NAME} ${LAST_NAME} — ${kw} kVt so'rovi`,
+        ID: String(lid), TITLE: isCompany ? `${pick(COMPANY_WORDS)} ${pick(COMPANY_FORMS)} — optom chexol so'rovi` : `${NAME} ${LAST_NAME} — ${model} chexol`,
         NAME, LAST_NAME, SECOND_NAME: '', COMPANY_TITLE: isCompany ? `${pick(COMPANY_WORDS)} ${pick(COMPANY_WORDS)} ${pick(COMPANY_FORMS)}` : '',
         SOURCE_ID: src.id, SOURCE_DESCRIPTION: '', STATUS_ID: status, STATUS_SEMANTIC_ID: sem, STATUS_DESCRIPTION: '',
         DATE_CREATE: iso(created), DATE_MODIFY: iso(modify), DATE_CLOSED: sem === 'P' ? '' : iso(modify),
         ASSIGNED_BY_ID: chance(0.05) ? '1' : pick(MANAGERS), CREATED_BY_ID: '1', MODIFY_BY_ID: '1',
-        OPPORTUNITY: chance(0.6) ? money(amountUZS(kw)) : '0.00', CURRENCY_ID: 'UZS', IS_RETURN_CUSTOMER: chance(0.08) ? 'Y' : 'N', IS_MANUAL_OPPORTUNITY: 'N',
-        COMMENTS: chance(0.5) ? pick(["Oylik to'lov ~1.2 mln, tom 60 m²", 'Instagram reklamadan keldi, narx so\'radi', "Muddatli to'lov bormi deb so'radi", 'Obyektga chiqish kerak', 'Ish vaqtidan tashqari yozgan']) : '',
+        OPPORTUNITY: chance(0.6) ? money(amountUZS(qty)) : '0.00', CURRENCY_ID: 'UZS', IS_RETURN_CUSTOMER: chance(0.08) ? 'Y' : 'N', IS_MANUAL_OPPORTUNITY: 'N',
+        COMMENTS: chance(0.5) ? pick(P.leadComments) : '',
         PHONE: multi('PHONE', phone(), mfId++), EMAIL: chance(0.25) ? multi('EMAIL', `${NAME.toLowerCase()}${ri(1, 99)}@gmail.com`, mfId++) : [],
         BIRTHDATE: chance(0.2) ? `${ri(1965, 2000)}-${pad(ri(1, 12))}-${pad(ri(1, 28))}` : '',
-        ADDRESS_CITY: pick(CITIES), UTM_SOURCE: src.id === 'UC_INSTAGRAM' ? 'instagram' : src.id === 'ADVERTISING' ? 'google' : '', UTM_CAMPAIGN: src.id === 'UC_INSTAGRAM' ? pick(['sept_5kw', 'biznes_50kw', 'uy_10kw']) : '',
-        UF_CRM_SELECTBOX3: chance(0.7) ? pick(P.revenue) : '', UF_CRM_SELECTBOX: chance(0.8) ? pick(P.services) : '', UF_CRM_SELECTBOX2: chance(0.6) ? pick(P.positions) : '',
-        UF_CRM_1667284257: chance(0.3) ? money(amountUZS(kw)) : '',
+        ADDRESS_CITY: pick(CITIES), UTM_SOURCE: src.id === 'UC_INSTAGRAM' ? 'instagram' : src.id === 'ADVERTISING' ? 'google' : '', UTM_CAMPAIGN: src.id === 'UC_INSTAGRAM' ? pick(['iphone17_aramid', 'samsung_ultra', 'magsafe_promo']) : '',
+        [P.fields.lead.reason]: sem === 'F' && chance(0.92) ? pick(P.leadReasons)[0] : '',
+        [P.fields.lead.region]: chance(0.15) ? pick(P.regions)[0] : '',
+        [P.fields.lead.volume]: chance(0.3) ? (qty > 3 ? P.volume[1][0] : P.volume[0][0]) : '',
       };
       DB.leads.push(lead);
       if (sem === 'S') convertedLeads.push(lead);
@@ -254,7 +266,7 @@ function generate() {
 
   // Bitimlar: 300
   for (let i = 1; i <= 300; i++) {
-    const cat = weighted([{ w: 0.6, id: '0' }, { w: 0.15, id: '1' }, { w: 0.15, id: '2' }, { w: 0.1, id: '3' }]).id;
+    const cat = weighted(P.catWeights).id;
     const st = stagesOf(cat);
     const open = chance(0.4);
     const archive = open && chance(0.25); // 365+ kun harakatsiz
@@ -263,28 +275,28 @@ function generate() {
     if (open) stage = pick(st.filter((s) => !s.SEMANTICS));
     else stage = chance(0.62) ? st.find((s) => s.SEMANTICS === 'S') : st.find((s) => s.SEMANTICS === 'F');
     const sem = stage.SEMANTICS || 'P';
-    const kw = kwFor(cat);
-    const usd = chance(0.2);
+    const qty = qtyFor(cat);
     const noAmount = chance(0.2);
-    const amount = noAmount ? '0.00' : money(usd ? kw * ri(380, 520) : amountUZS(kw));
+    const amount = noAmount ? '0.00' : money(amountUZS(qty));
     const ageDays = Math.floor((now - created) / DAY);
     const moved = archive ? new Date(created.getTime() + ri(1, 20) * DAY) : new Date(created.getTime() + ri(0, Math.max(1, Math.min(ageDays, 60))) * DAY);
     const lastAct = archive ? new Date(moved.getTime() + ri(0, 10) * DAY) : new Date(Math.min(now.getTime(), moved.getTime() + ri(0, 15) * DAY));
     const closeDate = open ? new Date(created.getTime() + ri(20, 90) * DAY) : new Date(moved);
     const withClient = !chance(0.3);
-    const b2b = cat === '3' || chance(0.35);
+    const b2b = qty > 3;
     const leadRef = chance(0.5) && convertedLeads.length ? pick(convertedLeads) : null;
     DB.deals.push({
-      ID: String(i), TITLE: P.dealTitle(kw, pick(CITIES), cat), TYPE_ID: 'SALE', CATEGORY_ID: cat, STAGE_ID: stage.STATUS_ID, STAGE_SEMANTIC_ID: sem,
+      ID: String(i), TITLE: P.dealTitle(pick(P.models), pick(CITIES), cat), TYPE_ID: 'SALE', CATEGORY_ID: cat, STAGE_ID: stage.STATUS_ID, STAGE_SEMANTIC_ID: sem,
       IS_NEW: 'N', IS_RECURRING: 'N', IS_RETURN_CUSTOMER: chance(0.1) ? 'Y' : 'N', IS_REPEATED_APPROACH: 'N', PROBABILITY: chance(0.1) ? String(ri(10, 90)) : null,
-      OPPORTUNITY: amount, IS_MANUAL_OPPORTUNITY: 'Y', TAX_VALUE: '0.00', CURRENCY_ID: usd ? 'USD' : 'UZS',
+      OPPORTUNITY: amount, IS_MANUAL_OPPORTUNITY: 'Y', TAX_VALUE: '0.00', CURRENCY_ID: 'UZS',
       CLOSED: open ? 'N' : 'Y', OPENED: 'Y', CLOSEDATE: iso(closeDate), BEGINDATE: iso(created), DATE_CREATE: iso(created), DATE_MODIFY: iso(lastAct), MOVED_TIME: iso(moved), MOVED_BY_ID: '1', LAST_ACTIVITY_TIME: iso(lastAct), LAST_ACTIVITY_BY: pick(MANAGERS),
       ASSIGNED_BY_ID: pick(MANAGERS), CREATED_BY_ID: '1', MODIFY_BY_ID: '1',
       CONTACT_ID: withClient && !b2b ? String(ri(1, 250)) : null, COMPANY_ID: withClient && b2b ? String(ri(1, 120)) : null,
       LEAD_ID: leadRef ? leadRef.ID : null, SOURCE_ID: leadRef ? leadRef.SOURCE_ID : pick(P.sources)[0], SOURCE_DESCRIPTION: '',
-      COMMENTS: sem === 'F' ? `Sabab: ${pick(P.lossReasons)}` : chance(0.4) ? pick(['Avans 60% kutilmoqda', 'PVSyst hisobi yuborildi', 'Montaj brigadasi belgilandi', "Mijoz 2 variant so'radi"]) : '',
-      UTM_SOURCE: '', UF_CRM_1667284257: chance(0.15) ? money(amountUZS(kw)) : '',
-      _KW: kw,
+      COMMENTS: sem === 'F' ? '' : chance(0.4) ? pick(P.dealComments) : '',
+      [P.fields.deal.reason]: sem === 'F' && chance(0.97) ? pick(P.dealReasons)[0] : '',
+      UTM_SOURCE: '',
+      _QTY: qty,
     });
   }
 
@@ -522,12 +534,12 @@ const M = {
   'scope': () => ({ result: scopes() }),
   'crm.lead.list': (p) => listOf(DB.leads, p),
   'crm.lead.get': (p) => getOne(DB.leads, p),
-  'crm.lead.fields': () => ({ result: fieldsOf(DB.leads[0]) }),
+  'crm.lead.fields': () => ({ result: fieldsOf(DB.leads[0], { [P.fields.lead.reason]: P.leadReasons, [P.fields.lead.region]: P.regions, [P.fields.lead.volume]: P.volume }) }),
   'crm.lead.add': (p) => addEntity('lead', DB.leads, p, { STATUS_ID: 'NEW', STATUS_SEMANTIC_ID: 'P', SOURCE_ID: 'OTHER', OPPORTUNITY: '0.00', CURRENCY_ID: 'UZS', ASSIGNED_BY_ID: '1' }),
   'crm.lead.update': (p) => updateEntity(DB.leads, p, (row, f) => { if (f.STATUS_ID) { const s = DB.statuses.find((x) => x.ENTITY_ID === 'STATUS' && x.STATUS_ID === f.STATUS_ID); row.STATUS_SEMANTIC_ID = s && s.SEMANTICS ? s.SEMANTICS : 'P'; } }),
   'crm.deal.list': (p) => listOf(DB.deals, p),
   'crm.deal.get': (p) => getOne(DB.deals, p),
-  'crm.deal.fields': () => ({ result: fieldsOf(DB.deals[0]) }),
+  'crm.deal.fields': () => ({ result: fieldsOf(DB.deals[0], { [P.fields.deal.reason]: P.dealReasons }) }),
   'crm.deal.add': (p) => addEntity('deal', DB.deals, p, { CATEGORY_ID: '0', STAGE_ID: 'NEW', STAGE_SEMANTIC_ID: 'P', CLOSED: 'N', OPPORTUNITY: '0.00', CURRENCY_ID: 'UZS', ASSIGNED_BY_ID: '1', MOVED_TIME: nowIso(), LAST_ACTIVITY_TIME: nowIso(), PROBABILITY: null, CONTACT_ID: null, COMPANY_ID: null, LEAD_ID: null }),
   'crm.deal.update': (p) => updateEntity(DB.deals, p, (row, f) => {
     if (f.STAGE_ID && f.STAGE_ID !== row._prevStage) { row.STAGE_SEMANTIC_ID = semOfStage(f.STAGE_ID); row.MOVED_TIME = nowIso(); row.CLOSED = row.STAGE_SEMANTIC_ID === 'P' ? 'N' : 'Y'; }
@@ -584,7 +596,7 @@ const M = {
     return res;
   },
 };
-function fieldsOf(sample) { const out = {}; for (const k of Object.keys(sample || {})) if (!k.startsWith('_')) out[k] = { type: k.startsWith('DATE') ? 'datetime' : k === 'OPPORTUNITY' ? 'double' : k.startsWith('UF_') ? 'enumeration' : 'string', isRequired: false, isReadOnly: k === 'ID', isImmutable: false, isMultiple: k === 'PHONE' || k === 'EMAIL', isDynamic: false, title: k }; return out; }
+function fieldsOf(sample, enums = {}) { const out = {}; for (const k of [...new Set([...Object.keys(sample || {}), ...Object.keys(enums)])]) if (!k.startsWith('_')) out[k] = { ...(enums[k] ? { items: enumItems(enums[k]) } : {}), type: k.startsWith('DATE') ? 'datetime' : k === 'OPPORTUNITY' ? 'double' : k.startsWith('UF_') ? 'enumeration' : 'string', isRequired: false, isReadOnly: k === 'ID', isImmutable: false, isMultiple: k === 'PHONE' || k === 'EMAIL', isDynamic: false, title: k }; return out; }
 function addEntity(kind, rows, p, defaults) {
   const f = p.fields || p.FIELDS || {};
   const id = nextId(kind);

@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// SUN-HIGHTECH Sotuv Desk — HTTP server. Tashqi paket yo'q, faqat Node stdlib.
+// Pitaka Sales — HTTP server. Tashqi paket yo'q, faqat Node stdlib.
 import http from "node:http";
 import fs from "node:fs";
 import path from "node:path";
@@ -468,7 +468,7 @@ const server = http.createServer(async (req, res) => {
         return json(res, 200, { users: listUsers(), roles: ROLES, labels: RL.LABEL }, cid);
       }
 
-      // CRM (Odoo) foydalanuvchilari — xodimni bog'lash uchun tanlov ro'yxati. Oxirgi 90 kunda
+      // CRM (Bitrix) foydalanuvchilari — xodimni bog'lash uchun tanlov ro'yxati. Oxirgi 90 kunda
       // «Оператор (Авто танланади)» sifatida lid olganlar alohida belgilanadi (operator roliga shu kerak).
       if (p === "/api/users/crm" && req.method === "GET") {
         const out = await cached("users:crm", 10 * 60e3, async () => {
@@ -639,7 +639,7 @@ const server = http.createServer(async (req, res) => {
         audit("export.data", what, `${data.length} qator`,
           { before: null, after: { what, rows: data.length, from: fromSql, to: toSql, columns: cols.length } });
         res.setHeader("content-type", "text/csv; charset=utf-8");
-        res.setHeader("content-disposition", `attachment; filename="sun-${what}-${new Date().toISOString().slice(0, 10)}.csv"`);
+        res.setHeader("content-disposition", `attachment; filename="pitaka-${what}-${new Date().toISOString().slice(0, 10)}.csv"`);
         res.setHeader("x-correlation-id", cid);
         res.end(csv);
         return;
@@ -765,7 +765,7 @@ const server = http.createServer(async (req, res) => {
       if (blok === "tasir") return json(res, 200, await olchov.javobTasiri(bx), cid);   // jamoa bo'yicha, shaxsiy ma'lumotsiz
       return fail(res, 400, "Noma'lum blok", cid);
     }
-    // SUN-HIGHTECH sotuv qo'ng'irog'i skripti (tools/sotuv-skript.md) — murabbiy ham shu fayldan oladi; bitta manba
+    // Pitaka sotuv qo'ng'irog'i skripti (tools/sotuv-skript.md) — murabbiy ham shu fayldan oladi; bitta manba
     if (p === "/api/v2/skript" && req.method === "GET") {
       try { return json(res, 200, { md: fs.readFileSync(path.join(HERE, "tools", "sotuv-skript.md"), "utf8") }, cid); }
       catch { return fail(res, 404, "Skript fayli topilmadi (tools/sotuv-skript.md)", cid); }
@@ -860,8 +860,8 @@ const server = http.createServer(async (req, res) => {
     let dm = p.match(/^\/api\/deals\/(\d+)$/);
     if (dm) {
       const room = await dealRoom(bx, dm[1], mine);
-      // Sotuv rahbari (2026-09-26): Odoo'da bitimni nomi bo'yicha qidirish qiyin — oynada mijoz telefoni,
-      // mas'ulning ISMI (CRM ID emas) va Odoo havolasi bo'lsin. Telefon — lid oynasidagi qoida bilan bir xil:
+      // Bitimni CRM'da nomi bo'yicha qidirish qiyin — oynada mijoz telefoni,
+      // mas'ulning ISMI (CRM ID emas) va CRM havolasi bo'lsin. Telefon — lid oynasidagi qoida bilan bir xil:
       // bitimni ocha olgan kishi ko'radi (sotuvchi — faqat o'ziniki). dealRoom keshidagi obyekt o'zgartirilmaydi.
       const d = { ...room.deal };
       try {
@@ -875,8 +875,8 @@ const server = http.createServer(async (req, res) => {
         d.client = [raw.NAME, raw.LAST_NAME].filter(Boolean).join(" ") || raw.COMPANY_TITLE || "";
         d.odooUrl = raw.UF_CRM_ODOO_URL || null;
       } catch {}
-      // Ism CRM'dagidek (Odoo: «Nurullayev Bahriddin …»): dir.decorate familiyani oldinga qo'yadi va Odoo
-      // nomini teskari o'qiydi — shu oynada user.get dan NAME + LAST_NAME tartibida olinadi.
+      // Ism CRM'dagidek: dir.decorate familiyani oldinga qo'yadi —
+      // shuning uchun shu oynada user.get dan NAME + LAST_NAME tartibida olinadi.
       try {
         const u = ((await bx.call("user.get", { FILTER: { ID: [String(d.owner)] } })).result || [])[0];
         if (u) d.ownerName = [u.NAME, u.LAST_NAME].filter(Boolean).join(" ").trim();
@@ -890,7 +890,7 @@ const server = http.createServer(async (req, res) => {
     // ---- Qo'ng'iroqlar ----
     if (p === "/api/calls") return json(res, 200, await calls.calls(bx, range(30), mineCall));
 
-    // ---- AI qo'ng'iroq tahlili (TZ «SUN-HIGHTECH AI Qo'ng'iroq tahlili») ----
+    // ---- AI qo'ng'iroq tahlili (Pitaka qo'ng'iroq sifati agenti) ----
     // Telefon raqamini to'liq ko'rish alohida ruxsat (§8); o'z qo'ng'irog'ida operator ko'radi.
     const CAN_PHONE = [...LEADER, "admin", "auditor"].includes(user.role);
     const enumOf = (v, list) => (list.includes(v) ? v : null);
@@ -991,8 +991,8 @@ const server = http.createServer(async (req, res) => {
     }
 
     // ---- bitta qo'ng'iroq: tahlil oynasi ----
-    // ID harfli prefiks bilan ham bo'lishi mumkin: Odoo adapteri qo'ng'iroqni «q<id>» deb beradi
-    // (2026-09-23 gacha faqat raqam qabul qilinardi → Odoo qo'ng'iroqlari ochilmasdi, 404).
+    // ID harfli prefiks bilan ham bo'lishi mumkin (masalan «q<id>»)
+    // — faqat raqam qabul qilinsa bunday qo'ng'iroqlar 404 berardi.
     let ccm = p.match(/^\/api\/calls\/([a-z]?\d+)$/);
     if (ccm) {
       const id = ccm[1];
