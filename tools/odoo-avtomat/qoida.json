@@ -1,0 +1,287 @@
+{
+  "_izoh": "Sotuv avtomatlashtiruvi parametrlari. Kod o'zgarmaydi — faqat shu qiymatlar. Narx va to'plam qatorlari EGA TASDIG'INI kutmoqda: tasdiqlanmagan narx CRM'ga yozilmaydi (--narx-tasdiq bayrog'isiz).",
+  "_manba": "getgreen.biznesim.uz (Odoo 19, company 2 = SUN-HIGHTECH). Maydon nomlari 2026-09-16 da fields_get bilan o'qilgan.",
+  "crm": {
+    "company_id": 2,
+    "sinov_team_id": 21,
+    "lid_bosqichlari": [
+      "Янги лид",
+      "Жараёнда",
+      "1-6 ой",
+      "Кп",
+      "Шартнома",
+      "Сервис",
+      "Перезвон",
+      "Отказ"
+    ],
+    "imkoniyat_bosqichlari": [
+      "Сотув бўлими янги лид",
+      "Domo new",
+      "iHamkor",
+      "Жавоб бермади",
+      "Тижорат таклиф тайёрлаш",
+      "Ўчрашув",
+      "Дожим",
+      "Шартнома берилди",
+      "Аванс тушди",
+      "Отказ"
+    ],
+    "server_amallari": {
+      "kp": 1937,
+      "shartnoma": 1871,
+      "uchrashuv": 563,
+      "otkaz": 562,
+      "servis": 1276
+    },
+    "sinov_company_id": null,
+    "_sinov_izoh": "company_id YUBORILMAYDI: res.company o'qish huquqi yo'q (oshkora berish xato beradi), kalitning standart kompaniyasi esa Get-Green (1) — ko'rinadigan. SUN (2) ko'rinishi ochilgach o'zgarishsiz ishlaydi.",
+    "_yaratish_strategiyasi": "CREATE: name, contact_name, type, phone (res.company'ga tegmaydi). WRITE: team_id, Тип клиента, xudud, manba, kvalifikatsiya, КП. Sabab: team_id create'da res.company o'qishni talab qiladi."
+  },
+  "maydon": {
+    "nom": "name",
+    "kontakt": "contact_name",
+    "telefon": "phone",
+    "email": "email_from",
+    "shahar": "city",
+    "viloyat": "state_id",
+    "jamoa": "team_id",
+    "menejer": "user_id",
+    "bosqich": "stage_id",
+    "manba_std": "source_id",
+    "tur": "type",
+    "kutilgan_summa": "expected_revenue",
+    "izoh": "description",
+    "maqsad": "x_studio_maqsad_2",
+    "stansiya_turi": "x_studio_type_1",
+    "oylik_tolov_matn": "x_studio_probability",
+    "oylik_sarf_kwh": "x_studio_new_text",
+    "yillik_istemol": "x_yillik_istemol",
+    "kerakli_kvt": "x_ornatilishi_kerak",
+    "fakt_quvvat": "x_studio_fakt_quvvat",
+    "manba": "x_studio_manba",
+    "xudud": "x_studio_xudud",
+    "mijoz_tipi": "x_studio_tip",
+    "tolov_turi": "x_studio_tulov_turi",
+    "avval_ornatilgan": "x_studio_has_installed_panel_before",
+    "lpr": "x_lpr_aniqlandimi",
+    "ornatish_muddati": "x_rejalashtirilgan_ornatish_muddati",
+    "tarif": "x_studio_tarif",
+    "panel_brendi": "x_studio_panel",
+    "invertor_brendi": "x_studio_invertor",
+    "invertor_quvvati": "x_studio_quvvat",
+    "invertor_fazasi": "x_studio_fazasi",
+    "konstruksiya_materiali": "x_studio_metalkonstruksiya_materiali",
+    "kafolat": "x_studio_garanty",
+    "narx_1kvt_belgilangan": "x_studio_1kw_uchun",
+    "narx_1kvt_qolda": "x_studio_1_kvt_uchun_narx",
+    "stansiya_narxi": "x_studio_stansiya_narxi",
+    "narx_standart_1kvt": "x_studio_standard",
+    "narx_biznes_1kvt": "x_studio_biznes",
+    "narx_premium_1kvt": "x_studio_premium",
+    "_scope_tashqarisida": {
+      "panel_m2o": "x_studio_panel_1 -> x_panel",
+      "quvvat_m2o": "x_studio_power -> x_power",
+      "konstruksiya_m2o": "x_studio_konstruksiya -> x_panel",
+      "elektrika_m2o": "x_studio_elektrika -> x_panel",
+      "oylik_istemol_qatorlari": "x_studio_oylik_istemol -> x_crm_lead_line_ccd84",
+      "_izoh": "Bu modellar MCP kalit oq ro'yxatida yo'q — КП 42 qatorli spetsifikatsiyasi shular orqali yig'iladi. Odoo'da scope'ga qo'shilgach avtomat to'plamni ham yozadi."
+    },
+    "_yozilmaydi": {
+      "kafolat": "x_studio_garanty — har qanday qiymat bo'sh qaytadi; Odoo tomonda to'plamdan (x_panel) keladi yoki menejer qo'lda kiritadi. Avtomat unga tegmaydi."
+    }
+  },
+  "variant": {
+    "maqsad": [
+      "1.\tЭлектр тўловларини камайтириш?",
+      "2.\tҚўшимча даромад топиш (давлатга сотиш)?",
+      "3.\tСвет узилишларидан сақланиш?"
+    ],
+    "stansiya_turi": [
+      "On-Grid",
+      "Off-Grid",
+      "Hybrid"
+    ],
+    "tarif": [
+      "Standart",
+      "Biznes",
+      "Премиум"
+    ],
+    "panel_brendi": [
+      "LonGi X10 655Вт",
+      "LonGi X7 620Вт",
+      "Jinko 620Вт",
+      "Jinko 720Вт",
+      "ERA 620Вт"
+    ],
+    "invertor_brendi": [
+      "Deye",
+      "Solax",
+      "Sungrow",
+      "Huawei"
+    ],
+    "invertor_quvvati": [
+      "5 kW",
+      "10 kW",
+      "15 kW",
+      "20 kW"
+    ],
+    "invertor_fazasi": [
+      "1 faza",
+      "3 faza"
+    ],
+    "konstruksiya_materiali": [
+      "Oddiy metall",
+      "Otsinkofka"
+    ],
+    "mijoz_tipi": [
+      "Истемолчи",
+      "Оптовик",
+      "Установщик"
+    ],
+    "manba": [
+      "Лид",
+      "АКБ",
+      "Кирувчи қўнғироқ",
+      "ШоуРум"
+    ],
+    "tolov_turi": [
+      "Нахдэ",
+      "Терминал",
+      "Микс (Нахд+терминал)",
+      "Перечислени физ лиц",
+      "Перечисление Юр лицо"
+    ]
+  },
+  "kalkulyator": {
+    "tarif_som_kwh": 846,
+    "_tarif_manba": "video 14.09.2026: 500 000 so'm -> 590,91 kVt·soat (500000/590.91 = 846)",
+    "unum_kwh_kvt_yil": 1400,
+    "_unum_manba": "o'quv qo'llanmasi (2025): 1 kVt = yiliga 1300–1400 kVt·soat; 1400 olindi. Ega tasdiqladi 2026-09-20 (avval 1500 edi — savolnoma/video)",
+    "pogona_kvt": [
+      3,
+      5,
+      8,
+      10,
+      15,
+      20,
+      30,
+      50,
+      100,
+      200,
+      500,
+      1000
+    ],
+    "tavsiya_koef": 1,
+    "_tavsiya_izoh": "Videoda kerakli 5 kVt -> tavsiya 20 kVt (4x). Bu SOTUV qarori, shuning uchun standart koef 1 (ko'paytirmaydi). Ega tasdiqlagach koef o'zgartiriladi."
+  },
+  "narx_kitobi": {
+    "_tasdiq": "kutilmoqda",
+    "_izoh": "1 kVt uchun so'mda. Tasdiqlanmaguncha avtomat CRM'ga narx YOZMAYDI.",
+    "pogona": [
+      {
+        "kvt": 5,
+        "som_kvt": 6100000,
+        "manba": "Премиум 30° ish daftari / savolnoma (30,6 mln / 5 kVt)"
+      },
+      {
+        "kvt": 10,
+        "som_kvt": 5320000,
+        "manba": "savolnoma (53,2 mln / 10 kVt)"
+      },
+      {
+        "kvt": 20,
+        "som_kvt": 4200000,
+        "manba": "video 14.09.2026 (qo'lda kiritilgan; hisoblangan 4 051 833)"
+      },
+      {
+        "kvt": 50,
+        "som_kvt": 4520000,
+        "manba": "savolnoma (226 mln / 50 kVt)"
+      },
+      {
+        "kvt": 100,
+        "som_kvt": 4560000,
+        "manba": "savolnoma (456 mln / 100 kVt)"
+      },
+      {
+        "kvt": 1000,
+        "som_kvt": 4500000,
+        "manba": "savolnoma (4,5 mlrd / 1 MVt)"
+      }
+    ]
+  },
+  "toplam": {
+    "_tasdiq": "kutilmoqda",
+    "_izoh": "quvvat va tom turiga qarab standart to'plam. Video: 20 kVt, tekis tom -> Премиум + Jinko 620 + Sungrow + Йиғма 0° + ЭЛЕКТР ПРЕМИУМ + 5 yil kafolat.",
+    "qatorlar": [
+      {
+        "kvt_max": 10,
+        "tom": "tekis",
+        "tarif": "Премиум",
+        "panel": "Jinko 620Вт",
+        "invertor": "Sungrow",
+        "faza": "1 faza",
+        "konstruksiya": "Otsinkofka",
+        "kafolat": "5 йил"
+      },
+      {
+        "kvt_max": 10,
+        "tom": "qiya",
+        "tarif": "Премиум",
+        "panel": "Jinko 620Вт",
+        "invertor": "Sungrow",
+        "faza": "1 faza",
+        "konstruksiya": "Otsinkofka",
+        "kafolat": "5 йил"
+      },
+      {
+        "kvt_max": 30,
+        "tom": "tekis",
+        "tarif": "Премиум",
+        "panel": "Jinko 620Вт",
+        "invertor": "Sungrow",
+        "faza": "3 faza",
+        "konstruksiya": "Otsinkofka",
+        "kafolat": "5 йил"
+      },
+      {
+        "kvt_max": 30,
+        "tom": "qiya",
+        "tarif": "Премиум",
+        "panel": "LonGi X7 620Вт",
+        "invertor": "Sungrow",
+        "faza": "3 faza",
+        "konstruksiya": "Otsinkofka",
+        "kafolat": "5 йил"
+      },
+      {
+        "kvt_max": 100000,
+        "tom": "*",
+        "tarif": "Biznes",
+        "panel": "LonGi X10 655Вт",
+        "invertor": "Sungrow",
+        "faza": "3 faza",
+        "konstruksiya": "Otsinkofka",
+        "kafolat": "5 йил"
+      }
+    ]
+  },
+  "tolov": {
+    "_tasdiq": "kutilmoqda",
+    "kichik_kvt": 30,
+    "kichik": "100% avans",
+    "katta": "60% avans / 20% jihoz kelganda / 20% ishga tushganda",
+    "_manba": "savolnoma (bosh direktor javoblari)"
+  },
+  "marshrut": {
+    "call_center_kvt_max": 50,
+    "_izoh": "<=50 kVt call-center telefon orqali sotadi; >50 kVt menejer obyektga chiqadi (savolnoma, 7-band)"
+  },
+  "majburiy": {
+    "_izoh": "Odoo validatsiyasi talab qiladigan maydonlar (xato matnlaridan aniqlangan). Lid yaratishda avtomat shularni to'ldiradi.",
+    "mijoz_tipi": "Истемолчи",
+    "_topilgan": [
+      "Тип клиента (x_studio_tip) — 2026-09-16, lid saqlashda majburiy"
+    ]
+  }
+}

@@ -1,0 +1,134 @@
+<style>
+.bl-wrap{max-width:900px}
+.bl-h3{font-size:17px;font-weight:800;margin:26px 0 8px;color:var(--ink);border-top:1px solid var(--line);padding-top:16px}
+.bl-h3:first-of-type{border-top:0;padding-top:0;margin-top:4px}
+.bl-h4{font-size:14px;font-weight:700;margin:16px 0 6px;color:var(--ink)}
+.bl-p{margin:0 0 8px;color:var(--ink-2);font-size:13.5px;line-height:1.65}
+.bl-admin{display:none;background:var(--surface-2);border-left:3px solid var(--ink-4,var(--ink-3));padding:7px 10px;border-radius:0 6px 6px 0;font-size:12.5px;color:var(--ink-3)}
+.bl-admin.ko{display:block}
+.bl-ul{margin:0 0 10px;padding-left:18px;color:var(--ink-2);font-size:13.5px;line-height:1.65}
+.bl-ul li{margin:3px 0}
+.bl-tw{overflow:auto;margin:6px 0 14px}
+.bl-t{width:100%;border-collapse:collapse;font-size:12.5px}
+.bl-t th{text-align:left;background:var(--surface-2);color:var(--ink-2);font-weight:600;padding:7px 9px;border-bottom:1px solid var(--line)}
+.bl-t td{padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+.bl-src{font-size:12px;color:var(--ink-3);margin-top:18px;border-top:1px solid var(--line);padding-top:10px}
+</style><div class="bl-wrap"><p class="bl-p bl-admin" data-rol="ega">Bu fayl — yagona manba. Undan uch joyga koʻchiriladi: mijoz boti (<code>sotuvchi-bot/uy/qes-qollanma.md</code>),</p>
+<p class="bl-p bl-admin" data-rol="ega">ichki agentlar (<code>shared/skills/qes-texnika.md</code>), panel «Bilim» boʻlimi (<code>sotuv-web/public/bilim/qes.html</code>).</p>
+<p class="bl-p">Raqamlar qoʻllanmadan olingan; ular bilan kalkulyator raqami zid kelsa — qoʻllanma ustun, mijozga shu aytiladi.</p>
+<h3 class="bl-h3" id="b1">1. QES nima va nima foydasi</h3>
+<p class="bl-p">Quyosh elektr stansiyasi (QES) quyosh nurini elektr energiyasiga aylantiradi. Asosiy foyda:</p>
+<ul class="bl-ul">
+<li><b>Tejamkorlik</b> — elektr xarajati keskin kamayadi, sarmoya bir necha yilda qoplanadi.</li>
+<li><b>Ekologik tozalik</b> — «yashil» texnologiya korxona obroʻsini koʻtaradi, chiqindi chiqarmaydi.</li>
+<li><b>Mustaqillik</b> — tarif oshishiga kamroq bogʻliqlik; gibrid yechimda tarmoq uzilganda ham elektr boʻladi.</li>
+</ul>
+<h3 class="bl-h3" id="b2">2. Stansiya turlari (mijozga tanlov shu yerdan boshlanadi)</h3>
+<div class="bl-tw"><table class="bl-t"><thead><tr><th>Tur</th><th>Narx</th><th>Ishonchlilik</th><th>Kimga mos</th><th>Muhim jihat</th></tr></thead><tbody>
+<tr><td><b>Tarmoqli (On-grid)</b></td><td>Eng arzon (akkumulyator yoʻq)</td><td>Tarmoq bor ekan barqaror</td><td>Tarmoqqa ulangan uy va korxona</td><td>Oʻzini <b>2,5–4 yilda</b> qoplaydi. Oʻzbekistondagi stansiyalarning <b>97,8%</b> shu tur. <b>Kamchiligi:</b> tarmoq oʻchsa stansiya ham ishlamaydi</td></tr>
+<tr><td><b>Avtonom (Off-grid)</b></td><td>Qimmat (akkumulyator + qoʻshimcha uskuna)</td><td>Avtonom, lekin akkumulyatorga bogʻliq</td><td>Tarmoq yoʻq hududlar: fermalar, togʻ, dala hovli, chegara postlari</td><td>Akkumulyator eskiradi, almashtirish kerak. Oʻzini qoplash juda uzoq yoki imkonsiz</td></tr>
+<tr><td><b>Gibrid (Hybrid)</b></td><td>Eng qimmat — on-griddan taxminan <b>2 barobar</b></td><td>Eng ishonchli: ham tarmoq, ham akkumulyator</td><td>Tarmoqda uzilish koʻp joylar: shifoxona, server markazi</td><td>Yuklama akkumulyator quvvatining <b>80%</b> idan oshmasligi kerak, aks holda tizim oʻchadi. Iqtisodiy jihatdan eng foydalisi emas, lekin qulaylik boʻyicha eng yaxshisi</td></tr>
+</tbody></table></div>
+<h3 class="bl-h3" id="b3">3. Qancha energiya ishlab chiqaradi</h3>
+<ul class="bl-ul">
+<li>Oʻzbekiston sharoitida <b>1 kVt quvvat = yiliga 1300–1400 kVt·soat</b> (ayrim hollarda 1200–1600).</li>
+<li>Masalan: 1 kVt → 1300–1400 kVt·soat/yil; 100 kVt → 130 000–140 000 kVt·soat/yil.</li>
+<li><b>Panel burchagi 30–35°</b>, yoʻnalishi <b>qatʼiy janubga</b>.</li>
+<li>Ishlab chiqarishga taʼsir qiladi: mintaqa (janubda koʻproq), burchak, yoʻnalish, uskuna sifati.</li>
+<li>Ifloslanish, daraxt/bino soyasi, yomgʻir-chang-qor <b>5–15%</b> kamaytiradi.</li>
+</ul>
+<h4 class="bl-h4">Oylar boʻyicha ulush (yillik ishlab chiqarishdan)</h4>
+<p class="bl-p">Yanvar 5% · Fevral 6% · Mart 8% · Aprel 9% · May 11% · Iyun 11% · Iyul 12% · Avgust 12% · Sentabr 10% · Oktabr 7% · Noyabr 5% · Dekabr 4%.</p>
+<p class="bl-p">Yozda (may–avgust) yillik hajmning <b>~46%</b>, qishda (noyabr–fevral) <b>~20%</b> ishlab chiqariladi.</p>
+<h3 class="bl-h3" id="b4">4. Stansiya tarkibi</h3>
+<p class="bl-p"><b>Metallkonstruksiya</b> (asos) · <b>Panellar</b> (yuragi) · <b>Inverter</b> («miya») · <b>Elektromontaj va kabel</b> (DC/AC kabel, kommutatsiya qutilari, himoya avtomatlari, yerga ulash).</p>
+<h4 class="bl-h4">Konstruksiya turlari</h4>
+<ul class="bl-ul">
+<li><b>Alyuminiy</b> — yengil, zangga chidamli, chiroyli. Qimmat; katta sanoat obyektlari uchun yetarli mustahkam emas. Kichik va oʻrta quvvatga, koʻproq tom uchun.</li>
+<li><b>Sinklangan yigʻma (bolt–gayka)</b> — <b>eng maqbul</b>: narx/sifat nisbati yaxshi, <b>20+ yil</b> zangdan himoya, tez montaj/demontaj, qismini butun konstruksiyani buzmasdan almashtirish mumkin. 50 kVt dan yuqori tijorat va sanoat QES lari uchun. Alyuminiydan ogʻirroq.</li>
+<li><b>Qora metaldan payvandli</b> — arzon, lekin <b>1–2 yilda zanglaydi</b>, boʻyogʻi toʻkiladi, koʻpincha xato yasaladi (yomon payvand), yomgʻir-qor-quyoshda tez buziladi, doimiy boʻyoq talab qiladi. 2–3 yildan keyin katta muammo chiqadi.</li>
+</ul>
+<h4 class="bl-h4">Panellar</h4>
+<ul class="bl-ul">
+<li>Turlari: <b>Monokristall</b> (eng keng tarqalgan, yuqori samaradorlik), <b>Polikristall</b> (arzonroq, FIK past, bozordan chiqmoqda), <b>Yupqa qatlamli</b> (yengil, egiluvchan, FIK past — fasad va yuk koʻtarmaydigan tom uchun).</li>
+<li><b>P-type</b> (eski avlod): bir tomonlama, FIK 17–20% (taqqoslama jadvalda 20–21%), issiqda samarasizroq, deqradatsiya yuqori, ishlab chiqarish toʻxtatilgan.</li>
+<li><b>N-type</b> (yangi avlod, TOPCon/HJT): <b>ikki tomonlama</b>, yiliga <b>+5–20%</b> qoʻshimcha energiya, FIK <b>21–23,5%</b>, deqradatsiya minimal, issiqda barqaror, kafolat <b>30 yilgacha</b>, quvvati 580–710 Vt — kamroq joy egallaydi.</li>
+<li>Panel tarkibi: alyumin rom, mustahkamlangan shisha, EVA plyonka, fotoelementlar, EVA plyonka, TPT asos, tarqatuvchi quti.</li>
+<li><b>Xizmat muddati 25–30 yil</b>, ekspluatatsiya xarajati juda past.</li>
+</ul>
+<h4 class="bl-h4">Bloomberg NEF Tier 1 reytingi</h4>
+<ul class="bl-ul">
+<li>Tier 1 — ishlab chiqaruvchilarning <b>eng yuqori 2%</b> i: R&amp;D ga katta sarmoya, robotlashtirilgan ishlab chiqarish, 5 yildan ortiq tajriba; panellari yirik moliyalashtirilgan (10 MVt+) loyihalarda ishlatilgan.</li>
+<li>Tier 2 — oʻrta, R&amp;D kam, qisman robotlashtirilgan, 2–5 yil.</li>
+<li>Tier 3 — yigʻuvchilar (bozorning 90%), R&amp;D yoʻq, qoʻl mehnati, 1–2 yil.</li>
+<li>Tier 1 — moliyaviy ishonchlilik reytingi; banklar va investorlar uchun ishonch belgisi.</li>
+</ul>
+<h4 class="bl-h4">Inverter</h4>
+<ul class="bl-ul">
+<li>Vazifalari: DC → AC aylantirish; qisqa tutashuv, ortiqcha yuklama va qizishdan himoya; internet orqali monitoring (ilova, SCADA); MPPT bilan generatsiyani optimallash.</li>
+<li>Sifatsiz inverter: tez buziladi va qiziydi, KPD past, servis va ehtiyot qism yoʻq, himoyasi boʻlmagani uchun <b>yongʻin xavfi</b>.</li>
+</ul>
+<h3 class="bl-h3" id="b5">5. Sifatsiz uskuna va ishonchsiz taʼminotchi xatarlari</h3>
+<ul class="bl-ul">
+<li><b>Panellar:</b> sertifikatsiz panellarda qizib ketish va yonish, shisha yorilishi, 1–2 yildan keyin real generatsiya zavod koʻrsatkichidan <b>30–50% past</b>, tez deqradatsiya, kafolat bajarilmaydi. Yorliq almashtirish (arzon panelga qimmat model yorligʻi) holatlari bor.</li>
+<li><b>Inverter:</b> «faqat Xitoy bozori uchun» versiyalar — kafolat faqat Xitoyda, menyu va monitoring xitoy tilida, koʻp hollarda toʻgʻri ulab sozlab boʻlmaydi.</li>
+<li><b>Konstruksiya:</b> payvandli konstruksiya 2 yildan keyin kuchli korroziya, payvand joylari shamol va yomgʻirda uzilishi, <b>agʻdarilib tushish xavfi</b>. QES 25 yilga moʻljallangan, shuning uchun sinklangan boltli konstruksiya ishonchli.</li>
+<li><b>Hujjat talabi:</b> Oʻzbekistonga kiritiladigan barcha uskuna majburiy sertifikatlashdan oʻtadi. Taʼminotchida muvofiqlik sertifikati, deklaratsiya yoki zavoddan rasmiy dillerlik avtorizatsiyasi boʻlishi shart. Boʻlmasa: tarmoqqa ulash rad etiladi, moliyaviy yoʻqotish, hatto jarima.</li>
+<li><b>Moliyaviy xatar:</b> loyiha, sertifikat yoki avtorizatsiya boʻlmasa XET shartnoma tuzmaydi. Kelishuvsiz ulangan stansiyaning butun energiyasi XET dan sotib olingan deb hisoblanadi — <b>ikki karra toʻlov</b>. Oylab vaqt yoʻqoladi, taʼminotchi yoʻqolib ketishi mumkin.</li>
+</ul>
+<h4 class="bl-h4">Haqiqiy holatlar (mijozga eʼtiroz javobida ishlatiladi)</h4>
+<ul class="bl-ul">
+<li>1. <b>Sharbat zavodi</b> (2021, 50 kVt → 2024, 250 kVt): xitoy versiyasidagi inverter ishga tushirilmagan, QES 3 yil ishlamagan. Yoʻqotish <b>210 mln soʻm</b>. Bizning mutaxassislar muammoni yarim soatda aniqlagan, lekin zararni hech kim qoplamagan — taʼminotchi yoʻqolgan.</li>
+<li>2. <b>Qurilish materiallari zavodi</b> (2023, 50 kVt → 2025, 300 kVt): loyiha va RES shartnomasisiz ulangan (qatʼiy taqiqlanadi), 2 yil minusda ishlagan. Yoʻqotish <b>118 mln soʻm</b>.</li>
+<li>3. <b>Ichimlik zavodi</b> (2022, 125 kVt → 325 kVt): notoʻgʻri elektromontaj, konnektorlar kuygan, 45 kVt 3 yil ishlamagan; real generatsiya meʼyordan yiliga 68 ming kVt·soat kam. Yoʻqotish <b>200 mln soʻm</b>. Kengaytirishda xatolar bartaraf etilgan.</li>
+</ul>
+<h3 class="bl-h3" id="b6">6. Oʻrnatish turlari</h3>
+<ul class="bl-ul">
+<li><b>Qiya tom</b> (~0° konstruksiya): 25–35° qiyalikdagi tom (profnastil). Panellar tom qiyaligiga parallel. Montaj arzon va oson, yomgʻir-qor panelni tabiiy tozalaydi.</li>
+<li><b>Tekis tom</b> (~30° konstruksiya): beton, metall yoki membrana qoplamali tom; 5–15° kichik qiyalik ham shu toifaga kiradi. Panellar 30–35° qiya konstruksiyada. Burchakni hududga moslash mumkin, xizmat qulay.</li>
+<li><b>Yer maydoni</b> (~30° konstruksiya): <b>beton tayanch</b> yoki <b>svaya tayanch</b> bilan.</li>
+</ul>
+<h3 class="bl-h3" id="b7">7. Loyihani bajarish bosqichlari</h3>
+<ul class="bl-ul">
+<li>1. <b>Loyihalashtirish</b> — obyekt tahlili (tom/yer holati, ulanish nuqtalari), konstruktiv qism (yer uchun fundament), elektrotexnik loyiha.</li>
+<li>2. <b>Yetkazib berish</b> — panel, inverter, metallkonstruksiya, kabel va barcha qismlar; obyektga «kalit taslim» asosida.</li>
+<li>3. <b>Oʻrnatish</b> — metallkonstruksiya, panellar, elektromontaj, inverterni oʻrnatish va sozlash.</li>
+<li>4. <b>Pusko-naladka</b> — barcha ulanmalarni tekshirish, stansiyani testdan oʻtkazish, mijozga mobil ilovada monitoringni ulash.</li>
+<li>5. <b>Ishlarni qabul qilish</b> — texnik nazorat qabul qiladi, «Oʻzenergonazorat» inspektoriga topshiriladi, buyurtmachiga topshiriladi.</li>
+<li><b>Parallel jarayon:</b> XETK dan texnik shartlarni olish (ariza buyurtmachi nomidan), loyihani XETK va «Oʻzenergonazorat» bilan kelishish. Energiyani sotish uchun «Hududiy elektr tarmoqlari» bilan xarid-sotish shartnomasi tuziladi.</li>
+</ul>
+<h3 class="bl-h3" id="b8">8. Kafolat shartlari (aniq raqamlar)</h3>
+<ul class="bl-ul">
+<li><b>Servis kafolati — 5 yil.</b> Ishlab chiqaruvchi belgilagan kafolat holatiga mos nosozlikda bepul servis. <b>Kirmaydi:</b> panel yuvish, soya soluvchi daraxtni kesish, stansiya ishiga bevosita aloqasi yoʻq ishlar.</li>
+<li><b>Inverter — 5 yil</b> (ishlab chiqarish nuqsoni va toʻgʻri ekspluatatsiyadagi nosozlik).</li>
+<li><b>Quyosh panellari — 12 yil</b> (mahsulot nuqsoni). Qoʻshimcha: ishlab chiqaruvchidan <b>25 yil generatsiya kafolati</b> (quvvatning kamida 80–85% saqlanishi).</li>
+<li><b>Sinklangan metallkonstruksiya — 20 yil</b> (korroziya va buzilishdan).</li>
+</ul>
+<h3 class="bl-h3" id="b9">9. Kompaniya haqida (ishonch dalillari)</h3>
+<ul class="bl-ul">
+<li>Oʻzbekistonda quyosh energetikasi boʻyicha yetakchi kompaniya, «kalit taslim» ishlaydi: loyihalash va ishlab chiqarishdan servisgacha.</li>
+<li><b>2009 yildan</b> faoliyat; <b>5000+ loyiha</b>, umumiy quvvat <b>100 MVt dan ortiq</b>; <b>1000+ mutaxassis</b>; <b>4000 m²</b> ombor.</li>
+<li>Oʻz ishlab chiqarishi: sinklangan yigʻma konstruksiya sexi, quvvati <b>yiliga 300 MVt dan ortiq</b>, har konstruksiyaga <b>20 yildan ziyod kafolat</b>. Oʻz loyiha boʻlimi, R&amp;D innovatsiya markazi, respublika boʻylab servis markazlari.</li>
+<li>Tarix: 2009 — OʻzFA Fizika-texnika instituti bazasida 5–150 Vt panel ishlab chiqarish; 2011 — yiliga 10 MVt panel liniyasi; 2020 — «Yunusobod» KSZ da 2000 m² sex, ombor va ofis; 2023 — Get-Green Energy Trade tashkil etildi (import va distribyutsiya); 2023–2024 — sinklangan konstruksiya sexi; 2024 — «Yangihayot» texnoparkida 2000 m² qoʻshimcha ombor; 2025 — ACWA Power va Zarubejneft bilan hamkorlik.</li>
+<li><b>Panel brendlari:</b> Jinko Solar, Longi, JA Solar, Yingli Solar, Solar Space (Bloomberg Tier 1).</li>
+<li><b>Inverter brendlari:</b> Sungrow, Huawei, Deye, Sofar, Solax, Growatt.</li>
+<li><b>Missiya:</b> «Yashil energiya orqali hayotingizga xotirjamlik va farovonlik olib kiramiz». Qadriyatlar: ochiq va haqqoniy munosabat, yangilikka ochiqlik, mijozga eʼtibor, jamoaviylik, halollik.</li>
+<li>Asoschi: <b>Abdullayev Elmurod Tohirmirzayevich</b> — Fargʻona politexnika universiteti «Energetika» yoʻnalishi, magistratura, ilmiy faoliyat Toshkent fizika-texnologiya universitetida.</li>
+</ul>
+<h3 class="bl-h3" id="b10">10. Amalga oshirilgan yirik loyihalar (havola sifatida aytiladi)</h3>
+<ul class="bl-ul">
+<li><b>Davlat:</b> Prezident Administratsiyasi 1,4 MVt (3,7 mln kVt·soat tejam, 1900–2000 t CO₂); Vazirlar Mahkamasi 630 kVt (2,3 mln kVt·soat, 1100 t CO₂); IIV 12 MVt+; Maktabgacha va maktab taʼlimi vazirligi 8,5 MVt+; Oliy taʼlim, fan va innovatsiyalar 5,5 MVt+; Sogʻliqni saqlash 5 MVt+; Tashqi ishlar 1,2 MVt+; Favqulodda vaziyatlar 1 MVt+; Adliya 800 kVt+; Toshkent viloyati hokimligi 450 kVt; Navoiy viloyati hokimligi 200 kVt.</li>
+<li><b>Yirik korxona:</b> ACWA Power (Qoraqalpogʻiston ijtimoiy obyektlari) 3,4 MVt; Oʻzbekiston temir yoʻllari 1,8 MVt; Xalq banki 1,2 MVt; Quvagaz (Fargʻona) 2 MVt; Zarubejneft/Andijanpetro 1 MVt; Oʻzbekneftgaz (Muborak) 600 kVt; Oʻzavtosanoat 767 kVt; Uzkimyosanoat 200 kVt; Maxam-Chirchiq 100 kVt; Sanfa Product 700 kVt; Maguru Sifat Kafolat (Qarshi) 700 kVt; Surur Xayr Biznes 600 kVt; Raupxon 600 kVt; Navoiyazot 500 kVt (xodimlar uchun); Uztransgaz 218 kVt; Oʻtkir Man Trans 500 kVt; Bio-Pellet 465 kVt; Chortoq Mineral Water 275 kVt; Navoiy kon-metallurgiya kombinati 130 kVt; UNG Petro 400 kVt; Hilol Nashr 325 kVt; Natural Juice 200 kVt; Oʻzbekximmash 300 kVt.</li>
+</ul>
+<h3 class="bl-h3" id="b11">11. Aloqa</h3>
+<p class="bl-p">Telefon <b>+998 55 506 78 88</b> · sayt <b>sunhightech.uz</b> · Telegram <b>t.me/sunhightechuz</b> · <b>info@sunhightech.uz</b> · manzil: Toshkent sh., Yunusobod t., Iftixor 1 koʻchasi.</p>
+<h3 class="bl-h3" id="b12">12. Hisob koeffitsienti — uch variant (tanlovni sotuv rahbari qiladi)</h3>
+<p class="bl-p">Quvvat = yillik isteʼmol ÷ koeffitsient. Koeffitsient kichik boʻlsa, tizim kattaroq tavsiya qilinadi.</p>
+<div class="bl-tw"><table class="bl-t"><thead><tr><th>Variant</th><th>Qiymat</th><th>Nimaga asoslangan</th></tr></thead><tbody>
+<tr><td>Qoʻllanma — yuqori chekka</td><td><b>1400</b></td><td>3-boʻlim: «1 kVt dan yillik oʻrtacha 1300–1400 kVt·soat» — oraliqning yuqori chekkasi</td></tr>
+<tr><td>Qoʻllanma — quyi chekka</td><td><b>1300</b></td><td>Xuddi shu oraliqning quyi chekkasi</td></tr>
+<tr><td>Amaldagi loyihalardan</td><td><b>1275</b></td><td>9-boʻlimdagi amalga oshirilgan obyektlar: Oʻzbekiston temir yoʻllari 1,8 MVt → 2,3 mln (1278), Xalq banki 1,2 MVt → 1,5 mln (1250), Oʻzavtosanoat 767 kVt → 1 mln (1304); oʻrtachasi ≈1275</td></tr>
+</tbody></table></div>
+<p class="bl-p">Qoʻllanmada yana: ayrim hollarda koʻrsatkich <b>1200–1600</b> oraligʻida boʻlishi mumkin.</p>
+<p class="bl-p">Eslatma: Odoo/video formulasi 1500 edi — u qoʻllanmadagi oraliqdan yuqori.</p>
+<p class="bl-p">Tanlov botda <code>/koef</code> buyrugʻi bilan oʻzgartiriladi va uchala tizimga (bot, Odoo avtomati, panel) darhol taʼsir qiladi.</p><div class="bl-src">Manba: SUN-HIGHTECH «ҚЭС ҳақида ўқув қўлланма» (2025). Mijozga aytiladigan raqamlar shu qo‘llanmadan olinadi.</div></div>
