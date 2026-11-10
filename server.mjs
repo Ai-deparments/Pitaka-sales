@@ -1022,7 +1022,7 @@ const server = http.createServer(async (req, res) => {
                            editedAt: tr.edited_at, edited: !!tr.edited_at } : null,
         tasks: cstore.tasksFor(db, id), edits: cstore.editsFor(db, id), review: cstore.getReview(db, id),
         ai: { available: cllm.available(), queue: cllm.queueDepth() },
-        stt: { available: stt.available(), telephony: !!row.caps?.telephony },
+        stt: { available: stt.available(), telephony: !!row.caps?.telephony, recordings: !!row.caps?.recordings },
       }, cid);
     }
 
@@ -1094,11 +1094,11 @@ const server = http.createServer(async (req, res) => {
         { canSeePhone: CAN_PHONE, mineOwner: user.bitrixUserId || null, owner: mineCall });
       if (!row) return fail(res, 404, "Qo'ng'iroq topilmadi yoki sizga ochiq emas", cid);
       if (row.missed) return fail(res, 409, "Javobsiz qo'ng'iroqda yozuv yo'q", cid);
-      if (!stt.available()) return fail(res, 503, "GROQ_API_KEY sozlanmagan — nutqdan matnga ishlamaydi", cid);
+      if (!stt.available()) return fail(res, 503, "GEMINI_API_KEY sozlanmagan — nutqdan matnga ishlamaydi", cid);
       const act = await bx.call("crm.activity.get", { id }).then((r) => r.result).catch(() => null);
       const rec = await tel.record(bx, { originId: act?.ORIGIN_ID, activityId: id, at: row.at, phone: row.phone });
       if (rec.error) return fail(res, rec.code === "no_scope" ? 503 : 404, rec.error, cid,
-        rec.code === "no_scope" ? { fix: "CRM → webhook sozlamalari → «Телефония» katagini belgilang" } : null);
+        rec.code === "no_scope" ? { fix: "CRM → webhook sozlamalari → «Диск» (yoki «Телефония») katagini belgilang" } : null);
       const t0 = Date.now();
       const out = await stt.transcribe(rec.url, {
         outgoing: row.out, language: b.language || null, aiDiarize: cllm.diarize });
@@ -1137,8 +1137,9 @@ const server = http.createServer(async (req, res) => {
         { canSeePhone: CAN_PHONE, mineOwner: user.bitrixUserId || null, owner: mineCall });
       if (!row) return fail(res, 404, "Qo'ng'iroq topilmadi yoki sizga ochiq emas", cid);
       if (row.missed) return fail(res, 409, "Javobsiz qo'ng'iroq tahlil qilinmaydi", cid);
-      if (!row.caps?.telephony)
-        return fail(res, 409, "Bitrix webhook'da «Телефония» ruxsati yo'q — audio olinmaydi", cid);
+      // Pitaka: yozuv Disk orqali ham olinadi (telephony.record) — `recordings` = telephony || disk
+      if (!row.caps?.recordings)
+        return fail(res, 409, "Bitrix webhook'da «Телефония» ham, «Диск» ham yo'q — audio olinmaydi", cid);
       const out = await cpipe.processCall(bx, db, row, {
         force: !!b.force, actor: user.login, useAi: b.useAi === undefined ? null : !!b.useAi, noDefer: true });
       audit("call.transcribe", `call:${id}`,
