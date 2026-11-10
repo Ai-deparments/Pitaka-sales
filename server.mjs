@@ -873,7 +873,8 @@ const server = http.createServer(async (req, res) => {
         }
         d.phones = [...new Set(phones)];
         d.client = [raw.NAME, raw.LAST_NAME].filter(Boolean).join(" ") || raw.COMPANY_TITLE || "";
-        d.odooUrl = raw.UF_CRM_ODOO_URL || null;
+        const portal = String(process.env.BITRIX_PORTAL || "").replace(/\/+$/, "");
+        d.crmUrl = portal ? `${portal}/crm/deal/details/${dm[1]}/` : null;
       } catch {}
       // Ism CRM'dagidek: dir.decorate familiyani oldinga qo'yadi —
       // shuning uchun shu oynada user.get dan NAME + LAST_NAME tartibida olinadi.
@@ -1321,18 +1322,16 @@ const server = http.createServer(async (req, res) => {
 
     // TZI P0-05: CRM surati qanchalik yangi. Panel buni yuqorida ko'rsatadi —
     // yangilash xato bo'lsa eski nusxa "jonli" deb ko'rsatilmasin.
+    // Pitaka: panel Bitrix'dan to'g'ridan-to'g'ri o'qiydi — oraliq adapter yo'q. Tekshiruv: bitta o'qish so'rovi.
     if (p === "/api/crm-holat") {
-      const url = String(process.env.BITRIX_WEBHOOK_URL || "");
-      if (!/:8098\//.test(url)) return json(res, 200, { manba: "boshqa", tekshirilmadi: true }, cid);
+      const t0 = Date.now();
       try {
-        const r = await fetch(url.replace(/\/rest\/.*$/, "/healthz"), { signal: AbortSignal.timeout(4000) });
-        const h = await r.json();
-        const yosh = h.at ? Math.round((Date.now() - new Date(h.at).getTime()) / 60000) : null;
-        return json(res, 200, { manba: "odoo", ok: !!h.ok, at: h.at || null, yoshDaqiqa: yosh,
-                                xato: h.err || null, counts: h.counts || null }, cid);
+        await bx.call("profile");
+        return json(res, 200, { manba: "bitrix", ok: true, at: new Date().toISOString(), yoshDaqiqa: 0,
+                                ms: Date.now() - t0, xato: null }, cid);
       } catch (e) {
-        return json(res, 200, { manba: "odoo", ok: false, at: null, yoshDaqiqa: null,
-                                xato: "adapter javob bermadi: " + e.message }, cid);
+        return json(res, 200, { manba: "bitrix", ok: false, at: null, yoshDaqiqa: null,
+                                xato: "Bitrix javob bermadi: " + String(e.message || e).slice(0, 160) }, cid);
       }
     }
 
