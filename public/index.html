@@ -1,16 +1,18 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="color-scheme" content="light dark">
-<title>SUN-HIGHTECH Sales OS</title>
+<title>Pitaka Sales OS</title>
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<script src="/i18n-ru.js?v=20261110g"></script>
+<script src="/i18n.js?v=20261110g"></script>
 <link rel="apple-touch-icon" href="/favicon.svg">
 <meta name="theme-color" content="#06111F">
-<meta name="description" content="SUN-HIGHTECH Sales OS — sotuv bo‘limi uchun daromad boshqaruv tizimi">
+<meta name="description" content="Pitaka Sales OS — sotuv bo‘limi, voronka va qo‘ng‘iroqlar nazorati">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap">
 <style>
-/* ===== SUN-HIGHTECH Executive Intelligence — design tokenlar (Dizayn TZI §4, §5, §7.3) =====
+/* ===== Pitaka Executive Intelligence — design tokenlar (Dizayn TZI §4, §5, §7.3) =====
    Qoida: bitta ekranda ko'k aksent 10–15% dan oshmasin. Gradient faqat splash,
    AI blok va hero qismida. Qizil/sariq/yashil — faqat real holat va risk signalida. */
 :root{
@@ -40,7 +42,7 @@
   --rule:#EFF3F8;
   --silver:#B8C2CF;
 
-  /* SUN-HIGHTECH aksenti */
+  /* Pitaka aksenti */
   --primary:#1677FF;    /* Intelligence Blue */
   --primary-soft:#EAF2FF;
   --primary-line:#BFD8FF;
@@ -130,7 +132,7 @@ button{font:inherit;color:inherit}
   --surface:#101722; --surface-2:#18202D; --surface-3:#222C3C;
   --ink:#F2F6FB; --ink-2:#9DACC0; --ink-3:#78879C; --ink-4:#5D6B7E;
   --line:rgba(184,194,207,.16); --line-2:rgba(184,194,207,.24); --rule:rgba(184,194,207,.10);
-  --primary:#F4B740; --action:#F4B740; --action-ink:#1B1406; --action-soft:rgba(246,198,106,.16);
+  --primary:#8FA6FF; --action:#8FA6FF; --action-ink:#081028; --action-soft:rgba(125,151,255,.16);
   --risk:#DC3545; --risk-soft:rgba(220,53,69,.14);
 }
 
@@ -143,7 +145,7 @@ button{font:inherit;color:inherit}
 .gate::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:
     radial-gradient(900px 640px at 36% 46%,rgba(30,86,160,.22),transparent 64%),
-    radial-gradient(520px 420px at 84% 14%,rgba(246,198,106,.10),transparent 70%),
+    radial-gradient(520px 420px at 84% 14%,rgba(125,151,255,.10),transparent 70%),
     linear-gradient(180deg,#06121F 0%,#030B16 60%,#020812 100%)}
 /* Nozik to'r — "boshqaruv markazi" hissi; chetlarga qarab so'nadi, matnga xalaqit bermaydi */
 .gate::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
@@ -178,12 +180,12 @@ body.staging .drawer{top:var(--envh)}
 .gate-stage{position:relative;width:100%;max-width:560px;aspect-ratio:1.18;overflow:hidden}
 .gate-rings{position:absolute;inset:0;display:grid;place-items:center;pointer-events:none}
 .gate-rings i{position:absolute;width:60%;aspect-ratio:1;border-radius:50%;
-  border:1px solid rgba(246,198,106,.6);opacity:0;transform:scale(.55)}
+  border:1px solid rgba(125,151,255,.6);opacity:0;transform:scale(.55)}
 .gate-rings .core{border:0;opacity:1;transform:none;width:62%;
   background:radial-gradient(circle,rgba(30,86,160,.30),rgba(30,86,160,.07) 55%,transparent 72%)}
 .gate-sweep{position:absolute;left:50%;top:50%;width:84%;aspect-ratio:1;border-radius:50%;pointer-events:none;
   translate:-50% -50%;opacity:.6;
-  background:conic-gradient(from 0deg,rgba(246,198,106,0) 0deg,rgba(246,198,106,.18) 42deg,rgba(246,198,106,0) 62deg)}
+  background:conic-gradient(from 0deg,rgba(125,151,255,0) 0deg,rgba(125,151,255,.18) 42deg,rgba(125,151,255,0) 62deg)}
 /* Rasm: 1672x941, robot o'rtadagi ~41% da (markazi 46.7%, 52%). 150% kenglik + translate —
    robot sahna markazida, rasmning qora hoshiyalari screen bilan fonga singib ketadi.
    drop-shadow ishlatilmaydi: screen rejimi qora soyani baribir yutadi. */
@@ -194,14 +196,14 @@ body.staging .drawer{top:var(--envh)}
 .gate-pipe{position:relative;width:100%;max-width:520px;display:flex;justify-content:space-between;
   padding:14px 0 0;margin-top:-6px;overflow:hidden}   /* pipe-glow trek eniga teng va o'ngga siljiydi — ko'rinmas qismi kesiladi */
 .pipe-track{position:absolute;left:9%;right:9%;top:19px;height:2px;border-radius:2px;
-  background:linear-gradient(90deg,rgba(30,86,160,.25),rgba(246,198,106,.55),rgba(30,86,160,.25))}
+  background:linear-gradient(90deg,rgba(30,86,160,.25),rgba(125,151,255,.55),rgba(30,86,160,.25))}
 .pipe-glow{position:absolute;left:0;top:-9px;width:100%;height:20px;pointer-events:none;
-  background:radial-gradient(circle at 10px 50%,rgba(246,198,106,.95),rgba(246,198,106,0) 12px);opacity:0}
+  background:radial-gradient(circle at 10px 50%,rgba(125,151,255,.95),rgba(125,151,255,0) 12px);opacity:0}
 .node{position:relative;display:grid;justify-items:center;gap:8px;flex:1;font-size:11.5px;font-weight:600;
   color:#9DACC0;letter-spacing:.01em;white-space:nowrap}
-.node i{width:11px;height:11px;border-radius:50%;background:#071426;border:2px solid #F4B740;
-  box-shadow:0 0 0 3px rgba(246,198,106,.15)}
-.node:last-child i{background:#F4B740}
+.node i{width:11px;height:11px;border-radius:50%;background:#071426;border:2px solid #8FA6FF;
+  box-shadow:0 0 0 3px rgba(125,151,255,.15)}
+.node:last-child i{background:#8FA6FF}
 
 /* --- o'ng: qora shisha karta --- */
 .gate-box{position:relative;overflow:hidden;background:rgba(16,23,34,.76);
@@ -210,7 +212,7 @@ body.staging .drawer{top:var(--envh)}
   box-shadow:0 30px 90px rgba(0,0,0,.62),inset 0 1px 0 rgba(255,255,255,.06);
   display:flex;flex-direction:column;gap:14px}
 .gate-box::before{content:"";position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,#E0A942,#F4B740 55%,rgba(246,198,106,0))}
+  background:linear-gradient(90deg,#6F8BFF,#8FA6FF 55%,rgba(125,151,255,0))}
 .gate-brand{display:flex;align-items:center;gap:11px}
 .gate-brand .mark{width:36px;height:36px}
 .gate-head{display:grid;gap:4px;margin:2px 0 0}
@@ -225,7 +227,7 @@ body.staging .drawer{top:var(--envh)}
 .gate .fld input{width:100%;height:48px;padding:0 44px 0 40px;border:1px solid rgba(184,194,207,.20);
   border-radius:var(--r-input);background:rgba(6,10,16,.72);color:#F2F6FB;font:inherit;font-size:15px}
 .gate .fld input::placeholder{color:#5C6A7D}
-.gate .fld input:focus{outline:none;border-color:#F4B740;box-shadow:0 0 0 3px rgba(246,198,106,.35)}
+.gate .fld input:focus{outline:none;border-color:#8FA6FF;box-shadow:0 0 0 3px rgba(125,151,255,.35)}
 /* iOS Safari: 16px dan kichik shriftli maydonga bosilganda sahifani o'zi
    zumlaydi va qaytarmaydi. Maydon balandligi 50px — 16px sig'adi. */
 @media(max-width:860px){
@@ -235,16 +237,16 @@ body.staging .drawer{top:var(--envh)}
 .gate .eye{position:absolute;right:6px;top:50%;translate:0 -50%;width:36px;height:36px;border:0;border-radius:8px;
   background:transparent;color:#8391A6;display:grid;place-items:center;cursor:pointer;padding:0}
 .gate .eye:hover{color:#DCE5F0;background:rgba(184,194,207,.10)}
-.gate .eye:focus-visible{outline:none;box-shadow:0 0 0 2px #F4B740}
+.gate .eye:focus-visible{outline:none;box-shadow:0 0 0 2px #8FA6FF}
 .gate .eye svg{width:17px;height:17px;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .gate .eye .off{display:none} .gate .eye.on .on{display:none} .gate .eye.on .off{display:block}
 .gate-box .btn{width:100%;height:48px;font-size:15px;font-weight:700;border-radius:var(--r-input);border:0;
-  color:#1B1406;background:linear-gradient(135deg,#E0A942 0%,#F4B740 55%,#F9D48A 100%);
+  color:#081028;background:linear-gradient(135deg,#6F8BFF 0%,#8FA6FF 55%,#B9C7FF 100%);
   display:flex;align-items:center;justify-content:center;gap:8px;
   box-shadow:0 12px 26px -12px rgba(30,86,160,.9);margin-top:2px}
 .gate-box .btn:not(:disabled)::after{content:"→";font-weight:700}
 .gate-box .btn:hover{filter:brightness(1.08)}
-.gate-box .btn:focus-visible{outline:none;box-shadow:0 0 0 2px #071426,0 0 0 4px #F4B740}
+.gate-box .btn:focus-visible{outline:none;box-shadow:0 0 0 2px #071426,0 0 0 4px #8FA6FF}
 .gate-box .btn:disabled{background:#2A4A78;box-shadow:none;filter:none;cursor:default}
 .gate-err{font-size:13px;color:#FFB4B9;background:rgba(220,53,69,.14);
   border:1px solid rgba(220,53,69,.34);border-radius:var(--r-input);padding:11px 13px;line-height:1.45}
@@ -277,7 +279,7 @@ body.staging .drawer{top:var(--envh)}
   .gate-wrap{grid-template-columns:1fr;gap:14px;max-width:400px;justify-items:center}
   .gate-art{order:-1;width:100%;gap:10px}
   .gate-stage{width:148px;aspect-ratio:1;border-radius:50%;
-    box-shadow:0 0 0 1px rgba(246,198,106,.35),0 0 44px rgba(30,86,160,.38);
+    box-shadow:0 0 0 1px rgba(125,151,255,.35),0 0 44px rgba(30,86,160,.38);
     background:radial-gradient(circle at 50% 42%,#0B2342,#030B16 78%)}
   .gate-rings i{width:80%}
   .gate-rings .core{width:100%}
@@ -342,7 +344,7 @@ body.staging .drawer{top:var(--envh)}
   opacity:0;animation:capIn .5s ease 1.1s forwards}
 .sp-cred b{color:#94A5BA;font-weight:700}
 @keyframes capIn{to{opacity:1}}
-/* Past internetda qora ekran qolmasin — SUN-HIGHTECH logoli skeleton */
+/* Past internetda qora ekran qolmasin — Pitaka logoli skeleton */
 .sp-load{position:absolute;display:grid;place-items:center;gap:16px;justify-items:center}
 .sp-load .mark{width:56px;height:56px;opacity:.9}
 .sp-load .sh{width:150px;height:5px;border-radius:99px;background:rgba(184,194,207,.10);overflow:hidden}
@@ -398,7 +400,7 @@ body.staging .drawer{top:var(--envh)}
 .rail-scroll::-webkit-scrollbar{width:6px}
 .rail-scroll::-webkit-scrollbar-thumb{background:var(--line-2);border-radius:99px}
 
-/* Brend (§3.1): to'liq logo + «Revenue OS»; yig'ilganda faqat SUN-HIGHTECH belgisi */
+/* Brend (§3.1): to'liq logo + «Revenue OS»; yig'ilganda faqat Pitaka belgisi */
 .brand{padding:18px 16px 16px;border-bottom:1px solid var(--line);display:flex;gap:11px;align-items:center;min-height:73px;
   background:linear-gradient(135deg,rgba(22,119,255,.14),rgba(56,189,248,.05) 60%,transparent)}
 .mark{width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:9px;overflow:hidden}
@@ -1265,7 +1267,7 @@ select.sel,.fld select,.drawer select{-webkit-appearance:none;appearance:none;pa
 .kn-y,.kn-r{border-radius:6px;padding:2px 7px;font-weight:700}
 .kn-y{background:var(--warning-soft);color:var(--warning-text,var(--warning))}.kn-r{background:var(--risk-soft);color:var(--risk-text,var(--risk))}
 .kn-med{display:inline-grid;place-items:center;width:22px;height:22px;border-radius:50%;color:#fff;font-size:11px;font-weight:800}
-.kn-med.m1{background:#E2B13C}.kn-med.m2{background:#A7B1BC}.kn-med.m3{background:#C28A5A}
+.kn-med.m1{background:#7D97FF}.kn-med.m2{background:#A7B1BC}.kn-med.m3{background:#C28A5A}
 .kn-s{font-weight:800}.kn-s .g{color:var(--success-text,var(--success))}.kn-s .r{color:var(--risk-text,var(--risk))}
 .kn-chips{display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 2px}
 .kn-chip{font-size:11.5px;padding:3px 10px;border-radius:999px;background:var(--surface);color:var(--ink-2);border:1px solid var(--line)}
@@ -1655,13 +1657,13 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
 /* Kichik yordamchi matnlar bir pog'ona to'qroq */
 .sec-t{color:var(--ink-2)}
 .kpi .info{color:var(--ink-2)}
-/* ===== SUN-HIGHTECH brend mavzusi (2026-09-20) =====
-   Manba: SUN-HIGHTECH logosi (Odoo res.company #2): oltin #F4B740, to'q ko'k #042E5C, bronza #AF8C4B.
-   G'oya «tungi osmon va quyosh chizig'i»: yorug' rejimda to'q ko'k boshqaruv va oltin urg'u,
+/* ===== Pitaka brend mavzusi (2026-09-20) =====
+   Manba: Pitaka logosi (Bitrix res.company #2): oltin #8FA6FF, to'q ko'k #042E5C, bronza #AF8C4B.
+   G'oya «tungi osmon va urg'u chizig'i»: yorug' rejimda to'q ko'k boshqaruv va oltin urg'u,
    qorong'i rejimda tungi to'q ko'k fon va oltin asosiy rang. Ogohlantirish rangi oltindan
    ajralishi uchun apelsin. Bu fayl uslublar oxirida turadi — tokenlarni ustidan yozadi. */
 :root{
-  --gold:#F4B740; --gold-2:#E0A942; --bronze:#AF8C4B; --navy:#102A43; --navy-2:#1C456F;
+  --gold:#8FA6FF; --gold-2:#6F8BFF; --bronze:#AF8C4B; --navy:#102A43; --navy-2:#1C456F;
   --graphite:#061426; --carbon:#102A43; --carbon-2:#16375A; --carbon-3:#1F4A72;
   --bg:#F5F7FB; --surface:#FFFFFF; --surface-2:#F1F4F9; --surface-3:#E4E9F1;
   --ink:#122A40; --ink-2:#51637A; --ink-3:#5E6E84; --ink-4:#8793A6;
@@ -1671,7 +1673,7 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
   --ai:#1F8FC4; --ai-soft:#E4F4FB;
   --gold-soft:#FBEEDD; --gold-line:#F1DDAE; --gold-text:#9A6B0E;
   --warning:#E8731C; --warning-soft:#FDEEE2; --warning-text:#B0520C;
-  --s1:#0B4A8B; --s2:#B3BDCB; --s3:#16A36A; --s4:#E0A942; --s5:#E8731C;
+  --s1:#0B4A8B; --s2:#B3BDCB; --s3:#16A36A; --s4:#6F8BFF; --s5:#E8731C;
   --seq1:#E7EEF7; --seq2:#C4D5EA; --seq3:#8FB1DA; --seq4:#4F80BF; --seq5:#1D5697; --seq6:#102A43;
 }
 @media (prefers-color-scheme: dark){
@@ -1679,30 +1681,30 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
     --bg:#06111F; --surface:#0B1A2D; --surface-2:#10223A; --surface-3:#183050;
     --ink:#F3F6FA; --ink-2:#A3B1C5; --ink-3:#8190A6; --ink-4:#5A6982;
     --line:#1A2D47; --line-2:#26405F; --rule:#12233B; --silver:#8793A8;
-    --primary:#F4B740; --primary-soft:rgba(246,198,106,.13); --primary-line:rgba(246,198,106,.34); --primary-text:#F4B740;
-    --action:#F4B740; --action-soft:rgba(246,198,106,.13); --action-ink:#1B1406; --action-solid:#F4B740;
+    --primary:#8FA6FF; --primary-soft:rgba(125,151,255,.13); --primary-line:rgba(125,151,255,.34); --primary-text:#8FA6FF;
+    --action:#8FA6FF; --action-soft:rgba(125,151,255,.13); --action-ink:#081028; --action-solid:#8FA6FF;
     --ai:#5CC6F2; --ai-soft:#0B2638;
-    --gold-soft:rgba(246,198,106,.13); --gold-line:rgba(246,198,106,.34); --gold-text:#F4B740;
+    --gold-soft:rgba(125,151,255,.13); --gold-line:rgba(125,151,255,.34); --gold-text:#8FA6FF;
     --success:#3DBE8B; --success-soft:#0D2A22; --success-text:#3DBE8B;
     --warning:#FF9A4D; --warning-soft:#2E1C10; --warning-text:#FF9A4D;
     --risk:#F0616F; --risk-soft:#2E1419; --risk-text:#F0616F;
-    --s1:#F4B740; --s2:#7F8DA3; --s3:#3DBE8B; --s4:#5CA8F0; --s5:#FF9A4D;
-    --seq1:#10233A; --seq2:#1B3858; --seq3:#2F5378; --seq4:#6C7E8A; --seq5:#B89A5C; --seq6:#F4B740;
+    --s1:#8FA6FF; --s2:#7F8DA3; --s3:#3DBE8B; --s4:#5CA8F0; --s5:#FF9A4D;
+    --seq1:#10233A; --seq2:#1B3858; --seq3:#2F5378; --seq4:#6C7E8A; --seq5:#B89A5C; --seq6:#8FA6FF;
   }
 }
 :root[data-theme="dark"]{
   --bg:#06111F; --surface:#0B1A2D; --surface-2:#10223A; --surface-3:#183050;
   --ink:#F3F6FA; --ink-2:#A3B1C5; --ink-3:#8190A6; --ink-4:#5A6982;
   --line:#1A2D47; --line-2:#26405F; --rule:#12233B; --silver:#8793A8;
-  --primary:#F4B740; --primary-soft:rgba(246,198,106,.13); --primary-line:rgba(246,198,106,.34); --primary-text:#F4B740;
-  --action:#F4B740; --action-soft:rgba(246,198,106,.13); --action-ink:#1B1406; --action-solid:#F4B740;
+  --primary:#8FA6FF; --primary-soft:rgba(125,151,255,.13); --primary-line:rgba(125,151,255,.34); --primary-text:#8FA6FF;
+  --action:#8FA6FF; --action-soft:rgba(125,151,255,.13); --action-ink:#081028; --action-solid:#8FA6FF;
   --ai:#5CC6F2; --ai-soft:#0B2638;
-  --gold-soft:rgba(246,198,106,.13); --gold-line:rgba(246,198,106,.34); --gold-text:#F4B740;
+  --gold-soft:rgba(125,151,255,.13); --gold-line:rgba(125,151,255,.34); --gold-text:#8FA6FF;
   --success:#3DBE8B; --success-soft:#0D2A22; --success-text:#3DBE8B;
   --warning:#FF9A4D; --warning-soft:#2E1C10; --warning-text:#FF9A4D;
   --risk:#F0616F; --risk-soft:#2E1419; --risk-text:#F0616F;
-  --s1:#F4B740; --s2:#7F8DA3; --s3:#3DBE8B; --s4:#5CA8F0; --s5:#FF9A4D;
-  --seq1:#10233A; --seq2:#1B3858; --seq3:#2F5378; --seq4:#6C7E8A; --seq5:#B89A5C; --seq6:#F4B740;
+  --s1:#8FA6FF; --s2:#7F8DA3; --s3:#3DBE8B; --s4:#5CA8F0; --s5:#FF9A4D;
+  --seq1:#10233A; --seq2:#1B3858; --seq3:#2F5378; --seq4:#6C7E8A; --seq5:#B89A5C; --seq6:#8FA6FF;
 }
 /* Chap menyu MAVZUGA ERGASHADI (2026-09-23).
    Ilgari `.rail` shartsiz to'q ko'k edi — yorug' rejimga o'tilganda ish maydoni oqarib,
@@ -1715,7 +1717,7 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
   --action:#102A43; --action-soft:#FBF1DC; --action-ink:#FFFFFF;
   background:linear-gradient(180deg,#FFFFFF 0%,#FAFBFD 60%,#F4F6FA 100%);
   border-right-color:#E4EAF1}
-.brand{background:linear-gradient(135deg,rgba(16,42,67,.06),rgba(244,183,64,.11) 55%,transparent);border-bottom-color:#E6E9F0}
+.brand{background:linear-gradient(135deg,rgba(16,42,67,.06),rgba(125,151,255,.11) 55%,transparent);border-bottom-color:#E6E9F0}
 .brand-t{letter-spacing:-.01em}
 .brand-s{color:#9A6B0E}
 
@@ -1725,34 +1727,34 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
     --surface:var(--carbon); --surface-2:var(--carbon-2); --surface-3:var(--carbon-3);
     --ink:#F3F6FA; --ink-2:#A9B6C9; --ink-3:#8392A8; --ink-4:#5E6D85;
     --line:#16304F; --line-2:#22406A; --rule:#12294A;
-    --primary:#F4B740; --primary-soft:rgba(246,198,106,.12); --primary-text:#F4B740;
-    --action:#F4B740; --action-soft:rgba(246,198,106,.12); --action-ink:#1B1406;
+    --primary:#8FA6FF; --primary-soft:rgba(125,151,255,.12); --primary-text:#8FA6FF;
+    --action:#8FA6FF; --action-soft:rgba(125,151,255,.12); --action-ink:#081028;
     background:linear-gradient(180deg,#082040 0%,#061831 55%,#051429 100%);
     border-right-color:#16304F}
   :root:not([data-theme="light"]) .brand{
-    background:linear-gradient(135deg,rgba(246,198,106,.14),rgba(246,198,106,.02) 55%,transparent);
-    border-bottom-color:rgba(246,198,106,.18)}
-  :root:not([data-theme="light"]) .brand-s{color:#C9A55E}
+    background:linear-gradient(135deg,rgba(125,151,255,.14),rgba(125,151,255,.02) 55%,transparent);
+    border-bottom-color:rgba(125,151,255,.18)}
+  :root:not([data-theme="light"]) .brand-s{color:#8B95B0}
 }
 /* Qorong'i rejim — qo'lda tanlangan */
 :root[data-theme="dark"] .rail{
   --surface:var(--carbon); --surface-2:var(--carbon-2); --surface-3:var(--carbon-3);
   --ink:#F3F6FA; --ink-2:#A9B6C9; --ink-3:#8392A8; --ink-4:#5E6D85;
   --line:#16304F; --line-2:#22406A; --rule:#12294A;
-  --primary:#F4B740; --primary-soft:rgba(246,198,106,.12); --primary-text:#F4B740;
-  --action:#F4B740; --action-soft:rgba(246,198,106,.12); --action-ink:#1B1406;
+  --primary:#8FA6FF; --primary-soft:rgba(125,151,255,.12); --primary-text:#8FA6FF;
+  --action:#8FA6FF; --action-soft:rgba(125,151,255,.12); --action-ink:#081028;
   background:linear-gradient(180deg,#082040 0%,#061831 55%,#051429 100%);
   border-right-color:#16304F}
 :root[data-theme="dark"] .brand{
-  background:linear-gradient(135deg,rgba(246,198,106,.14),rgba(246,198,106,.02) 55%,transparent);
-  border-bottom-color:rgba(246,198,106,.18)}
-:root[data-theme="dark"] .brand-s{color:#C9A55E}
+  background:linear-gradient(135deg,rgba(125,151,255,.14),rgba(125,151,255,.02) 55%,transparent);
+  border-bottom-color:rgba(125,151,255,.18)}
+:root[data-theme="dark"] .brand-s{color:#8B95B0}
 .navbtn[aria-current="page"]::before{background:var(--gold)}
 .navbtn[aria-current="page"] .badge,.cli-seg button.on{color:var(--action-ink)}
-/* Yuqori panel: pastida ingichka «quyosh chizig'i» */
+/* Yuqori panel: pastida ingichka «urg'u chizig'i» */
 .topbar{box-shadow:inset 0 -1px 0 var(--line)}
 .topbar::after{content:"";position:absolute;left:0;right:0;bottom:-1px;height:2px;pointer-events:none;
-  background:linear-gradient(90deg,transparent 0%,rgba(246,198,106,.0) 8%,rgba(246,198,106,.75) 50%,rgba(246,198,106,0) 92%,transparent 100%)}
+  background:linear-gradient(90deg,transparent 0%,rgba(125,151,255,.0) 8%,rgba(125,151,255,.75) 50%,rgba(125,151,255,0) 92%,transparent 100%)}
 /* KPI kartochkasi: neytral belgi — brend oltinida */
 .ovk.n .ic{background:var(--gold-soft);color:var(--gold-text)}
 .ovk-x:hover,.ovk-x:focus-visible{box-shadow:0 0 0 1px var(--gold) inset}
@@ -1992,8 +1994,8 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 .ad-fab:hover .rb-svg{transform:translateY(-2px) scale(1.05)}
 .ad-fab:active .rb-svg{transform:scale(.95)}
 .ad-fab:focus-visible{outline:none}
-.ad-fab:focus-visible .rb-svg{filter:drop-shadow(0 0 2px #F4B740) drop-shadow(0 0 7px #F4B740)}
-.ad-fab .rb-lbl{background:#102A43;color:#fff;font-size:12px;font-weight:600;padding:4px 13px;border-radius:999px;box-shadow:0 3px 9px rgba(16,42,67,.28);border:1px solid rgba(244,183,64,.4)}
+.ad-fab:focus-visible .rb-svg{filter:drop-shadow(0 0 2px #8FA6FF) drop-shadow(0 0 7px #8FA6FF)}
+.ad-fab .rb-lbl{background:#102A43;color:#fff;font-size:12px;font-weight:600;padding:4px 13px;border-radius:999px;box-shadow:0 3px 9px rgba(16,42,67,.28);border:1px solid rgba(125,151,255,.4)}
 .rb-float{animation:rbFloat 3.6s ease-in-out infinite}
 .rb-ant{transform-box:fill-box;transform-origin:50% 100%;animation:rbAnt 4.2s ease-in-out infinite}
 .rb-eye{transform-box:fill-box;transform-origin:center;animation:rbBlink 5s ease-in-out infinite}
@@ -2005,7 +2007,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 @keyframes rbBlink{0%,92%,100%{transform:scaleY(1)}96%{transform:scaleY(.1)}}
 @keyframes rbWave{0%,100%{transform:rotate(0)}18%{transform:rotate(-28deg)}42%{transform:rotate(10deg)}66%{transform:rotate(-22deg)}88%{transform:rotate(6deg)}}
 @keyframes rbTilt{0%,100%{transform:rotate(0)}50%{transform:rotate(-8deg)}}
-.rb-badge{position:absolute;top:2px;right:14px;width:15px;height:15px;border-radius:50%;background:#F4B740;border:2.5px solid #fff;display:none}
+.rb-badge{position:absolute;top:2px;right:14px;width:15px;height:15px;border-radius:50%;background:#8FA6FF;border:2.5px solid #fff;display:none}
 .ad-fab.ready .rb-badge{display:block}
 .rb-bubble{position:absolute;bottom:calc(100% + 8px);right:4px;background:#fff;color:#102A43;font-size:12.5px;font-weight:500;padding:8px 12px;border-radius:13px;border-bottom-right-radius:4px;box-shadow:0 8px 20px rgba(16,42,67,.22);white-space:nowrap;opacity:0;transform:translateY(6px) scale(.95);transform-origin:bottom right;pointer-events:none;transition:opacity .25s ease,transform .25s cubic-bezier(.2,.9,.3,1.3)}
 .ad-fab.greet .rb-bubble{opacity:1;transform:none}
@@ -2018,7 +2020,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 .ad-id span{display:block;font-size:12px;color:var(--ink-3,#888);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .ad-state{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ink-3,#888);white-space:nowrap}
 .ad-state i{width:7px;height:7px;border-radius:50%;background:#2ec27e}
-.ad-state.think i{background:var(--warning,#e8a33d);animation:adPulse 1s ease-in-out infinite}
+.ad-state.think i{background:var(--warning,#7D97FF);animation:adPulse 1s ease-in-out infinite}
 @keyframes adPulse{0%,100%{opacity:1}50%{opacity:.25}}
 .ad-x{border:none;background:transparent;color:var(--ink-3,#888);cursor:pointer;width:30px;height:30px;border-radius:9px;display:flex;align-items:center;justify-content:center;flex:none}
 .ad-x:hover{background:var(--surface,#f3f4f6);color:var(--ink,#111)}
@@ -2064,38 +2066,228 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 .ad-av,.ad-mav,.ad-chip span{position:relative;overflow:hidden}
 .ad-av img,.ad-mav img,.ad-chip span img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;border-radius:inherit}
 @media(prefers-reduced-motion:reduce){.rb-float,.rb-ant,.rb-eye,.rb-arm-r,.ad-fab.greet .rb-arm-r,.ad-fab.think .rb-head{animation:none!important}}
+
+/* ===================== Pitaka · bubble glass (2026-11-10) =====================
+   Our sales dashboard design «bubble glass» (glass shell, ultramarine), branded for Pitaka:
+   the active section is a Pitaka-orange pill. Loaded last: replaces tokens and the look of shared parts,
+   layout and logic stay. Blur only on floating layers (menu, top bar, drawers); cards are near-solid. */
+:root{
+  color-scheme:light;
+  --bg:#EDF2FC; --surface:#FFFFFF; --surface-2:#F7F9FE; --surface-3:#EDF0F7;
+  --ink:#0C1530; --ink-2:#4D5876; --ink-3:#646E8A; --ink-4:#8A93AB;
+  --line:rgba(8,32,147,.08); --line-2:rgba(8,32,147,.13); --rule:rgba(8,32,147,.06); --silver:#9AA3BC;
+  --primary:#082093; --primary-soft:rgba(8,32,147,.09); --primary-line:rgba(8,32,147,.20); --primary-text:#082093;
+  --ai:#1F4FD8; --ai-soft:rgba(31,79,216,.10);
+  --action:#082093; --action-soft:rgba(8,32,147,.09); --action-ink:#FFFFFF; --action-solid:#082093;
+  --success:#127035; --success-soft:rgba(18,112,53,.10); --success-text:#127035;
+  --warning:#C2620C; --warning-soft:rgba(194,98,12,.11); --warning-text:#A3480A;
+  --risk:#C81E1E; --risk-soft:rgba(200,30,30,.09); --risk-text:#C81E1E;
+  --r-card:22px; --r-input:16px; --r-chip:999px;
+  --shadow:0 1px 2px rgba(8,32,147,.04),0 10px 28px rgba(8,32,147,.10);
+  --shadow-2:0 18px 40px rgba(8,32,147,.26);
+  --shadow-btn:0 1px 2px rgba(8,32,147,.06),0 6px 14px rgba(8,32,147,.18);
+  --s1:#082093; --s2:#AEB6CC; --s3:#127035; --s4:#5A8CFF; --s5:#FF6A3D;
+  --seq1:#E4EAFB; --seq2:#C3D0F6; --seq3:#8EA6EE; --seq4:#4E70DD; --seq5:#1E3FB8; --seq6:#082093;
+  --pk:#E2410F; --pk-2:#FF6A3D; --pk-soft:rgba(226,65,15,.10);
+  --g-panel:rgba(255,255,255,.72); --g-menu:rgba(255,255,255,.82); --g-win:rgba(255,255,255,.86); --g-dense:rgba(255,255,255,.88); --g-block:rgba(255,255,255,.76);
+  --g-hi:rgba(255,255,255,.95); --g-edge:rgba(255,255,255,.80);
+  --blob1:rgba(8,32,147,.13); --blob2:rgba(255,106,61,.14); --blob3:rgba(90,140,255,.12);
+  --ease:cubic-bezier(.23,1,.32,1); --spring:cubic-bezier(.34,1.56,.64,1);
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme:dark;
+    --bg:#081028; --surface:#111930; --surface-2:#0D1430; --surface-3:#18223D;
+    --ink:#E9EDF7; --ink-2:#A4AEC7; --ink-3:#8B95B0; --ink-4:#5F6985;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12); --rule:rgba(255,255,255,.05); --silver:#6F7A96;
+    --primary:#7D97FF; --primary-soft:rgba(125,151,255,.15); --primary-line:rgba(125,151,255,.30); --primary-text:#AFC0FF;
+    --ai:#7D97FF; --ai-soft:rgba(125,151,255,.15);
+    --action:#7D97FF; --action-soft:rgba(125,151,255,.15); --action-ink:#081028; --action-solid:#2C47BD;
+    --success:#34C48B; --success-soft:rgba(52,196,139,.15); --success-text:#34C48B;
+    --warning:#F5A524; --warning-soft:rgba(245,165,36,.15); --warning-text:#F5A524;
+    --risk:#F7686C; --risk-soft:rgba(247,104,108,.15); --risk-text:#F7686C;
+    --shadow:0 1px 2px rgba(0,0,0,.30),0 10px 28px rgba(0,0,0,.45); --shadow-2:0 18px 40px rgba(0,0,0,.70);
+    --shadow-btn:0 1px 2px rgba(0,0,0,.35),0 6px 14px rgba(0,0,0,.40);
+    --s1:#7D97FF; --s2:#5F6985; --s3:#34C48B; --s4:#38BDD8; --s5:#FF7A4D;
+    --seq1:#121C3D; --seq2:#1B2C63; --seq3:#2A4296; --seq4:#4664D0; --seq5:#7D97FF; --seq6:#AFC0FF;
+    --pk:#FF6A3D; --pk-2:#FF8A63; --pk-soft:rgba(255,106,61,.16);
+    --g-panel:rgba(13,20,48,.66); --g-menu:rgba(13,20,48,.86); --g-win:rgba(13,20,48,.88); --g-dense:rgba(17,25,48,.90); --g-block:rgba(13,20,48,.70);
+    --g-hi:rgba(255,255,255,.08); --g-edge:rgba(255,255,255,.09);
+    --blob1:rgba(28,51,153,.30); --blob2:rgba(255,106,61,.08); --blob3:rgba(70,120,255,.16);
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme:dark;
+  --bg:#081028; --surface:#111930; --surface-2:#0D1430; --surface-3:#18223D;
+  --ink:#E9EDF7; --ink-2:#A4AEC7; --ink-3:#8B95B0; --ink-4:#5F6985;
+  --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12); --rule:rgba(255,255,255,.05); --silver:#6F7A96;
+  --primary:#7D97FF; --primary-soft:rgba(125,151,255,.15); --primary-line:rgba(125,151,255,.30); --primary-text:#AFC0FF;
+  --ai:#7D97FF; --ai-soft:rgba(125,151,255,.15);
+  --action:#7D97FF; --action-soft:rgba(125,151,255,.15); --action-ink:#081028; --action-solid:#2C47BD;
+  --success:#34C48B; --success-soft:rgba(52,196,139,.15); --success-text:#34C48B;
+  --warning:#F5A524; --warning-soft:rgba(245,165,36,.15); --warning-text:#F5A524;
+  --risk:#F7686C; --risk-soft:rgba(247,104,108,.15); --risk-text:#F7686C;
+  --shadow:0 1px 2px rgba(0,0,0,.30),0 10px 28px rgba(0,0,0,.45); --shadow-2:0 18px 40px rgba(0,0,0,.70);
+  --shadow-btn:0 1px 2px rgba(0,0,0,.35),0 6px 14px rgba(0,0,0,.40);
+  --s1:#7D97FF; --s2:#5F6985; --s3:#34C48B; --s4:#38BDD8; --s5:#FF7A4D;
+  --seq1:#121C3D; --seq2:#1B2C63; --seq3:#2A4296; --seq4:#4664D0; --seq5:#7D97FF; --seq6:#AFC0FF;
+  --pk:#FF6A3D; --pk-2:#FF8A63; --pk-soft:rgba(255,106,61,.16);
+  --g-panel:rgba(13,20,48,.66); --g-menu:rgba(13,20,48,.86); --g-win:rgba(13,20,48,.88); --g-dense:rgba(17,25,48,.90); --g-block:rgba(13,20,48,.70);
+  --g-hi:rgba(255,255,255,.08); --g-edge:rgba(255,255,255,.09);
+  --blob1:rgba(28,51,153,.30); --blob2:rgba(255,106,61,.08); --blob3:rgba(70,120,255,.16);
+}
+body{font-family:-apple-system,BlinkMacSystemFont,"SF Pro Text","Segoe UI",Roboto,"Manrope",sans-serif;font-size:14.5px;
+  background:radial-gradient(760px 560px at 8% 4%,var(--blob1),transparent 70%),radial-gradient(820px 560px at 94% 2%,var(--blob2),transparent 70%),
+    radial-gradient(900px 640px at 72% 96%,var(--blob3),transparent 70%),var(--bg);background-attachment:fixed}
+h1,h2,h3,.crumb,.brand-t,.navlabel{font-family:"Gill Sans","Gill Sans MT",Calibri,-apple-system,"Segoe UI",sans-serif;letter-spacing:0}
+
+/* Shell: floating glass menu and top bar */
+.app{padding:14px;gap:14px;grid-template-columns:252px minmax(0,1fr)}
+.app.min{grid-template-columns:76px minmax(0,1fr)}
+.rail,:root[data-theme="dark"] .rail{
+  --surface:var(--g-dense); --surface-2:var(--line); --surface-3:var(--line-2);
+  background:var(--g-panel);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  border:1px solid var(--g-edge);border-radius:26px;box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow);
+  top:14px;height:calc(100vh - 28px);color:var(--ink)}
+.rail{--ink:#0C1530; --ink-2:#4D5876; --ink-3:#646E8A; --line:rgba(8,32,147,.08); --line-2:rgba(8,32,147,.13);
+  --primary:#082093; --primary-soft:rgba(8,32,147,.09); --action:#082093; --action-soft:rgba(8,32,147,.09)}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .rail{
+  --ink:#E9EDF7; --ink-2:#A4AEC7; --ink-3:#8B95B0; --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+  --primary:#7D97FF; --primary-soft:rgba(125,151,255,.15); --action:#7D97FF; --action-soft:rgba(125,151,255,.15)} }
+:root[data-theme="dark"] .rail{--ink:#E9EDF7; --ink-2:#A4AEC7; --ink-3:#8B95B0; --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.12);
+  --primary:#7D97FF; --primary-soft:rgba(125,151,255,.15); --action:#7D97FF; --action-soft:rgba(125,151,255,.15)}
+.rail .brand,:root[data-theme="dark"] .rail .brand{background:transparent;border-bottom:0;padding:16px 16px 6px;min-height:0}
+.brand .mark{width:40px;height:40px;border-radius:13px;box-shadow:var(--shadow-btn)}
+.brand-t{display:flex;align-items:center}
+.brand-logo{height:15px;width:auto;display:block}
+.brand-s{color:var(--ink-3);letter-spacing:.12em;margin-top:4px}
+.brand-logo.lg-d{display:none}
+:root[data-theme="dark"] .brand-logo.lg-l{display:none} :root[data-theme="dark"] .brand-logo.lg-d{display:block}
+@media (prefers-color-scheme: dark){ :root:not([data-theme="light"]) .brand-logo.lg-l{display:none} :root:not([data-theme="light"]) .brand-logo.lg-d{display:block} }
+.navlabel{font-size:11.5px;letter-spacing:.04em;text-transform:none;font-weight:600;color:var(--ink-3)}
+.navbtn{border-radius:999px;min-height:42px;padding:9px 14px;font-size:14.5px;font-weight:500;color:var(--ink-2);
+  transition:transform 260ms var(--spring),background-color 150ms ease,color 150ms ease}
+.navbtn:hover{background:var(--line);color:var(--ink)}
+.navbtn:active{transform:scale(.97)}
+.rail .navbtn[aria-current="page"],.rail .navbtn[aria-current="page"]:hover{color:#fff;font-weight:600;
+  background:linear-gradient(rgba(255,255,255,.14),rgba(255,255,255,0)),var(--pk);box-shadow:inset 0 1px 0 rgba(255,255,255,.35),0 6px 14px rgba(226,65,15,.28)}
+.rail .navbtn[aria-current="page"]::before{content:none}
+.rail .navbtn[aria-current="page"] svg{stroke:#fff}
+.rail .navbtn[aria-current="page"] .badge{background:#fff;color:var(--pk)}
+.navbtn .badge{border-radius:999px}
+.railtoggle{border-radius:999px}
+.rail .rail-foot{background:transparent;border-top:1px solid var(--line-2)}
+button.who{border-radius:18px}
+.avatar{background:var(--primary);color:var(--action-ink)}
+.footbtn{border-radius:14px;background:var(--g-dense);border:1px solid var(--g-edge)}
+.main{min-height:0}
+.topbar,:root[data-theme="dark"] .topbar{top:14px;border-radius:24px;border:1px solid var(--g-edge);padding:10px 18px;margin-bottom:4px;
+  background:var(--g-panel);-webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);
+  box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow)}
+.topbar::after{content:none}
+.crumb{font-size:24px}
+.crumb small{font-family:-apple-system,"Segoe UI",sans-serif}
+.view{padding:18px 4px 96px}
+
+/* Blocks */
+.card,.v2-c,.ovk,.vf-in{background:var(--g-block);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow)}
+.card,.v2-c,.card.float{border-radius:22px}
+.ovk{border-radius:20px}
+
+/* Pills: buttons, segments, chips, inputs */
+.btn,.ov-btn{border-radius:999px}
+.seg{border-radius:999px;background:var(--line-2);border:0;padding:3px;gap:0}
+.seg button{border-radius:999px;border:0!important}
+.seg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow);font-weight:600}
+.iconbtn{border-radius:50%;background:var(--g-dense);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-hi)}
+.pill{background:var(--g-dense);border:1px solid var(--g-edge);box-shadow:inset 0 1px 0 var(--g-hi)}
+.sel,.vr-sel,.fld input,.fld select{border-radius:16px}
+.chip{border-radius:999px}
+
+/* Drawers and scrim */
+.drawer{background:var(--g-win);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
+  border:1px solid var(--g-edge);border-radius:24px;top:14px;bottom:14px;right:14px;height:auto;box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow-2)}
+.scrim{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
+.drawer:not(.on){transform:translateX(calc(100% + 40px));box-shadow:none}
+.topbar,:root[data-theme="dark"] .topbar{flex-wrap:nowrap}
+.topbar .crumb{flex:1 1 auto;min-width:0}
+.topbar .spacer{display:none}
+.topbar .crumb small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.topbar > *:not(.crumb){flex:none}
+
+/* Sign-in and splash: ultramarine instead of the old gold */
+.gate,.splash{--primary:#AFC0FF; --action:#7D97FF; --action-ink:#081028; --action-soft:rgba(125,151,255,.16)}
+.gate{background:#060D26}
+.gate::before{background:radial-gradient(900px 640px at 36% 46%,rgba(40,70,210,.32),transparent 64%),
+  radial-gradient(520px 420px at 84% 14%,rgba(255,106,61,.12),transparent 70%),linear-gradient(180deg,#0A1855 0%,#060D26 60%,#040919 100%)}
+.gate-box .btn{color:#fff;background:linear-gradient(#2341bd,#082093);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 10px 24px rgba(8,32,147,.45)}
+
+.glance{grid-template-columns:190px repeat(4,minmax(0,1fr));border-radius:20px;background:var(--g-block);border-color:var(--g-edge)}
+.glance .ring > div{min-width:0;flex:1}
+.glance .ring .sub{white-space:normal}
+
+/* Language switch (RU / UZ) */
+.langseg{display:inline-flex;border-radius:999px;background:var(--line-2);padding:3px;flex:none}
+.langseg button{border:0;background:none;border-radius:999px;padding:4px 10px;font-size:12px;font-weight:700;color:var(--ink-2);cursor:pointer;min-height:28px}
+.langseg button[aria-pressed="true"]{background:var(--surface);color:var(--ink);box-shadow:var(--shadow)}
+.gate .langseg{position:absolute;top:18px;right:18px;z-index:3;background:rgba(255,255,255,.10)}
+.gate .langseg button{color:#C9D3F2}
+.gate .langseg button[aria-pressed="true"]{background:#fff;color:#0A1855}
+
+@media(max-width:860px){
+  .app,.app.min{padding:8px;gap:8px;grid-template-columns:1fr}
+  .rail{top:8px;left:-110%;height:calc(100vh - 16px);border-radius:24px}
+  .rail.open{left:8px}
+  .topbar,:root[data-theme="dark"] .topbar{top:8px;border-radius:20px;padding:8px 12px}
+  .crumb{font-size:17px}
+  .view{padding:12px 2px 96px}
+  .botnav{left:8px;right:8px;bottom:8px;border-radius:24px;border:1px solid var(--g-edge);background:var(--g-panel);
+    -webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow-2)}
+  .botnav button[aria-current="page"]{color:var(--pk)}
+  .drawer{top:auto;left:8px;right:8px;bottom:8px;width:auto;max-height:88dvh;border-radius:22px}
+  .drawer:not(.on){transform:translateY(calc(100% + 24px))}
+  .topbar,:root[data-theme="dark"] .topbar{flex-wrap:wrap}
+  .topbar .menuBtn{order:0}
+  .topbar .crumb{order:1;flex:1 1 calc(100% - 60px);min-width:0}
+  .topbar > *:not(.crumb):not(.menuBtn){order:2}
+}
+@media (prefers-reduced-transparency:reduce){
+  .rail,.topbar,.drawer,.botnav{background:var(--surface);-webkit-backdrop-filter:none;backdrop-filter:none}
+}
+@media (prefers-reduced-motion:reduce){ .navbtn{transition:none} .navbtn:active{transform:none} }
 </style>
 
 <!-- ===== §6.1 Login — "Tungi boshqaruv markazi": chapda radar halqalari ichida CEO AI
      (rasm qutisiz — mix-blend-mode:screen qora fonni yutadi) va Lead→To‘lov jarayon chizig'i,
      o'ngda qora shisha karta. Telefonda robot dumaloq medalyonga aylanadi. ===== -->
 <div class="gate" id="gate">
+  <div class="langseg" role="group" aria-label="Til"><button type="button" data-l="uz">UZ</button><button type="button" data-l="ru">RU</button></div>
   <div class="gate-wrap">
     <div class="gate-art" aria-hidden="true">
       <div class="gate-stage">
         <div class="gate-rings"><i class="core"></i><i></i><i></i><i></i></div>
         <div class="gate-sweep"></div>
         <img class="art guard" id="gateArt" draggable="false" oncontextmenu="return false" src="/brand/ceo-ai-placeholder.svg"
-             alt="CEO AI Automind — SUN-HIGHTECH Sales OS vizuali">
+             alt="CEO AI Automind — Pitaka Sales OS vizuali">
       </div>
       <div class="gate-pipe">
         <div class="pipe-track"><i class="pipe-glow"></i></div>
-        <span class="node"><i></i>Lead</span>
-        <span class="node"><i></i>Uchrashuv</span>
-        <span class="node"><i></i>Taklif</span>
-        <span class="node"><i></i>Shartnoma</span>
+        <span class="node"><i></i>Lid</span>
+        <span class="node"><i></i>Kvalifikatsiya</span>
+        <span class="node"><i></i>Bitim</span>
+        <span class="node"><i></i>Hisob</span>
         <span class="node"><i></i>To‘lov</span>
       </div>
     </div>
     <form class="gate-box" id="loginForm">
       <div class="gate-brand">
         <span class="mark"><img src="/favicon.svg" alt=""></span>
-        <div><div class="brand-t" style="font-size:15px">SUN-HIGHTECH Sales OS</div>
+        <div><div class="brand-t" style="font-size:15px"><img class="brand-logo" src="/brand/pitaka-logo-white.svg" alt="PITAKA" style="height:15px"></div>
           <div class="brand-s">Sotuv Desk</div></div>
       </div>
       <div class="gate-head">
         <h2>Sotuv markaziga kirish</h2>
-        <p class="gate-sub">Reja, fakt va forecast — CRM ma’lumoti ustida, bitta oynada.</p>
+        <p class="gate-sub">Reja, fakt va forecast — Bitrix ma’lumoti ustida, bitta oynada.</p>
       </div>
       <label class="fld"><span>Login</span>
         <span class="in"><svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.6"/><path d="M4.5 20a7.5 7.5 0 0 1 15 0"/></svg>
@@ -2116,7 +2308,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
       <button class="btn" id="lgBtn" type="submit">Kirish</button>
       <div class="gate-sec"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg>
         TLS shifrlangan · sessiya 12 soat · barcha amal auditga yoziladi</div>
-      <div class="gate-cred">SUN-HIGHTECH uchun maxsus ishlab chiqilgan · CEO AI Automind · © SUN-HIGHTECH. Barcha huquqlar himoyalangan.
+      <div class="gate-cred">Pitaka uchun maxsus ishlab chiqilgan · CEO AI Automind · © Pitaka. Barcha huquqlar himoyalangan.
         <span class="cw">Rasm va brend mualliflik huquqi bilan himoyalangan.
         Foydalanish uchun: <a href="https://t.me/tbehruz7" target="_blank" rel="noopener">t.me/tbehruz7</a></span></div>
     </form>
@@ -2130,14 +2322,14 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
       <span class="mark"><img src="/favicon.svg" alt="Pitaka"></span>
       <span class="sh"><i></i></span>
     </div>
-    <img class="art guard" id="spImg" draggable="false" oncontextmenu="return false" alt="CEO AI Automind — © SUN-HIGHTECH, ruxsatsiz foydalanish taqiqlanadi" hidden>
+    <img class="art guard" id="spImg" draggable="false" oncontextmenu="return false" alt="CEO AI Automind — © Pitaka, ruxsatsiz foydalanish taqiqlanadi" hidden>
     <div class="sp-glow" id="spGlow" hidden></div>
   </div>
   <div class="sp-cap">
-    <div class="sp-t">SUN-HIGHTECH Sales OS ishga tushmoqda</div>
+    <div class="sp-t">Pitaka Sales OS ishga tushmoqda</div>
     <div class="sp-bar"><i></i></div>
-    <div class="sp-cred"><b>SUN-HIGHTECH uchun maxsus ishlab chiqilgan · CEO AI Automind</b><br>
-      © SUN-HIGHTECH. Barcha huquqlar himoyalangan.<br>
+    <div class="sp-cred"><b>Pitaka uchun maxsus ishlab chiqilgan · CEO AI Automind</b><br>
+      © Pitaka. Barcha huquqlar himoyalangan.<br>
       <span class="cw">Rasm mualliflik huquqi bilan himoyalangan · ruxsat: t.me/tbehruz7</span></div>
   </div>
 </div>
@@ -2146,7 +2338,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
   <aside class="rail" id="rail">
     <div class="brand">
       <span class="mark"><img src="/favicon.svg" alt="Pitaka"></span>
-      <div class="brand-x"><div class="brand-t">SUN-HIGHTECH</div><div class="brand-s">Sales OS</div></div>
+      <div class="brand-x"><div class="brand-t"><img class="brand-logo lg-l" src="/brand/pitaka-logo.svg" alt="PITAKA"><img class="brand-logo lg-d" src="/brand/pitaka-logo-white.svg" alt=""></div><div class="brand-s">Sales OS</div></div>
     </div>
     <div class="rail-scroll">
     <button class="railtoggle" id="railToggle" type="button" aria-label="Menyuni yig‘ish" aria-expanded="true">
@@ -2163,7 +2355,6 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
     </div></div>
     <div class="navgroup"><div class="navlabel">Jamoa</div><div class="nav">
       <button class="navbtn" data-v="jamoa" data-owner data-tip="Jamoa"><svg viewBox="0 0 24 24"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg><span class="nl">Jamoa</span></button>
-      <button class="navbtn" data-v="bilim" data-tip="Bilim: QES qo‘llanmasi"><svg viewBox="0 0 24 24"><path d="M4 5.5A2.5 2.5 0 0 1 6.5 3H20v15H6.5A2.5 2.5 0 0 0 4 20.5zM8 7h8M8 11h6"/></svg><span class="nl">Bilim</span></button>
     </div></div>
     <div class="navgroup" data-owner><div class="navlabel">Tizim</div><div class="nav">
       <button class="navbtn" data-v="tizim" data-owner data-tip="Tizim: xavfsizlik va audit"><svg viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.2-2.9 7.7-7 9-4.1-1.3-7-4.8-7-9V6z"/><path d="M9 12l2 2 4-4"/></svg><span class="nl">Tizim</span></button>
@@ -2180,7 +2371,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
         <button class="footbtn" id="logout" type="button" data-tip="Chiqish" aria-label="Chiqish">
           <svg viewBox="0 0 24 24"><path d="M15 17l5-5-5-5M20 12H9M12 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"/></svg></button>
       </div>
-      <div class="rail-cred">SUN-HIGHTECH · Sales Intelligence</div>
+      <div class="rail-cred">Pitaka · Sales Intelligence</div>
     </div>
   </aside>
   <div class="railscrim" id="railScrim" aria-hidden="true"></div>
@@ -2198,11 +2389,12 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
           <svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M8 3v4M16 3v4M3 10h18"/></svg>
           <span id="rangeLab">30 kun</span></button>
       </div>
-      <span class="pill" id="syncPill" title="CRM bilan aloqa normal">
-        <span class="dot live" id="syncDot"></span><b class="p-src">CRM</b>
+      <span class="pill" id="syncPill" title="Bitrix bilan aloqa normal">
+        <span class="dot live" id="syncDot"></span><b class="p-src">Bitrix</b>
         <span class="sep p-src">·</span><span id="clock">—</span>
         </span>
       <button class="iconbtn" id="refresh" aria-label="Yangilash"><svg viewBox="0 0 24 24"><path d="M21 12a9 9 0 1 1-2.6-6.4M21 3v6h-6"/></svg></button>
+      <div class="langseg" role="group" aria-label="Til"><button type="button" data-l="uz">UZ</button><button type="button" data-l="ru">RU</button></div>
       <button class="iconbtn" id="theme" aria-label="Mavzuni almashtirish"><svg viewBox="0 0 24 24"><path d="M12 3a9 9 0 1 0 9 9 7 7 0 0 1-9-9Z"/></svg></button>
     </header>
 
@@ -2267,8 +2459,6 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
         </div>
       </div>
     </section>
-
-    <section class="view" id="v-bilim"><div id="bilim-box"><div class="sk sk-r" style="height:14px;margin-bottom:10px"></div></div></section>
     <section class="view" id="v-operator"><div id="op-box"></div></section>
     <section class="view" id="v-voronka"><div id="vr-box"></div></section>
 
@@ -2280,7 +2470,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
         <div class="v2-k" id="slTop" style="--n:4"></div>
         <div class="v2-c"><div class="v2-ch"><div><h3>Javob kutayotgan lidlar</h3><p id="slRiskSub">Ochiq, 24 soatdan oshgan, hali qo‘ng‘iroq qilinmagan</p></div></div>
           <div class="tw"><table><thead><tr><th class="gut">#</th><th>Lid</th><th>Mas’ul</th><th class="r">Kutyapti</th><th></th></tr></thead><tbody id="tb-sla"></tbody></table></div><div id="tb-sla-pg"></div></div>
-        <div class="v2-c" id="slTasir"><div class="v2-ch"><div><h3>Javob tezligi va uzatish<button class="v2-i" type="button" data-v2i="Lid kelgandan keyin birinchi javob berilgan qo‘ng‘iroqqacha (kiruvchi yoki chiquvchi) o‘tgan vaqt va shu lidlarning menejerga uzatilgan ulushi. Oxirgi 90 kun, kamida 7 kun oldin kelgan lidlar. Har 6 soatda Odoo’dan qayta hisoblanadi. 20 tadan kam lidli guruhda foiz ko‘rsatilmaydi." aria-label="Izoh">i</button></h3><p id="slMeasSub"></p></div></div><div id="slBands"></div></div>
+        <div class="v2-c" id="slTasir"><div class="v2-ch"><div><h3>Javob tezligi va uzatish<button class="v2-i" type="button" data-v2i="Lid kelgandan keyin birinchi javob berilgan qo‘ng‘iroqqacha (kiruvchi yoki chiquvchi) o‘tgan vaqt va shu lidlarning menejerga uzatilgan ulushi. Oxirgi 90 kun, kamida 7 kun oldin kelgan lidlar. Har 6 soatda Bitrix’dan qayta hisoblanadi. 20 tadan kam lidli guruhda foiz ko‘rsatilmaydi." aria-label="Izoh">i</button></h3><p id="slMeasSub"></p></div></div><div id="slBands"></div></div>
       </div></div>
       <div id="ovp-lidlar-baho" hidden><div id="sk-box"></div></div>
       <div id="ovp-lidlar-list" hidden>
@@ -2288,7 +2478,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
         <div class="seg" id="leadRange"><button data-d="1" aria-pressed="true">Bugun</button><button data-d="7" aria-pressed="false">7 kun</button><button data-d="30" aria-pressed="false">30 kun</button></div>
         <div class="seg" id="leadFilter"><button data-s="" aria-pressed="true">Hammasi</button><button data-s="P" aria-pressed="false">Ishlovda</button><button data-s="F" aria-pressed="false">Yaroqsiz</button></div>
         <select id="leadStatus" class="sel" aria-label="CRM holati" title="CRM lid ustunlari"><option value="">Barcha holatlar</option></select>
-        <select id="leadOp" class="sel" aria-label="Operator" title="Odoo: «Оператор (Авто танланади)»"><option value="">Barcha operatorlar</option></select></div>
+        <select id="leadOp" class="sel" aria-label="Operator" title="Bitrix: lid mas’uli"><option value="">Barcha operatorlar</option></select></div>
         <div class="tw"><table><thead><tr><th class="gut">#</th><th>Lid</th><th>Manba</th><th>Ball</th><th>Holat</th><th>Operator</th><th>Mas’ul</th><th class="r">Yoshi</th></tr></thead><tbody id="tb-leads"></tbody></table></div>
         <div id="leadMore" style="padding:8px 14px 12px"></div></div>
       </div>
@@ -2426,7 +2616,7 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 
 <aside class="drawer" id="ovDr" role="dialog" aria-modal="true" aria-label="Sotuv skripti">
   <div class="drawer-h"><div style="flex:1"><h3>Sotuv qo‘ng‘irog‘i skripti</h3>
-    <p style="font-size:12px;color:var(--ink-2);margin:3px 0 0">Uch zaif mezon uchun: savollar, SUN-HIGHTECH qiymati, keyingi qadam</p></div>
+    <p style="font-size:12px;color:var(--ink-2);margin:3px 0 0">Uch zaif mezon uchun: savollar, Pitaka qiymati, keyingi qadam</p></div>
     <button class="iconbtn" id="ovDrClose" aria-label="Yopish"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
   <div class="drawer-b" id="ovDrBody"></div>
 </aside>
@@ -2582,7 +2772,7 @@ function loadRange(){
   const[f,t]=hit[2]();return{from:f,to:t,preset:hit[0]};
 }
 let RANGE=loadRange();
-// «7/30/90 kun» — Odoo kabi hozirdan N×24 soat orqaga (server preset belgisidan quradi); qolganlari to'liq kunlar
+// «7/30/90 kun» — Bitrix kabi hozirdan N×24 soat orqaga (server preset belgisidan quradi); qolganlari to'liq kunlar
 const ROLL={d7:7,d30:30,d90:90};
 const rollN=()=>ROLL[RANGE.preset]&&RANGE.to===dAgo(0)?ROLL[RANGE.preset]:0;
 const rq=extra=>`from=${RANGE.from}&to=${RANGE.to}${rollN()?`&preset=${RANGE.preset}`:""}${extra?"&"+extra:""}`;
@@ -2733,7 +2923,7 @@ function crmBelgi(h){
   const d=h.yoshDaqiqa;
   c.textContent=d==null?"—":d<1?"hozir":d<60?`${d} daq oldin`:`${Math.floor(d/60)} soat oldin`;
   CRM_ESKI=!h.ok||(d!=null&&d>CRM_ESKI_DAQIQA);
-  setSync(!h.ok?"err":CRM_ESKI?"warn":"ok", !h.ok?`CRM yangilanmayapti: ${h.xato||"noma’lum"}`:CRM_ESKI?`CRM ma’lumoti ${c.textContent} yangilangan`:`CRM ma’lumoti ${c.textContent} yangilangan`);
+  setSync(!h.ok?"err":CRM_ESKI?"warn":"ok", !h.ok?`Bitrix yangilanmayapti: ${h.xato||"noma’lum"}`:CRM_ESKI?`Bitrix ma’lumoti ${c.textContent} yangilangan`:`Bitrix ma’lumoti ${c.textContent} yangilangan`);
 }
 
 const TITLES={operator:["Mening ishim","Bugun kimga qo‘ng‘iroq qilish kerak"],tizim:["Tizim","Xavfsizlik, audit va lug‘at"],command:["Boshqaruv markazi","Asosiy raqamlar, muammolar va reja"],
@@ -2741,8 +2931,6 @@ const TITLES={operator:["Mening ishim","Bugun kimga qo‘ng‘iroq qilish kerak"
   jamoa:["Jamoa","Operatorlar va menejerlar — davr bo‘yicha"],moliya:["Moliya","To‘lovlar va tushum"],audit:["Audit","Amallar jurnali"],
   agentlar:["Agentlar","AI agentlar"],   /* TZI F08: son katalogdan keladi, qo'lda yozilmaydi */kampus:["Agent kampusi","Agentlarning jarayondagi o‘rni va tirik holati"],roadmap:["Yo‘l xaritasi","TZ v3.0 bo‘yicha holat"],
   qoriqchi:["Qo‘riqchi","Panelning o‘z xavfsizligi"],
-  bilim:["Bilim","QES qo‘llanmasi — mahsulot bo‘yicha aniq faktlar"],
-  kunlik:["Kunlik hisobot","Call-markaz: operatorlar kunlik ko‘rsatkichlari (Odoo + VoIP + AI)"],
   voronka:["Sotuv voronkasi","Liddan to‘lovgacha: bosqichlar, konversiya, qotib qolganlar va yo‘qotish sabablari"],
   parol:["Parolni o‘zgartirish","Login va joriy parol tasdig‘i, so‘ng yangi parol"]};
 let cur="command"; const loaded=new Set();
@@ -2767,27 +2955,6 @@ function go(v){
   $("#rail").classList.remove("open"); document.body.classList.remove("rail-open"); scrollTo({top:0,behavior:"instant"});
   const rsg=$("#rangeSeg"); (rsg||$("#rangeBtn")).hidden=!RANGE_VIEWS.has(v);
   if(!loaded.has(v)){loaded.add(v);yangiAvlod();VIEW[v]?.().catch(e=>{if(e&&e.bekor)return;toast(e.message);loaded.delete(v)})}
-}
-/* Bilim: QES o'quv qo'llanmasi (public/bilim/qes.html) */
-async function viewBilim(){
-  const box=$("#bilim-box"); if(box.dataset.ok) return;
-  try{ const r=await fetch("/bilim/qes.html",{credentials:"same-origin"}); if(!r.ok) throw new Error("HTTP "+r.status);
-    box.innerHTML=await r.text(); box.dataset.ok="1";
-    /* TZI F12: texnik xizmat ma'lumoti (fayl yo'llari) faqat egaga ochiladi. */
-    if(ME&&ME.role==="ega") box.querySelectorAll('[data-rol="ega"]').forEach(x=>x.classList.add("ko"));
-    const k=await api("/api/qes-koef").catch(()=>null);
-    // v2: mundarija — 12 bo'limga bir bosishda o'tish (sahifa uzun, lekin hamma fakt saqlanadi)
-    const hs=[...box.querySelectorAll("h3.bl-h3[id]")];
-    if(hs.length) box.insertAdjacentHTML("afterbegin",`<nav class="bl-toc" aria-label="Bo‘limlar">${hs.map(h=>{ const t=h.textContent.replace(/\s*\(.*$/,"").replace(/^(\d+)\.\s*/,"$1. ");
-      return `<button type="button" data-blt="${esc(h.id)}" title="${esc(h.textContent)}">${esc(t.length>34?t.slice(0,33)+"…":t)}</button>` }).join("")}</nav>`);
-    box.querySelectorAll("[data-blt]").forEach(b=>b.onclick=()=>{ const h=box.querySelector("#"+CSS.escape(b.dataset.blt)); if(h) h.scrollIntoView({behavior:"smooth",block:"start"}) });
-    if(k&&k.variantlar?.length){
-      const ln=k.variantlar.map(v=>`<li style="margin:6px 0"><b>${String(k.unum)===String(v.qiymat)?"✓ ":""}${v.qiymat} kVt·soat</b> — ${esc(v.nom)}<div style="color:var(--ink-3);font-size:12.5px">${esc(v.izoh)}</div></li>`).join("");
-      const toc=box.querySelector(".bl-toc");
-      (toc||box).insertAdjacentHTML(toc?"afterend":"afterbegin",`<div class="bl-koef"><span>Hisob koeffitsienti: <b>${esc(String(k.unum))} kVt·soat</b> (1 kVt dan yiliga) · quvvat = yillik iste’mol ÷ shu raqam</span>${V2.info(`Tanlovni sotuv rahbari botda /koef buyrug‘i bilan o‘zgartiradi${k.kim?` (oxirgi: ${k.kim}, ${k.at||""})`:""}. Raqam kichik bo‘lsa, kattaroq tizim tavsiya qilinadi.`)}
-        <details style="flex-basis:100%"><summary style="cursor:pointer;font-weight:700;font-size:12.5px">Uch variant</summary><ul style="margin:6px 0 0;padding-left:18px;font-size:13px;color:var(--ink-2)">${ln}</ul></details></div>`);
-    } }
-  catch(e){ box.innerHTML=`<div class="card" style="padding:14px;color:var(--risk)">Bilim sahifasi yuklanmadi: ${esc(e.message)}</div>`; }
 }
 $$(".navbtn").forEach(b=>b.addEventListener("click",()=>go(b.dataset.v)));
 
@@ -2849,11 +3016,14 @@ function leadCallHTML(t){
 function aiSifatHTML(q){
   const VN={sifatli:["g","Sifatli"],sifatsiz:["c","Sifatsiz"],noaniq:["n","Noaniq"]}, [c,t]=VN[q.verdict]||["n",q.verdict];
   const s=q.signals||{}, yn=v=>v===true?"ha":v===false?"yo‘q":null;
-  const AG={kp:"KP yuborish",uchrashuv:"uchrashuv",obyekt_korigi:"obyekt ko‘rigi",qayta_qongiroq:"qayta qo‘ng‘iroq",yoq:"kelishilmadi"};
-  const OB={uy:"uy",korxona:"korxona / biznes",ferma:"ferma",boshqa:"boshqa"};
-  const rows=[["Ehtiyoj",yn(s.need)],["Obyekt",s.object?(OB[s.object]||s.object)+(s.objectMatn?` («${s.objectMatn}»)`:""):null],["Oylik elektr to‘lovi",s.monthlyBill],
-    ["Byudjet",s.budgetMatn||yn(s.budget)],["Muddat",s.timeline],["Qaror qiluvchi bilan",yn(s.decisionMaker)],
-    ["Kelishilgan qadam",s.agreed?(s.agreed==="boshqa"?s.agreedMatn||"boshqa":AG[s.agreed]||s.agreed):null],["Muddatli to‘lov so‘radi",yn(s.installment)]].filter(([,v])=>v);
+  // Pitaka signallari (lib/sifat.mjs). Eski qatorlardagi noma'lum kalitlar ko'rsatilmaydi.
+  const AG={buyurtma:"Buyurtma",telegram_rasm:"Telegram’ga rasm",ofisga_tashrif:"Ofisga tashrif",qayta_qongiroq:"Qayta qo‘ng‘iroq",yoq:"Kelishilmadi"};
+  const DV={iphone:"iPhone",samsung:"Samsung",boshqa:"boshqa"};
+  const dev=s.device&&DV[s.device]?(s.device==="boshqa"?s.deviceMatn||DV.boshqa:DV[s.device])+(s.device!=="boshqa"&&s.deviceMatn?` («${s.deviceMatn}»)`:""):null;
+  const agr=s.agreed==="boshqa"?(s.agreedMatn||"boshqa"):(AG[s.agreed]||null);
+  const rows=[["Ehtiyoj",yn(s.need)],["Qurilma",dev],["Model",typeof s.model==="string"?s.model:null],["Rang",typeof s.color==="string"?s.color:null],
+    ["Byudjet",s.budgetMatn||yn(s.budget)],["Muddat",typeof s.timeline==="string"?s.timeline:null],
+    ["Kelishilgan qadam",agr],["Bo‘lib to‘lash",yn(s.installment)]].filter(([,v])=>v);
   return `<div class="sec-t" style="margin:16px 0 6px">AI bahosi — qo‘ng‘iroq suhbati bo‘yicha</div>
     <div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="st ${c}">${esc(t)}</span><span style="font-size:12.5px;color:var(--ink-2)">${esc(q.reason||"")}</span></div>
     ${q.quote?`<div style="font-size:12.5px;margin-top:6px;color:var(--ink-2)"><i>«${esc(q.quote)}»</i>${q.callId?` <span class="idc">· qo‘ng‘iroq ${esc(q.callId)}</span>`:""}</div>`:""}
@@ -2886,7 +3056,6 @@ async function openLead(id){
         ${l.operator?`<dt>Operator</dt><dd>${esc(l.operator)}</dd>`:""}
         <dt>Mas’ul</dt><dd>${esc(l.ownerName)}</dd>
         ${l.clientType&&!l.journey?`<dt>Klient turi</dt><dd><span class="jr-ct">${esc(l.clientType)}</span></dd>`:""}
-        ${l.kv?`<dt>Kerakli quvvat</dt><dd>${fmt(l.kv)} kVt${l.kv>5000?` <span class="chip c" title="Odoo’da tekshiring — kiritishda xato bo‘lishi mumkin">juda katta</span>`:""}</dd>`:""}
         <dt>Kelgan</dt><dd>${dt(l.createdAt)}</dd>
         <dt>Oxirgi o‘zgarish</dt><dd>${dt(l.modifiedAt)}</dd>
         ${l.amount?`<dt>Kutilayotgan summa</dt><dd>${M(l.amount)} ${esc(l.currency)}</dd>`:""}
@@ -2949,7 +3118,7 @@ async function openDeal(id){
         <dt>Yopilish sanasi</dt><dd>${d.closeDate?d.closeDate.slice(0,10):"—"}</dd>
         <dt>Oxirgi faoliyat</dt><dd>${d.idleDays} kun oldin</dd>
         <dt>Mas’ul</dt><dd title="CRM ID ${esc(d.owner||"")}">${esc(d.ownerName||d.owner||"—")}</dd></dl>
-      ${d.odooUrl?`<div style="margin:10px 0 0;font-size:12.5px"><a class="bxl" href="${esc(d.odooUrl)}" target="_blank" rel="noopener">Odoo’da ochish ↗</a></div>`:""}
+      ${d.crmUrl?`<div style="margin:10px 0 0;font-size:12.5px"><a class="bxl" href="${esc(d.crmUrl)}" target="_blank" rel="noopener">Bitrix’da ochish ↗</a></div>`:""}
       <div class="sec-t" style="margin:18px 0 6px">Timeline</div>
       ${timeline.length?`<ul class="tl" style="padding:0;margin:0">${timeline.map(t=>`<li>
         <span class="d ${t.done?"done":""}"></span>
@@ -2961,7 +3130,7 @@ async function openDeal(id){
 
 /* ================= LID TAQDIRI — managerga o'tgandan keyin =================
    Operator o'z lidi qayerga ketganini ko'radi: klient turi (B2B/B2C/B2G…), manager, bosqich,
-   natija (jarayonda / yutildi / yo'qotildi). Manba: /api/leads/journey (Odoo'dagi o'sha yozuv). */
+   natija (jarayonda / yutildi / yo'qotildi). Manba: /api/leads/journey (Bitrix'dagi o'sha yozuv). */
 const JR_ST={open:"jarayonda",won:"yutildi",lost:"yo‘qotildi"};
 const jrState=s=>`<span class="jr-st ${s||"open"}">${JR_ST[s]||JR_ST.open}</span>`;
 function journeyHTML(j,{showOp=false}={}){
@@ -3268,7 +3437,7 @@ document.addEventListener("keydown",e=>{
 /* ================= v2: BOSHQARUV MARKAZI (rahbar bosh sahifasi) =================
    6 ko'rsatkich → voronka (30 kun) → muammolar → reja sur'ati → operatorlar bugun. Ta'riflar — lib/olchov.mjs. */
 const V2M_INFO={
-  yangi:"Tanlangan davrda Odoo’da yaratilgan lidlar (Odoo «Tushgan Lead» bilan bir xil).",
+  yangi:"Tanlangan davrda Bitrix’da yaratilgan lidlar (Bitrix lidlari bilan bir xil).",
   uzat:"Davrda menejerga uzatilgan lidlar ÷ davrda kelgan yangi lidlar.",
   jav:"Ochiq, 24 soatdan oshgan va hali javob berilgan chiquvchi qo‘ng‘iroq yo‘q lidlar (oxirgi 30 kun). Hozirgi holat.",
   sotuv:"Shu oyda yutilgan bitimlar summasi (so‘m). Reja — rahbar kiritgan oylik reja.",
@@ -3397,7 +3566,7 @@ const V2_TEL=`<svg viewBox="0 0 24 24"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 
 async function viewOperator2(){
   const box=$("#op-box"); if(!box) return;
   if(!ME?.bitrixUserId){
-    box.innerHTML=`<div class="v2">${V2.card("v2oX",{t:"Mening ishim"},V2.bosh("Hisobingiz Odoo’ga bog‘lanmagan","Administrator «Xodimlar» oynasida sizni Odoo foydalanuvchingizga bog‘lasin (CRM ID)."))}</div>`; return }
+    box.innerHTML=`<div class="v2">${V2.card("v2oX",{t:"Mening ishim"},V2.bosh("Hisobingiz Bitrix’ga bog‘lanmagan","Administrator «Xodimlar» oynasida sizni Bitrix foydalanuvchingizga bog‘lasin (CRM ID)."))}</div>`; return }
   if(!box.querySelector("#v2o")){
     box.innerHTML=`<div class="v2" id="v2o">
       <div class="v2-k" id="v2oK" style="--n:5">${Array.from({length:5},()=>V2.sk(92)).join("")}</div>
@@ -3500,7 +3669,7 @@ async function loadLeads(){
 }
 // Bitrix'dagi lid ustunlari (Звонок, Таргет, Встреча…) — xodim u yerda qaysi ustunda ishlagan
 // bo'lsa, shu yerda ham o'shani tanlaydi. Sonlar to'liq ro'yxatdan hisoblanadi.
-// Operator filtri — sotuv rahbarining Odoo'dagi usuli: «Tushgan Lead» → «Оператор (Авто танланади)»
+// Operator filtri — sotuv rahbarining Bitrix'dagi usuli: «Tushgan Lead» → «Оператор (Авто танланади)»
 function paintLeadOps(d){
   const sel=$("#leadOp"); if(!sel) return;
   if(ME&&(ME.caps?.operator||ME.role==="operator")){ sel.hidden=true; return }   // operator faqat o'zinikini ko'radi
@@ -3554,7 +3723,7 @@ function leadTodo(d){
   const box=$("#leadTodo"); if(!box) return;   // v2: blok olib tashlandi (Umumiy → «Muammolar»)
   const s=LEAD_SUM, per=s?.period||{}, stale=(d.rows||[]).filter(l=>l.stale).length, noPhone=(d.rows||[]).filter(l=>!l.phone).length;
   const todo=[];
-  if(stale) todo.push({s:"c",t:`${stale} ta lid uzoq vaqt javobsiz`,d:"Javob kechikishi sotuv imkoniyatiga salbiy ta’sir qilishi mumkin — bu lidlar uzoq vaqt kutmoqda. Bugun qo‘ng‘iroq qiling. (Aniq nisbat SUN-HIGHTECH ma’lumotida hali o‘lchanmagan.)",go:"javobtezligi",gl:"Javob tezligi"});
+  if(stale) todo.push({s:"c",t:`${stale} ta lid uzoq vaqt javobsiz`,d:"Javob kechikishi sotuv imkoniyatiga salbiy ta’sir qilishi mumkin — bu lidlar uzoq vaqt kutmoqda. Bugun qo‘ng‘iroq qiling. (Aniq nisbat Pitaka ma’lumotida hali o‘lchanmagan.)",go:"javobtezligi",gl:"Javob tezligi"});
   if(per.junkRate>=50) todo.push({s:"w",t:`Yaroqsiz lidlar ulushi yuqori (${per.junkRate}%)`,d:"Qaysi manbadan yaroqsiz lid kelayotganini «Manbalar» diagrammasida ko‘ring va o‘sha kanalni sozlang.",go:null});
   if(noPhone) todo.push({s:"w",t:`${noPhone} ta lidda telefon yo‘q`,d:"Bog‘lanib bo‘lmaydi — CRM'da raqamini to‘ldiring yoki yaroqsiz deb belgilang.",go:null});
   box.innerHTML=todo.length?`<div class="card float" style="margin-top:14px"><div class="card-b" style="padding-top:8px">
@@ -3722,7 +3891,7 @@ async function viewJavobTezligi(){
   V2.qoy("#slBands",B.bands.map(b=>`<div class="v2-cl ${b.pct==null?"":b.nisbat>=1.1?"":b.nisbat<0.9?"lo":"mid"}">
       <div class="t">${esc(b.nom)} <span class="idc">· ${fmt(b.n)} lid</span></div><div class="bar"><i style="width:${b.pct==null?0:Math.max(2,b.pct/mx*100)}%"></i></div>
       <div class="v"><b>${b.pct==null?"—":v2Pc(b.pct)}</b><br>${b.pct==null?"lid kam":`${fmt(b.uz)} uzatildi`}</div></div>`).join("")
-    +`<div class="kn-fark">${B.tez!=null&&B.kech!=null?`2 soat ichida gaplashilgan lidlar <b>${v2Pc(B.tez)}</b> uzatilgan, 24 soatdan keyin — <b>${v2Pc(B.kech)}</b>. `:""}Suhbatsiz lid ham uzatilishi mumkin: yozishma (Instagram, Telegram) yoki Odoo’da qayd etilmagan qo‘ng‘iroq orqali.</div>`);
+    +`<div class="kn-fark">${B.tez!=null&&B.kech!=null?`2 soat ichida gaplashilgan lidlar <b>${v2Pc(B.tez)}</b> uzatilgan, 24 soatdan keyin — <b>${v2Pc(B.kech)}</b>. `:""}Suhbatsiz lid ham uzatilishi mumkin: yozishma (Instagram, Telegram) yoki Bitrix’da qayd etilmagan qo‘ng‘iroq orqali.</div>`);
 }
 
 /* ================= M03 — LID SKORINGI ================= */
@@ -3841,7 +4010,7 @@ function renderCall(d){
   if(!a){ B.innerHTML=top+transcriptEditor(d); wireCd(d); return }
   B.innerHTML = top
     + `<div class="callgrid" style="margin-top:14px">
-        <div>${summaryBlock(a)}${nextBlock(a)}${scoreBlock(a)}${momentBlock(a)}${objectionBlock(a)}${problemBlock(a)}</div>
+        <div>${pitakaBlock(a)}${summaryBlock(a)}${nextBlock(a)}${scoreBlock(a)}${momentBlock(a)}${objectionBlock(a)}${problemBlock(a)}</div>
         <div>${profileBlock(a)}${statsBlock(a)}${promiseBlock(a,d)}${methodBlock(a)}${guardBlock(a,d)}</div>
       </div>
       <details class="trwrap" open><summary>Suhbat matni <span class="chip n">${(a.lines||[]).length} gap</span>${a.language?.length?`<span class="chip n">${esc(a.language.join("+"))}</span>`:""}</summary>
@@ -3852,7 +4021,7 @@ function renderCall(d){
 function audioBar(d){
   const c=d.call;
   if(!c.hasRecording) return "";
-  if(!d.stt?.telephony) return `<div class="aud top"><span class="aud-l">Qo‘ng‘iroq yozuvi</span><span class="aud-s">yozuv bor, lekin audio olinmadi — telefoniya ulanmagan</span></div>`;
+  if(!(d.stt?.telephony||d.stt?.recordings)) return `<div class="aud top"><span class="aud-l">Qo‘ng‘iroq yozuvi</span><span class="aud-s">yozuv bor, lekin audio olinmadi — yozuvga ruxsat yo‘q (Bitrix «Disk»)</span></div>`;
   return `<div class="aud top"><span class="aud-l">Qo‘ng‘iroq yozuvi · ${durF(c.dur)}</span>
     <audio controls preload="none" src="/api/calls/${esc(c.id)}/audio" style="width:100%"></audio></div>`;
 }
@@ -3878,8 +4047,7 @@ function glanceStrip(d){
 function nextBlock(a){
   const n=a.next_action; if(!n) return `<div class="nextb warn"><div><b>Keyingi qadam belgilanmagan</b><span>Suhbatda kelishuv topilmadi — operator mijoz bilan qachon bog‘lanishini belgilasin.</span></div></div>`;
   return `<div class="nextb"><div><b>Keyingi qadam: ${esc(n.text||n.type)}</b>
-      <span>Mas‘ul: ${esc(n.owner||"operator")} · Muddat: ${esc(n.due||"belgilanmagan")} · ${n.source==="ai"?"AI taklifi":"qoida"}${n.line!==undefined&&n.line!==null?` · ${jump(n.line,"▸ dalil")}`:""}</span></div>
-    <button class="btn sm" id="mkTask" type="button">CRM vazifasi yaratish</button></div>`;
+      <span>Mas‘ul: ${esc(n.owner||"operator")} · Muddat: ${esc(n.due||"belgilanmagan")} · ${n.source==="ai"?"AI taklifi":"qoida"}${n.line!==undefined&&n.line!==null?` · ${jump(n.line,"▸ dalil")}`:""}</span></div></div>`;
 }
 
 /* --- yuqori chiziq: ball, kayfiyat, risk, keyingi qadam, audio --- */
@@ -3888,10 +4056,10 @@ function headStrip(d){
   const s=a?.operator_score?.total??null;
   const m=(l,v,sub,col)=>`<div class="chip-m"><span class="l">${l}</span>
     <span class="v" style="${col?`color:${col}`:""}">${v}</span>${sub?`<span class="s">${sub}</span>`:""}</div>`;
-  const tel=d.stt?.telephony;
+  const tel=(d.stt?.telephony||d.stt?.recordings);
   const audio=c.hasRecording
     ? (tel ? m("Audio","Yozuv bor","Audiodan transkript olish mumkin","var(--success)")
-           : m("Audio","Yozuv bor","audio olinmadi — telefoniya ulanmagan","var(--warning)"))
+           : m("Audio","Yozuv bor","audio olinmadi — yozuvga ruxsat yo‘q (Bitrix «Disk»)","var(--warning)"))
     : m("Audio","Yozuv yo‘q","","var(--ink-3)");
   if(!a) return `<div class="callhead">${audio}
     ${m("Holat",d.status==="error"?"Xato":"Tahlil yo‘q",d.error?esc(d.error).slice(0,60):"transkript kiriting")}</div>`;
@@ -3913,6 +4081,20 @@ function headStrip(d){
 
 const jump=(line,label)=>line===null||line===undefined?"":`<span class="evq" data-jump="${line}">${label||"▸ asl jumlaga o‘tish"}</span>`;
 
+/* Pitaka: AI'ning lid sifati bahosi (CRM'dagi KVAL / NE KVAL bilan solishtirish uchun), suhbatda yo'qotish sababi
+   va ssenariydan o'tkazib yuborilgan bosqichlar (lib/callllm.mjs → lib/callrun.mjs). Har biri iqtibos bilan. */
+function pitakaBlock(a){
+  const k=a.kval, l=a.lostReason, m=Array.isArray(a.missedSteps)?a.missedSteps:[];
+  if(!k&&!l&&!m.length) return "";
+  const KV={kval:["g","Kval"],nekval:["c","Ne kval"],noaniq:["n","Noaniq"]}, [kc,kt]=KV[k?.verdict]||["n","—"];
+  const q=(x)=>x&&x.quote?`<div style="font-size:12.5px;margin-top:4px;color:var(--ink-2)"><i>«${esc(x.quote)}»</i> ${jump(x.line,"▸ dalil")}</div>`:"";
+  return `<div class="card float"><div class="card-h"><div style="flex:1"><h3>Pitaka nazorati</h3><p>Lid sifati, yo‘qotish sababi va ssenariy bosqichlari — suhbat bo‘yicha</p></div></div>
+    <div class="card-b" style="display:grid;gap:12px">
+      ${k?`<div><div class="lab" style="font-size:12px;color:var(--ink-2)">Lid sifati (AI)</div><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-top:4px"><span class="st ${kc}">${esc(kt)}</span><span style="font-size:12.5px;color:var(--ink-2)">${esc(k.reason||"")}</span></div>${q(k)}</div>`:""}
+      ${l?`<div><div class="lab" style="font-size:12px;color:var(--ink-2)">Suhbatda yo‘qotish sababi</div><div style="margin-top:4px;font-weight:600">${esc(l.text||"")}</div>${q(l)}</div>`:""}
+      ${m.length?`<div><div class="lab" style="font-size:12px;color:var(--ink-2)">O‘tkazib yuborilgan bosqichlar</div><div style="display:flex;gap:6px;flex-wrap:wrap;margin-top:6px">${m.map(x=>`<span class="chip c">${esc(x)}</span>`).join("")}</div></div>`:""}
+    </div></div>`;
+}
 function summaryBlock(a){
   if(!a.summary&&!a.topic) return `<div class="card float"><div class="card-b" style="padding:12px 16px;font-size:12.5px;color:var(--ink-3)">Qisqa xulosa yo‘q — AI qatlami ishlamagan, faqat qoida tahlili bor.</div></div>`;
   return `<div class="card float"><div class="card-h"><div style="flex:1"><h3>Nima bo‘ldi</h3>
@@ -4120,10 +4302,10 @@ function transcriptEditor(d){
 
 Vaqt kodi ixtiyoriy. Spiker nomi «Operator:» yoki «Mijoz:» (rus tilida «Оператор:» / «Клиент:»).">${esc(t?.text||"")}</textarea>
       <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
-        ${d.call.hasRecording&&d.stt?.telephony&&d.stt?.available
+        ${d.call.hasRecording&&(d.stt?.telephony||d.stt?.recordings)&&d.stt?.available
           ? '<button class="btn" id="trStt">Audiodan to‘liq tahlil</button>'
           : d.call.hasRecording
-            ? `<button class="btn" disabled title="${!d.stt?.telephony?"Audio olinmadi — telefoniya ulanmagan":"Nutqni matnga aylantirish sozlanmagan"}">Audiodan transkript olish</button>`
+            ? `<button class="btn" disabled title="${!(d.stt?.telephony||d.stt?.recordings)?"Audio olinmadi — yozuvga ruxsat yo‘q (Bitrix «Disk»)":"Nutqni matnga aylantirish sozlanmagan"}">Audiodan transkript olish</button>`
             : ""}
         <button class="btn ghost" id="trSave">Saqlash</button>
         <button class="btn ghost" id="trRun">Tahlilni ishga tushirish</button>
@@ -4187,17 +4369,6 @@ function wireCd(d){
   const s2=$("#trRun"); if(s2) s2.onclick=()=>save(true,{});
   const s3=$("#trRunRules"); if(s3) s3.onclick=()=>save(true,{useAi:false});
   const s4=$("#trForce"); if(s4) s4.onclick=()=>save(true,{force:true});
-  const mk=$("#mkTask");
-  if(mk) mk.onclick=async()=>{
-    const a=d.analysis.next_action;
-    mk.disabled=true;
-    try{
-      const r=await api(`/api/calls/${CALLID}/task`,{method:"POST",body:JSON.stringify({
-        kind:a.type,title:a.text||a.type,due:a.due,owner:a.owner,byAi:a.source==="ai"})});
-      toast(r.note||"Vazifa qoralamasi saqlandi");
-      await openCall(CALLID);
-    }catch(e){ toast(e.message) } finally{ mk.disabled=false }
-  };
 }
 
 /* ---------- §7 rahbar sifat paneli ---------- */
@@ -4453,14 +4624,14 @@ function ovJumps(root){
 /* ================= v2: LIDLAR — UMUMIY (2026-10-03) =================
    4 ko'rsatkich (Boshqaruv markazi bilan bitta ta'rif) → oqim → muammolar → manbalar. Operator — o'z lidlari. */
 const V2L_INFO={
-  yangi:"Tanlangan davrda yaratilgan lidlar (Odoo «Tushgan Lead» bilan bir xil). Operator — o‘zining lidlari, sotuvchi — o‘ziga biriktirilganlar.",
-  sifat:"Yaroqsiz deb belgilanmagan lidlar ulushi. Odoo’da yo‘qotilgan yoki arxivlangan lid — yaroqsiz.",
+  yangi:"Tanlangan davrda yaratilgan lidlar (Bitrix lidlari bilan bir xil). Operator — o‘zining lidlari, sotuvchi — o‘ziga biriktirilganlar.",
+  sifat:"Yaroqsiz deb belgilanmagan lidlar ulushi. Bitrix’da yo‘qotilgan yoki arxivlangan lid — yaroqsiz.",
   uzat:"Davrda menejerga uzatilgan lidlar ÷ davrda kelgan yangi lidlar (Boshqaruv markazi bilan bir xil). 10 tadan kam lidda ko‘rsatilmaydi.",
   jav:"Ochiq, 24 soatdan oshgan va hali javob berilgan chiquvchi qo‘ng‘iroq yo‘q lidlar (oxirgi 30 kun). Hozirgi holat.",
   oqim:"Har kuni (uzun davrda — har hafta) kelgan yangi lidlar, ulardan sifatlilari va shu kuni menejerga uzatilganlar.",
   manba:"Davrda manbadan kelgan lidlar, sifatli ulushi va davrda uzatilganlar. Uzatish % — 5 tadan kam lidda ko‘rsatilmaydi.",
 };
-// Oldingi davr bilan taqqoslash: oldingi davrda ma'lumot juda kam bo'lsa (Odoo'da avgustda 3 ta lid) — strelka emas, izoh
+// Oldingi davr bilan taqqoslash: oldingi davrda ma'lumot juda kam bo'lsa (Bitrix'da avgustda 3 ta lid) — strelka emas, izoh
 V2.taq=(cur,old,nOld,o={})=>old==null?"":(nOld!=null&&nOld<10&&(cur||0)>=30?`<span class="v2-tek">oldingi davrda ma’lumot kam</span>`:V2.farq(cur,old,o));
 async function ovLidlar2(){
   const box=$("#ov-lidlar"); if(!box) return;
@@ -4535,7 +4706,7 @@ addEventListener("resize",()=>{ clearTimeout(V2L_RW); V2L_RW=setTimeout(()=>{ if
    6 ko'rsatkich → dinamika → kritik suhbatlar → operatorlar (faollik + sifat bitta jadvalda) → mezonlar va skript.
    Operator/sotuvchi — o'z qo'ng'iroqlari, kritik ro'yxat va jadval o'rniga «mezonlarim». */
 const V2Q_INFO={
-  jami:"Tanlangan davrdagi qo‘ng‘iroqlar (Odoo VoIP): chiquvchi va kiruvchi, javobsizlari bilan.",
+  jami:"Tanlangan davrdagi qo‘ng‘iroqlar (Bitrix telefoniyasi): chiquvchi va kiruvchi, javobsizlari bilan.",
   gap:"Javob berilgan (gaplashilgan) qo‘ng‘iroqlar ulushi.",
   suhbat:"Gaplashilgan qo‘ng‘iroqlarning o‘rtacha davomiyligi.",
   ball:"AI: tahlil qilingan suhbatlar o‘rtacha bali (100 dan).",
@@ -4583,12 +4754,12 @@ async function ovQongiroq2(){
   else v2qMezon((rd?.criteria||[]).filter(x=>x.op!=null).map(x=>({label:x.label,pct:x.op,team:x.team})),rd);
   if(k?.errors) { const p=$("#v2qK"); if(p&&!$("#v2qErr")) p.insertAdjacentHTML("afterend",`<div class="kn-fark" id="v2qErr">${fmt(k.errors)} ta tahlil xato bilan tugagan — «Ro‘yxat» → «Tahlil: Xato» filtridan qayta yurgizing.</div>`) }
 }
-// Davrda qo'ng'iroq yo'q, lekin Odoo'da oldinroq bor — sababi va o'sha davrga o'tish
+// Davrda qo'ng'iroq yo'q, lekin Bitrix'da oldinroq bor — sababi va o'sha davrga o'tish
 function v2qBosh(k){
   const qb=$("#qgBosh"); if(!qb) return;
   if(!(k&&!k.calls&&k.oxirgi)){ qb.innerHTML=""; return }
   const t=String(k.oxirgi).slice(0,10), f=new Date(new Date(t+"T00:00:00Z").getTime()-29*864e5).toISOString().slice(0,10);
-  qb.innerHTML=`<div class="v2-c" style="margin-bottom:14px">${V2.bosh("Tanlangan davrda qo‘ng‘iroq yo‘q",`Odoo’dagi eng oxirgi qo‘ng‘iroq: ${dShort(t)} ${t.slice(0,4)}.`)}
+  qb.innerHTML=`<div class="v2-c" style="margin-bottom:14px">${V2.bosh("Tanlangan davrda qo‘ng‘iroq yo‘q",`Bitrix’dagi eng oxirgi qo‘ng‘iroq: ${dShort(t)} ${t.slice(0,4)}.`)}
     <div style="text-align:center"><button class="v2-btn" type="button" id="qgOxirgi">Oxirgi 30 kunini ko‘rish (${esc(dShort(f))} — ${esc(dShort(t))})</button></div></div>`;
   $("#qgOxirgi").onclick=()=>setRange({from:f,to:t,preset:"custom"});
 }
@@ -4729,7 +4900,7 @@ let VR=null,VR_F={},VR_SEQ=0,VR_DIM="bosqich",VR_QT=null,VR_QALL=false;
 const VR_FL=[["operator","Operator"],["menejer","Menejer"],["manba","Manba"],["segment","Segment"],["hudud","Hudud"]];
 const VR_DIMS=[["bosqich","Bosqich"],["operator","Operator"],["menejer","Menejer"],["manba","Manba"],["segment","Segment"],["hudud","Hudud"]];
 const vrPct=x=>x==null?"—":String(x).replace(".",",")+"%";
-const VR_INFO="Shu davrda kelgan lidlar har biri qaysi bosqichgacha yetgani. Keyingi bosqichga o‘tgan lid oldingilarida ham sanaladi — o‘tish 100% dan oshmaydi. Qizil — eng katta yo‘qotish (eng ko‘p lid to‘xtagan joy). «Hozir / qotgan» — ochiq lidlar joriy bosqichda qancha turibdi; norma «Sozlamalar»da, kiritilmasa — median × 2. Yo‘qotish sababi — Odoo «Lost Reason».";
+const VR_INFO="Shu davrda kelgan lidlar har biri qaysi bosqichgacha yetgani. Keyingi bosqichga o‘tgan lid oldingilarida ham sanaladi — o‘tish 100% dan oshmaydi. Qizil — eng katta yo‘qotish (eng ko‘p lid to‘xtagan joy). «Hozir / qotgan» — ochiq lidlar joriy bosqichda qancha turibdi; norma «Sozlamalar»da, kiritilmasa — median × 2. Yo‘qotish sababi — Bitrix «Rad etish sababi».";
 const vrKun=x=>x==null?"—":`${String(x).replace(".",",")} kun`;
 async function viewVoronka(){
   const box=$("#vr-box"); if(!box) return;
@@ -4770,14 +4941,15 @@ function vrXulosa(r){
 function vrOqim(r){
   const B=r.bosqichlar, n0=Math.max(1,B[0].yetdi), v=r.vaqt||{}, ai=r.ai||{}, lk=vrLeak(B);
   const kn=x=>x==null?null:x<1?"<1 kun":vrKun(x);
-  const tez={1:v.javobSoat!=null?`${String(v.javobSoat).replace(".",",")} soat`:null,3:kn(v.uzatishKun),7:kn(v.yopishKun)};
-  const tezT={1:"yaratilgandan birinchi javobgacha (median)",3:"bog‘langandan menejergacha (median)",7:"menejerdan to‘lovgacha (median)"};
+  // Pitaka bosqichlari: 0 Yangi lid · 1 Bog'lanildi · 2 Kvalifikatsiya · 3 Bitim ochildi · 4 Ma'lumot · 5 Hisob · 6 To'lov
+  const tez={1:v.javobSoat!=null?`${String(v.javobSoat).replace(".",",")} soat`:null,3:kn(v.uzatishKun),6:kn(v.yopishKun)};
+  const tezT={1:"lid kelgandan birinchi suhbatgacha (median)",3:"lid kelgandan bitim ochilgunicha (median)",6:"bitimdan to‘lovgacha (median)"};
   return `<div class="vf" style="--n:${B.length}">${B.map((b,i)=>{ const lek=lk&&lk.i===i;
       return `<button type="button" class="vf-col" data-vfb="${i}" aria-label="${esc(b.nom)}: ${fmt(b.yetdi)} ta — bosqich kartasi">
         <span class="vf-n">${fmt(b.yetdi)}</span><span class="vf-p">${vrPct(b.ulush)}</span>
         <span class="vf-bar"><i class="${i>=6?"g":""}" style="--h:${Math.max(3,b.yetdi*100/n0).toFixed(1)}%"></i></span>
         <span class="vf-nm">${esc(b.nom)}</span>
-        <span class="vf-tags">${i?`<em class="vf-m${lek?" r":""}">↓ ${vrPct(b.otish)}</em>`:""}${tez[i]?`<em title="${tezT[i]}">⏱ ${tez[i]}</em>`:""}${b.hozir?`<em title="Hozir shu bosqichda · o‘rtacha ${vrKun(b.ortacha)}">${fmt(b.hozir)} hozir</em>`:""}${b.qotgan?`<em class="r" title="Normadan (${b.norma} kun) uzoq turibdi">${fmt(b.qotgan)} qotgan</em>`:""}${b.key==="sifatli"&&ai.jami&&ai.baholangan<ai.jami*0.8?`<em title="AI hali hamma lidni baholamagan — bu bosqich to‘liq emas">AI ${fmt(ai.baholangan)}/${fmt(ai.jami)}</em>`:""}</span>
+        <span class="vf-tags">${i?`<em class="vf-m${lek?" r":""}">↓ ${vrPct(b.otish)}</em>`:""}${tez[i]?`<em title="${tezT[i]}">⏱ ${tez[i]}</em>`:""}${b.hozir?`<em title="Hozir shu bosqichda · o‘rtacha ${vrKun(b.ortacha)}">${fmt(b.hozir)} hozir</em>`:""}${b.qotgan?`<em class="r" title="Normadan (${b.norma} kun) uzoq turibdi">${fmt(b.qotgan)} qotgan</em>`:""}${b.key==="kval"&&ai.jami&&ai.baholangan<ai.jami*0.8?`<em title="AI hali hamma lidni baholamagan — bu bosqich to‘liq emas">AI ${fmt(ai.baholangan)}/${fmt(ai.jami)}</em>`:""}</span>
         ${i?`<span class="vf-cv${lek?" r":""}" title="${esc(B[i-1].nom)} → ${esc(b.nom)}: ${fmt(B[i-1].yetdi)} dan ${fmt(b.yetdi)} tasi o‘tdi">${vrPct(b.otish)}</span>`:""}
       </button>` }).join("")}</div>`;
 }
@@ -4787,7 +4959,7 @@ function vrDraw(){
   const fbar=`<div class="kn-bar"><div class="kn-date">${VR_FL.map(([key,lab])=>`<select class="vr-sel" data-vf="${key}" aria-label="${lab}"><option value="">${lab}: hammasi</option>${(r.tanlov[key]||[]).slice(0,60).map(o=>`<option value="${esc(o.v)}"${VR_F[key]===o.v?" selected":""}>${esc(o.v)} (${fmt(o.n)})</option>`).join("")}</select>`).join("")}
       ${Object.values(VR_F).some(Boolean)?`<button class="ov-btn" type="button" id="vrClear">Filtrni tozalash</button>`:""}</div>
     <div class="kn-act">${IS_LEADER?`<button class="ov-btn" type="button" id="vrSetBtn">Sozlamalar</button>`:""}</div></div>`;
-  const sum=`<div class="vf-sum"><span><b>${fmt(k.tushgan)}</b> yangi lid → <b>${fmt(k.tolov)}</b> to‘lov / montaj</span><span>to‘lovgacha <b>${vrPct(k.umumiy)}</b></span><span>menejerga <b>${vrPct(k.uzatildiUlush)}</b></span><span>yo‘qotilgan <b>${fmt(k.yoqotilgan)}</b> (${vrPct(k.yoqotilganUlush)})</span><span>ochiq <b>${fmt(k.ochiq)}</b></span></div>`;
+  const sum=`<div class="vf-sum"><span><b>${fmt(k.tushgan)}</b> yangi lid → <b>${fmt(k.tolov)}</b> to‘lov</span><span>to‘lovgacha <b>${vrPct(k.umumiy)}</b></span><span>bitimga <b>${vrPct(k.uzatildiUlush)}</b></span><span>yo‘qotilgan <b>${fmt(k.yoqotilgan)}</b> (${vrPct(k.yoqotilganUlush)})</span>${k.nekval!=null?`<span>NE KVAL <b>${fmt(k.nekval)}</b> (${vrPct(k.nekvalUlush)})</span>`:""}${k.boglanilmagan!=null?`<span class="${k.boglanilmagan?"r":""}">bog‘lanilmagan <b>${fmt(k.boglanilmagan)}</b></span>`:""}<span>ochiq <b>${fmt(k.ochiq)}</b></span></div>`;
   const tabs=[["qt",`Qotib qolgan lidlar · ${fmt(r.qotganJami||0)}`],["yq",`Yo‘qotish sabablari · ${fmt((r.yoqotilgan||[]).length)}`],["xn","Xatolar narxi"],["qa","Qayta ishlash"]];
   body.innerHTML=`${fbar}${vrXulosa(r)}
     ${ovC(`Voronka oqimi${V2.info(VR_INFO)}`,`${esc(r.range?.label||"")} · shu davrda kelgan ${fmt(r.soni)} lid · ustunni bosing — bosqich tafsiloti`,vrOqim(r)+sum)}
@@ -4806,7 +4978,7 @@ function vrDraw(){
 }
 /* Xatolar narxi (2026-09-30): qaysi qo'ng'iroq xatosi yo'qotilgan lidlarda ko'proq uchraydi. Har mezon: yo'qotilganlarda va
    uzatilganlarda xato ulushi, farq (p.p.), shu xato bo'lgan yo'qotilgan mijozlar soni (bosilsa ro'yxat). Bu bog'liqlik, sabab emas. */
-const XN_QISQA={greeting:"Salomlashish va tanishtirish",needs:"Ehtiyojni aniqlash",questions:"To‘g‘ri savollar berish",listening:"Faol tinglash",value:"Kompaniya qiymatini tushuntirish",objection:"E‘tiroz bilan ishlash",nextStep:"Keyingi qadamni belgilash",closing:"Kelishuvni tasdiqlash"};
+const XN_QISQA={greeting:"Salomlashish va tanishtirish",needs:"Ehtiyojni aniqlash",questions:"To‘g‘ri savollar berish",listening:"Faol tinglash",value:"Pitaka qiymatini tushuntirish",objection:"E‘tiroz bilan ishlash",nextStep:"Keyingi qadamni belgilash",closing:"Kelishuvni tasdiqlash"};
 function vrXato(r){
   const x=r.xato;
   if(!x||x.xato) return ovC("Xatolar narxi","",`<div style="padding:14px">${empty("Hisoblab bo‘lmadi",x?.xato||"Qo‘ng‘iroq tahlillari topilmadi")}</div>`);
@@ -4841,7 +5013,7 @@ function vrBosqich(i){
   const r=VR, B=r?.bosqichlar||[], b=B[i]; if(!b) return;
   drawer.classList.add("on","wide");scrim.classList.add("on");
   $("#drTitle").textContent=`${i+1}. ${b.nom}`;
-  $("#drSub").textContent=[r.range?.label, b.qoida, b.odoo?.length?`Odoo bosqichlari: ${b.odoo.join(", ")}`:""].filter(Boolean).join(" · ");
+  $("#drSub").textContent=[r.range?.label, b.qoida, b.odoo?.length?`Bitrix bosqichlari: ${b.odoo.join(", ")}`:""].filter(Boolean).join(" · ");
   const nx=B[i+1], tile=(v,t,c)=>`<div class="km-k${c?" "+c:""}"><b>${v}</b><span>${t}</span></div>`;
   const kpi=`<div class="km-kpi vb-k">${tile(fmt(b.yetdi),`yetdi · yangi lidning ${vrPct(b.ulush)}i`)}${tile(nx?vrPct(nx.otish):"—",nx?`keyingisiga o‘tdi`:"oxirgi bosqich",nx&&nx.otish!=null&&nx.otish<30?"r":"")}${tile(fmt(b.hozir),`hozir shu yerda · o‘rt. ${vrKun(b.ortacha)}`)}${tile(fmt(b.qotgan),`qotgan · norma ${b.norma} kun`,b.qotgan?"r":"")}${tile(fmt(b.yoqotildi),"shu yerda yo‘qoldi",b.yoqotildi?"r":"")}</div>`;
   const K=b.kutish||[], lab=["<1 kun","1–3","3–7","7–14","14–30","30+"], lo=[0,1,3,7,14,30], hi=[1,3,7,14,30,1e9], mx=Math.max(1,...K);
@@ -4853,7 +5025,7 @@ function vrBosqich(i){
   const sabH=sab.length?sab.map(s=>`<button type="button" class="vb-s" data-vbs="${esc(s.n)}" title="${esc(s.n)} — lidlar ro‘yxati"><span>${esc(s.n)}</span><div class="t"><i style="width:${s.c*100/sm}%"></i></div><b>${fmt(s.c)}</b></button>`).join("")
     :`<div class="ko-note">Bu bosqichda yo‘qotilgan lid yo‘q.</div>`;
   const Q=(r.qotganlar||[]).filter(x=>x.key===b.key);
-  const qH=Q.length?`<div class="km-list">${Q.slice(0,80).map(x=>`<div class="km-row" data-vbl="${esc(x.id)}" role="button" tabindex="0"><i class="km-dot" style="background:var(--risk)"></i><div style="min-width:0"><div class="km-t"><b>#${esc(x.id)}</b> ${esc(x.nom)}</div><div class="km-s">${esc(x.masul)}${x.odooBosqich?` · ${esc(x.odooBosqich)}`:""}</div></div><span class="vb-d" title="Norma ${x.norma} kun">${vrKun(x.kun)}</span></div>`).join("")}</div>${Q.length>80?`<div class="ko-note">Yana ${fmt(Q.length-80)} ta — «Qotib qolgan lidlar» tabida.</div>`:""}`
+  const qH=Q.length?`<div class="km-list">${Q.slice(0,80).map(x=>`<div class="km-row" data-vbl="${esc(x.id)}" role="button" tabindex="0"><i class="km-dot" style="background:var(--risk)"></i><div style="min-width:0"><div class="km-t"><b>#${esc(x.id)}</b> ${esc(x.nom)}</div><div class="km-s">${esc(x.masul)}${x.bitrixBosqich?` · ${esc(x.bitrixBosqich)}`:""}</div></div><span class="vb-d" title="Norma ${x.norma} kun">${vrKun(x.kun)}</span></div>`).join("")}</div>${Q.length>80?`<div class="ko-note">Yana ${fmt(Q.length-80)} ta — «Qotib qolgan lidlar» tabida.</div>`:""}`
     :`<div class="ko-note">Normadan uzoq turgan lid yo‘q.</div>`;
   $("#drBody").innerHTML=`<div class="km">${kpi}<div class="km-grid"><div class="km-l"><div class="km-card"><h4>Kutish vaqti — hozir shu yerdagilar</h4>${hist}</div>
       <div class="km-card"><h4>Yo‘qotish sabablari — shu bosqichda</h4>${sabH}</div></div>
@@ -4878,9 +5050,9 @@ function vrWire(){
 function vrQotgan(r){
   const all=r.qotganlar||[], rows=VR_QT?all.filter(x=>x.key===VR_QT):all, show=VR_QALL?rows:rows.slice(0,40);
   const chips=`<span class="kn-seg"><button type="button" class="ov-btn${!VR_QT?" p":""}" data-vqt="">Hammasi ${fmt(all.length)}</button>${r.bosqichlar.filter(b=>b.qotgan).map(b=>`<button type="button" class="ov-btn${VR_QT===b.key?" p":""}" data-vqt="${b.key}">${esc(b.nom)} ${fmt(b.qotgan)}</button>`).join("")}</span>`;
-  const t=rows.length?`<div class="tw"><table class="ov-t"><thead><tr><th>Lid</th><th>Bosqich</th><th class="r">Turibdi</th><th class="r">Norma</th><th>Mas’ul</th><th>Odoo holati</th></tr></thead><tbody>${show.map(x=>`<tr data-lead="${esc(x.id)}" style="cursor:pointer">
-      <td><b>${esc(x.nom)}</b><div class="idc">#${esc(x.id)}${x.url?` · <a href="${esc(x.url)}" target="_blank" rel="noopener">Odoo ↗</a>`:""}</div></td><td>${esc(x.bosqich)}</td>
-      <td class="r"><b style="color:var(--risk-text,var(--risk))">${vrKun(x.kun)}</b></td><td class="r">${x.norma} kun</td><td>${esc(x.masul)}</td><td class="idc">${esc(x.odooBosqich||"")}</td></tr>`).join("")}</tbody></table></div>
+  const t=rows.length?`<div class="tw"><table class="ov-t"><thead><tr><th>Lid</th><th>Bosqich</th><th class="r">Turibdi</th><th class="r">Norma</th><th>Mas’ul</th><th>Bitrix holati</th></tr></thead><tbody>${show.map(x=>`<tr data-lead="${esc(x.id)}" style="cursor:pointer">
+      <td><b>${esc(x.nom)}</b><div class="idc">#${esc(x.id)}${x.url?` · <a href="${esc(x.url)}" target="_blank" rel="noopener">Bitrix ↗</a>`:""}</div></td><td>${esc(x.bosqich)}</td>
+      <td class="r"><b style="color:var(--risk-text,var(--risk))">${vrKun(x.kun)}</b></td><td class="r">${x.norma} kun</td><td>${esc(x.masul)}</td><td class="idc">${esc(x.bitrixBosqich||"")}</td></tr>`).join("")}</tbody></table></div>
       ${rows.length>show.length?`<div style="padding:10px 14px"><button class="ov-btn" type="button" id="vrQMore">Hammasini ko‘rsatish (${fmt(rows.length)})</button></div>`:""}`
     :`<div style="padding:14px">${empty("Qotib qolgan lid yo‘q","Joriy bosqichida normadan uzoq turgan ochiq lid topilmadi.")}</div>`;
   return ovC("Qotib qolgan lidlar","Joriy bosqichida normadan uzoq turgan ochiq lidlar · eng uzoq kutayotgani birinchi",`<div class="vf-subbar">${chips}</div>${t}`);
@@ -4894,7 +5066,7 @@ function vrYoqot(r){
   const seg=`<span class="kn-seg">${VR_DIMS.map(([k,l])=>`<button type="button" class="ov-btn${VR_DIM===k?" p":""}" data-vdim="${k}">${l}</button>`).join("")}</span>`;
   const t=Y.length?`<div class="tw"><table class="ov-t kn-t"><thead><tr><th>Sabab</th><th>Jami</th><th>Ulush</th>${top.map(c=>`<th title="${esc(c)}">${esc(String(c).slice(0,18))}</th>`).join("")}${boshqa?"<th>Boshqa</th>":""}</tr></thead><tbody>${sab.map(s=>{
       const rest=boshqa?[...s.v.entries()].filter(([k])=>!top.includes(k)).reduce((a,[,c])=>a+c,0):0;
-      return `<tr data-vsab="${esc(s.n)}" style="cursor:pointer"${s.sz?' class="vr-sz"':""}><td><b>${esc(s.n)}</b>${s.sz?`<span class="kn-sub">Odoo’da sabab tanlanmagan</span>`:""}</td><td><b>${fmt(s.c)}</b></td><td>${vrPct(Math.round(s.c/Y.length*1000)/10)}</td>${top.map(c=>`<td>${s.v.get(c)?fmt(s.v.get(c)):"<span class='idc'>·</span>"}</td>`).join("")}${boshqa?`<td>${rest?fmt(rest):"<span class='idc'>·</span>"}</td>`:""}</tr>`}).join("")}</tbody></table></div>`
+      return `<tr data-vsab="${esc(s.n)}" style="cursor:pointer"${s.sz?' class="vr-sz"':""}><td><b>${esc(s.n)}</b>${s.sz?`<span class="kn-sub">Bitrix’da sabab tanlanmagan</span>`:""}</td><td><b>${fmt(s.c)}</b></td><td>${vrPct(Math.round(s.c/Y.length*1000)/10)}</td>${top.map(c=>`<td>${s.v.get(c)?fmt(s.v.get(c)):"<span class='idc'>·</span>"}</td>`).join("")}${boshqa?`<td>${rest?fmt(rest):"<span class='idc'>·</span>"}</td>`:""}</tr>`}).join("")}</tbody></table></div>`
     :`<div style="padding:14px">${empty("Yo‘qotilgan lid yo‘q","Tanlangan davr va filtrda yo‘qotilgan lid topilmadi.")}</div>`;
   const sz=(r.kpi||{}).sababsiz;
   return ovC("Yo‘qotish sabablari",`${fmt(Y.length)} ta yo‘qotilgan lid · kesim: ${VR_DIMS.find(d=>d[0]===VR_DIM)?.[1]||""} · qatorni bosing — lidlar ro‘yxati${sz?` · <b style="color:var(--risk-text,var(--risk))">${fmt(sz)} tasi sababsiz</b>`:""}`,`<div class="vf-subbar">${seg}</div>${t}`);
@@ -4905,14 +5077,14 @@ function vrSababDr(sabab){
   $("#drTitle").textContent=sabab; $("#drSub").textContent=`${fmt(Y.length)} ta yo‘qotilgan lid · ${VR?.range?.label||""}`;
   $("#drBody").innerHTML=Y.map(y=>`<div class="kn-li" data-lead="${esc(y.id)}" role="button" tabindex="0"><div><b>#${esc(y.id)}</b> ${esc(y.nom)} <span class="idc">${esc(y.sana||"")}</span></div>
     <div class="kn-why">${esc(y.bosqich)} · ${esc(y.operator)}${y.menejer&&y.menejer!=="Managerga o‘tmagan"&&y.menejer!=="Managerga o'tmagan"?` · ${esc(y.menejer)}`:""} · ${esc(y.manba)}</div>
-    ${y.url?`<a class="idc" href="${esc(y.url)}" target="_blank" rel="noopener">Odoo’da ochish ↗</a>`:""}</div>`).join("")||empty("Ro‘yxat bo‘sh","");
+    ${y.url?`<a class="idc" href="${esc(y.url)}" target="_blank" rel="noopener">Bitrix’da ochish ↗</a>`:""}</div>`).join("")||empty("Ro‘yxat bo‘sh","");
   wireLeadClicks();
 }
 async function vrQayta(){
   const box=$("#vr-qa"); if(!box) return;
   const q=await api("/api/voronka/qayta");
   const t=q.rows.length?`<div class="tw"><table class="ov-t"><thead><tr><th>Lid</th><th>Sabab</th><th class="r">Yo‘qotilgan</th><th>Operator / menejer</th><th>Telefon</th><th></th></tr></thead><tbody>${q.rows.slice(0,200).map(x=>`<tr>
-      <td data-lead="${esc(x.id)}" style="cursor:pointer"><b>${esc(x.nom)}</b><div class="idc">#${esc(x.id)} · ${esc(x.manba||"")}${x.url?` · <a href="${esc(x.url)}" target="_blank" rel="noopener">Odoo ↗</a>`:""}</div></td>
+      <td data-lead="${esc(x.id)}" style="cursor:pointer"><b>${esc(x.nom)}</b><div class="idc">#${esc(x.id)} · ${esc(x.manba||"")}${x.url?` · <a href="${esc(x.url)}" target="_blank" rel="noopener">Bitrix ↗</a>`:""}</div></td>
       <td>${esc(x.sabab)}</td><td class="r">${esc(x.sana)}<div class="idc">${fmt(x.kun)} kun oldin</div></td><td>${esc(x.operator||"—")}${x.menejer?`<div class="idc">${esc(x.menejer)}</div>`:""}</td>
       <td>${x.tel?`<a href="tel:${esc(String(x.tel).replace(/[^+\d]/g,""))}">${esc(x.tel)}</a>`:"—"}</td>
       <td></td></tr>`).join("")}</tbody></table></div>`
@@ -4928,14 +5100,14 @@ async function vrSet(){
   const stNames=[...new Set([...l.bosqichlar.map(x=>x.n),...s.bosqichlar.flatMap(b=>b.odoo||[])])];
   const sbNames=[...new Set([...l.sabablar.map(x=>x.n),...s.qayta.sabablar])];
   const cnt=(arr,n)=>arr.find(x=>x.n===n)?.c||0;
-  box.innerHTML=ovC("Voronka sozlamalari","Bosqich nomlari, Odoo bosqichlariga bog‘lanish, normalar va qayta ishlash · o‘zgarish auditga yoziladi",
+  box.innerHTML=ovC("Voronka sozlamalari","Bosqich nomlari, normalar va qayta ishlash · o‘zgarish auditga yoziladi",
     `<div class="vr-set">${s.bosqichlar.map(b=>`<div class="vr-sb"><label>Bosqich nomi<input data-sn="${b.key}" value="${esc(b.nom)}" maxlength="40"></label>
         <label>Norma, kun<input data-snr="${b.key}" inputmode="numeric" placeholder="avto" value="${esc(String(s.norma[b.key]||""))}"></label>
         <div class="idc">${esc(b.qoida||"")}</div>
         ${b.odoo?`<div class="vr-chk">${stNames.map(n=>`<label><input type="checkbox" data-so="${b.key}" value="${esc(n)}"${b.odoo.includes(n)?" checked":""}> ${esc(n)} <span class="idc">${fmt(cnt(l.bosqichlar,n))}</span></label>`).join("")}</div>`:""}</div>`).join("")}
       <div class="vr-sb"><b>Qayta ishlash ro‘yxati</b><label>Necha kundan keyin<input id="sqKun" inputmode="numeric" value="${esc(String(s.qayta.kun))}"></label>
         <div class="vr-chk">${sbNames.map(n=>`<label><input type="checkbox" data-sq value="${esc(n)}"${s.qayta.sabablar.includes(n)?" checked":""}> ${esc(n)} <span class="idc">${fmt(cnt(l.sabablar,n))}</span></label>`).join("")}</div></div></div>
-    <div class="kn-set-f"><button class="ov-btn p" type="button" id="vrSave">Saqlash</button><span class="idc">Bosqichlar tartibi va dastlabki to‘rttasining qoidasi o‘zgarmaydi; KP, uchrashuv, shartnoma, to‘lov — Odoo imkoniyat bosqichlariga bog‘lanadi.</span></div>`);
+    <div class="kn-set-f"><button class="ov-btn p" type="button" id="vrSave">Saqlash</button><span class="idc">Bosqichlar tartibi va qoidasi o‘zgarmaydi: ular Bitrix lid holatlari va «Sotuv Bo‘limi» bitim bosqichlaridan hisoblanadi.</span></div>`);
   $("#vrSave").onclick=async()=>{ try{
       const b={bosqichlar:s.bosqichlar.map(x=>({key:x.key,nom:$(`[data-sn="${x.key}"]`).value,...(x.odoo?{odoo:$$(`[data-so="${x.key}"]:checked`).map(i=>i.value)}:{})})),
         norma:Object.fromEntries(s.bosqichlar.map(x=>[x.key,$(`[data-snr="${x.key}"]`).value.trim()])),
@@ -5114,7 +5286,7 @@ setInterval(()=>{
   if(min>=10)setSync("warn",`Oxirgi muvaffaqiyatli yangilanish ${min} daqiqa oldin`);
 }, 30000);
 
-/* --- Brend rasmlarini tasodifiy nusxalashdan himoya (mualliflik: SUN-HIGHTECH / CEO AI Automind).
+/* --- Brend rasmlarini tasodifiy nusxalashdan himoya (mualliflik: Pitaka / CEO AI Automind).
    Diqqat: bu ekran suratini yoki brauzer vositalarini to'xtatmaydi — hech bir sayt buni
    qila olmaydi. Haqiqiy himoya nginx darajasida va mualliflik yozuvida. --- */
 ["contextmenu","dragstart"].forEach(ev=>
@@ -5181,13 +5353,13 @@ function renderKanban(){
 }
 
 /* ================= BOOT ================= */
-const VIEW={voronka:viewVoronka,operator:viewOperator2,bilim:viewBilim,command:viewCommand2,lidlar:viewLidlar,bitimlar:viewBitimlar,qongiroq:viewQongiroq,jamoa:viewJamoa,tizim:viewTizim};
+const VIEW={voronka:viewVoronka,operator:viewOperator2,command:viewCommand2,lidlar:viewLidlar,bitimlar:viewBitimlar,qongiroq:viewQongiroq,jamoa:viewJamoa,tizim:viewTizim};
 function redraw(){}   // v2: grafiklar mavzu va enga o'zi moslashadi (CSS o'zgaruvchilari, ResizeObserver)
 // lib/roles.mjs bilan bir xil (server /api/users da ham beradi)
 const ROLE_LABEL={ega:"Bo‘lim boshlig‘i",ceo:"CEO",direktor:"Ijrochi direktor",rahbar:"Sotuv rahbari",sotuvchi:"Sotuvchi",b2b:"B2B sotuvchi",
   operator:"Operator (call-markaz)",ekspert:"Ekspert",moliya:"Moliya",admin:"Administrator",auditor:"Auditor",menejer:"Sotuv menejeri"};
 // Operator menyusi: faqat o'z ishi (lid, qo'ng'iroq, javob tezligi) va umumiy bo'limlar
-const OP_VIEWS=["operator","lidlar","qongiroq","bilim"];
+const OP_VIEWS=["operator","lidlar","qongiroq"];
 const BOT=[["command","Markaz"],["lidlar","Lidlar"],["bitimlar","Bitimlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]];
 
 async function boot(user){
@@ -5214,8 +5386,8 @@ async function boot(user){
   const start=leader?"command":isOp?"operator":"lidlar"; START_VIEW=start;
   // Telefon: 4 ta eng kerakli bo'lim + «Yana» (to'liq menyuni ochadi)
   const bot=isOp?[["operator","Mening ishim"],["lidlar","Lidlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]]
-    :leader?[["command","Markaz"],["lidlar","Lidlar"],["qongiroq","Qo‘ng‘iroqlar"],["kunlik","Kunlik"],["more","Yana"]]
-    :seller?[["workbench","Ish stoli"],["lidlar","Lidlar"],["bitimlar","Bitimlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]]
+    :leader?[["command","Markaz"],["voronka","Voronka"],["lidlar","Lidlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]]
+    :seller?[["lidlar","Lidlar"],["bitimlar","Bitimlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]]
     :[["lidlar","Lidlar"],["bitimlar","Bitimlar"],["qongiroq","Qo‘ng‘iroqlar"],["more","Yana"]];
   $("#botnav").innerHTML=bot.map(([v,l])=>{
     const ic=v==="more"?`<svg viewBox="0 0 24 24">${ICO.menu}</svg>`:($(`.navbtn[data-v="${v}"] svg`)?.outerHTML||"");
@@ -5231,7 +5403,7 @@ async function boot(user){
 // Bitrix ruxsatlari holati. Yopiq ruxsat — yashiriladigan narsa emas: rahbar buni
 // bilib tursin, chunki bir katakcha bilan hal bo'ladi va panel darrov boyiydi.
 /* TZI P0-05: CRM surati eskirgan bo'lsa panel buni YASHIRMAYDI.
-   Odoo kaliti yoki tarmoq uzilsa raqamlar qotib qoladi — foydalanuvchi buni bilishi shart. */
+   Bitrix kaliti yoki tarmoq uzilsa raqamlar qotib qoladi — foydalanuvchi buni bilishi shart. */
 const CRM_ESKI_DAQIQA=30;
 async function crmHolatChizigi(){
   let h; try{ h=await api("/api/crm-holat") }catch{ return }
@@ -5246,10 +5418,10 @@ async function crmHolatChizigi(){
   bar.className="capbar crmbar";
   bar.style.background="var(--risk-soft,#FDECEC)";
   bar.style.color="var(--risk-text,var(--risk))";
-  bar.innerHTML=`<b>CRM ma’lumoti eskirgan</b><span class="capshort"> — ekrandagi raqamlar ${esc(vaqt)} holatiga tegishli (${esc(soat)} oldin). Yangi lid va bitimlar bu yerda ko‘rinmaydi.</span>
+  bar.innerHTML=`<b>Bitrix ma’lumoti eskirgan</b><span class="capshort"> — ekrandagi raqamlar ${esc(vaqt)} holatiga tegishli (${esc(soat)} oldin). Yangi lid va bitimlar bu yerda ko‘rinmaydi.</span>
     <button class="capmore" type="button" aria-expanded="false">Batafsil</button>
     <div class="capdet"><div style="margin-top:6px">Sabab: <b>${esc(h.xato||"yangilash bajarilmadi")}</b>.
-      Panel CRM’dan yangi ma’lumot ololmayapti — rahbar yoki administrator tekshirsin.</div></div>`;
+      Panel Bitrix’dan yangi ma’lumot ololmayapti — rahbar yoki administrator tekshirsin.</div></div>`;
   bar.querySelector(".capmore").onclick=e=>{const o=bar.classList.toggle("open");e.currentTarget.setAttribute("aria-expanded",String(o));e.currentTarget.textContent=o?"Yig‘ish":"Batafsil"};
   const joy=document.querySelector(".topbar")||document.querySelector(".main");
   if(!joy){ setTimeout(()=>crmHolatChizigi().catch(()=>{}),2500); return }
@@ -5357,7 +5529,7 @@ function pwStep2(login){
         <p style="font-size:13px;color:var(--ink-2);margin:6px 0 12px">Keyingi kirishda yangi parolni ishlating.
           Boshqa qurilmalardagi ochiq sessiyalar bekor qilindi — bu qurilmada kirgan holda qolasiz.</p>
         <button class="btn" id="pwDone" type="button">Ish stoliga qaytish</button>`;
-      $("#pwDone").onclick=()=>go("workbench");
+      $("#pwDone").onclick=()=>go(START_VIEW);
       toast("Parol o‘zgartirildi");
     }catch(x){ out.innerHTML=noteHTML("Xato: "+esc(x.message)); b.disabled=false;b.textContent="Yangi parolni saqlash" }
   };
@@ -5397,7 +5569,7 @@ async function renderUsers(){
   usrBody.innerHTML='<div class="sk sk-b"></div>';
   let d; try{ d=await api("/api/users") }catch(x){ usrBody.innerHTML=empty("Yuklanmadi",x.message); return }
   const roleOpts=(sel)=>d.roles.map(r=>`<option value="${r}"${r===sel?" selected":""}>${ROLE_LABEL[r]||(d.labels||{})[r]||r}</option>`).join("");
-  // Odoo foydalanuvchilari: operator roli «Оператор (Авто танланади)» bo'yicha, sotuvchi — mas'ul bo'yicha ko'radi
+  // Bitrix foydalanuvchilari: operator roli «Оператор (Авто танланади)» bo'yicha, sotuvchi — mas'ul bo'yicha ko'radi
   let CRMU=[]; try{ CRMU=(await api("/api/users/crm")).users||[] }catch{}
   const crmOpts=(sel)=>`<option value="">CRM: bog‘lanmagan</option>`+CRMU.map(x=>`<option value="${esc(x.id)}"${String(x.id)===String(sel||"")?" selected":""}>${esc(x.name)} · #${esc(x.id)}${x.operatorLeads?` · operator, ${x.operatorLeads} lid (90 kun)`:""}</option>`).join("")
     +(sel&&!CRMU.some(x=>String(x.id)===String(sel))?`<option value="${esc(sel)}" selected>#${esc(sel)}</option>`:"");
@@ -5423,7 +5595,7 @@ async function renderUsers(){
             login: <b>${esc(u.login)}</b>${u.bitrixUserId?` · CRM ID ${esc(u.bitrixUserId)}`:""}
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center;margin-bottom:6px">
-            <select class="uBid" style="flex:1;min-width:180px" title="Odoo foydalanuvchisi — operator va sotuvchi faqat o‘ziga tegishli ma’lumotni shu orqali ko‘radi">${crmOpts(u.bitrixUserId)}</select>
+            <select class="uBid" style="flex:1;min-width:180px" title="Bitrix foydalanuvchisi — operator va sotuvchi faqat o‘ziga tegishli ma’lumotni shu orqali ko‘radi">${crmOpts(u.bitrixUserId)}</select>
           </div>
           <div style="display:flex;gap:6px;flex-wrap:wrap;align-items:center">
             <select class="uRole" style="flex:1;min-width:130px">${roleOpts(u.role)}</select>

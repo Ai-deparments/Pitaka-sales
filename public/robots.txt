@@ -1,7 +1,5 @@
-# SUN-HIGHTECH Sales OS
-# Mualliflik huquqi: SUN-HIGHTECH / CEO AI Automind.
-# Brend rasmlari va vizual materiallardan ruxsatsiz foydalanish taqiqlanadi.
-# Foydalanish uchun aloqa: https://t.me/tbehruz7
+# Pitaka Sales OS — ichki sotuv paneli.
+# Mualliflik huquqi: CEO AI (AI Foundation). Ruxsatsiz foydalanish taqiqlanadi.
 
 User-agent: *
 Disallow: /
