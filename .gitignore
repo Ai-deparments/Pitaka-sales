@@ -8,6 +8,4 @@ data/
 *.db-shm
 *.log
 *.bak*
-
-# Pitaka client sales material (ProAudit scripts) - never in a public repo
-tools/sotuv-skript.md
+!data/pitaka-scenarios.json
