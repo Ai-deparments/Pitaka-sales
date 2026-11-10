@@ -26,7 +26,6 @@ const { Bitrix } = await import(`${APP}/lib/bitrix.mjs`);
 const api = await import(`${APP}/lib/api.mjs`);
 const sla = await import(`${APP}/lib/sla.mjs`);
 const rng = await import(`${APP}/lib/range.mjs`);
-const odash = await import(`${APP}/lib/odoodash.mjs`);
 
 const arg = process.argv.slice(2);
 const YMD = /^\d{4}-\d{2}-\d{2}$/;
@@ -47,24 +46,12 @@ const J = { davr: { from: R.fromISO.slice(0, 10), to: R.toISO.slice(0, 10), kun:
 try {
   const [s, q] = await Promise.all([api.summary(bx, null, R), sla.slaCheck(bx, null, R)]);
   const p = s.period;
-  say(`SOTUV KPI · ${R.label} (${R.days} kun, Asia/Tashkent) · manba: SUN-HIGHTECH Odoo CRM, panel bilan bir xil hisob`);
+  say(`SOTUV KPI · ${R.label} (${R.days} kun, Asia/Tashkent) · manba: Bitrix24 CRM, panel bilan bir xil hisob`);
   say("");
   // Lid ta'rifi = Odoo dashboard «SUN-HTC Call Operators» → «Tushgan Lead» (2026-09-23, sotuv rahbari manbasi)
   say(`LIDLAR («Tushgan Lead», yaratilgan sana bo'yicha): jami ${n(p.total)} · sifatli ${n(p.quality)} · yaroqsiz/otkaz ${n(p.junk)} (${kasr(p.junk, p.total)})`);
   say(`  shu davrda kelib managerga o'tgan ${n(p.converted)} — jami liddan ${kasr(p.converted, p.total)}; sifatli liddan ${kasr(p.converted, p.quality)}`);
   J.lid = { jami: p.total || 0, sifatli: p.quality || 0, yaroqsiz: p.junk || 0, managerga: p.converted || 0 };
-  // Odoo dashboard plitkalari — Odoo'ning O'Z formulasi bilan (panelning «Lidlar → Odoo dashboard» tabi bilan bir xil)
-  try {
-    const od = await odash.odooDashboard(R);
-    if (od.ulangan) {
-      const P = Object.fromEntries(od.plitkalar.map((t) => [t.id, t]));
-      const opq = (t) => t.ops.filter((o) => o.id).map((o) => `${o.name} ${n(t.hisob === "sum" ? Math.round(o.sum) : o.count)}`).join(", ");
-      say(`ODOO DASHBOARD «SUN-HTC Call Operators» (Odoo formulasi, jonli):`);
-      for (const id of ["1006", "1007", "863", "1010", "1011", "791"]) if (P[id]) say(`  ${P[id].nom.replace(/\s+/g, " ")}: ${n(P[id].qiymat)} (${P[id].izoh?.sana || P[id].sana})${P[id].ops.length ? ` — ${opq(P[id])}` : ""}`);
-      if (P["1025"]) say(`  KV (managerga o'tganlarda «Керакли қувват»): ${n(Math.round(P["1025"].qiymat))} kVt, ${n(P["1025"].count)} lid — ${opq(P["1025"])}. DIQQAT: bitta lidda xato qiymat bo'lsa yig'indi buziladi, lid bo'yicha tekshiring.`);
-      if (od.tashqarida?.tashqarida) say(`  Dashboard SANAMAYDIGAN lidlar: ${n(od.tashqarida.tashqarida)} ta (operator tanlanmagan ${n(od.tashqarida.operatorsiz)})`);
-    }
-  } catch (e) { say(`ODOO DASHBOARD: olinmadi (${String(e.message).slice(0, 80)}) — raqam aytmang`); }
   // Lid taqdiri: davrda kelib managerga o'tganlar qayerda (klient turi, natija)
   try {
     const j = await api.journey(bx, { range: R });
