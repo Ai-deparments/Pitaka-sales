@@ -1,5 +1,11 @@
 /* Pitaka Sales OS — Russian interface dictionary: Uzbek UI string → Russian. Used by i18n.js. */
 window.PK_RU = {
+"Salomlashdi, Pitaka nomidan tanishtirdi": "Поздоровался, представился от Pitaka",
+"Telefon modeli aniqlandi": "Модель телефона выяснена",
+"Ehtiyoj ochildi (yupqa yoki himoya, rang)": "Потребность раскрыта (тонкий или защитный, цвет)",
+"Pitaka qiymati tushuntirildi (Aramid, yengil, kafolat)": "Ценность Pitaka объяснена (арамид, лёгкий, гарантия)",
+"Narx kafolat bilan birga aytildi": "Цена названа вместе с гарантией",
+"Keyingi qadam kelishildi (buyurtma, Telegram'ga rasm, ofis)": "Следующий шаг согласован (заказ, фото в Telegram, офис)",
 "Xato qilingan qo‘ng‘iroqlar / tahlil qilingan qo‘ng‘iroqlar": "Звонки с ошибкой / разобранные звонки",
 "Nazorat": "Контроль",
 "Nazorat: CRM va suhbat, menejerlar xatolari": "Контроль: CRM и разговор, ошибки менеджеров",
@@ -560,7 +566,7 @@ window.PK_RU = {
 "Jami 40 ta lid · eng uzoq kutayotgani birinchi": "Всего 40 лидов · сначала самые долгие в ожидании",
 "Jamoa": "Команда",
 "Jamoa natijasi": "Результат команды",
-"Javob berilgan (gaplashilgan) qo‘ng‘iroqlar ulushi.": "Доля отвеченных (состоявшихся) звонков.",
+"Javob berilgan (gaplashilgan) qo‘ng‘iroqlar ulushi. Taxminiy: Bitrix faqat o‘tkazib yuborilgan kiruvchini belgilaydi, shuning uchun 20 soniyadan qisqa chiquvchi qo‘ng‘iroq javobsiz deb hisoblanadi.": "Доля отвеченных (состоявшихся) звонков. Оценка: Bitrix помечает только пропущенные входящие, поэтому исходящий звонок короче 20 секунд считается недозвоном.",
 "Javob kutayotgan lid yo‘q": "Нет лидов, ожидающих ответа",
 "Javob kutayotgan lidlar": "Лиды, ожидающие ответа",
 "Javob tezligi": "Скорость ответа",

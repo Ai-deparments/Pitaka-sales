@@ -1111,7 +1111,7 @@ button.who:focus-visible{outline:2px solid var(--action);outline-offset:3px}
 .glance .lab{font-size:10px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-3);font-weight:800}
 .glance .val{font-size:14px;font-weight:800;margin-top:4px;letter-spacing:-.01em;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .glance .sub{font-size:11px;color:var(--ink-2);margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.glance .ring{display:flex;align-items:center;gap:10px}
+.glance .ring{display:flex;align-items:center;gap:10px;width:auto;height:auto;position:static}
 .glance .ring .n{font-size:24px;font-weight:800;letter-spacing:-.03em;line-height:1}
 .glance .ring .n small{font-size:12px;color:var(--ink-3);font-weight:700}
 @media(max-width:1000px){.glance{grid-template-columns:1fr 1fr}.glance>div:nth-child(2n){border-right:0}.glance>div{border-bottom:1px solid var(--rule)}}
@@ -4741,7 +4741,7 @@ addEventListener("resize",()=>{ clearTimeout(V2L_RW); V2L_RW=setTimeout(()=>{ if
    Operator/sotuvchi — o'z qo'ng'iroqlari, kritik ro'yxat va jadval o'rniga «mezonlarim». */
 const V2Q_INFO={
   jami:"Tanlangan davrdagi qo‘ng‘iroqlar (Bitrix telefoniyasi): chiquvchi va kiruvchi, javobsizlari bilan.",
-  gap:"Javob berilgan (gaplashilgan) qo‘ng‘iroqlar ulushi.",
+  gap:"Javob berilgan (gaplashilgan) qo‘ng‘iroqlar ulushi. Taxminiy: Bitrix faqat o‘tkazib yuborilgan kiruvchini belgilaydi, shuning uchun 20 soniyadan qisqa chiquvchi qo‘ng‘iroq javobsiz deb hisoblanadi.",
   suhbat:"Gaplashilgan qo‘ng‘iroqlarning o‘rtacha davomiyligi.",
   ball:"AI: tahlil qilingan suhbatlar o‘rtacha bali (100 dan).",
   qadam:"Tahlil qilingan suhbatlardan oxirida aniq keyingi qadam (sana, ish) belgilanmaganlari.",
