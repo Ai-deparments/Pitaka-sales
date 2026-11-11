@@ -53,9 +53,10 @@ const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 
 // ---- oldindan tekshiruv: nima yetishmayotganini aniq aytamiz ----
 const caps = await dir.capabilities(bx);
-if (!caps.telephony) {
-  log("TO'XTADI: Bitrix webhook'da «Телефония» ruxsati yo'q — audio olinmaydi.");
-  log("Yoqilgach bu ishchi o'zi ishlay boshlaydi, kodga tegish shart emas.");
+// Audio: telephony scope or, without it, the recording file on Bitrix Disk (caps.recordings covers both)
+if (!caps.recordings) {
+  log("TO'XTADI: Bitrix webhook'da «Телефония» ham, «Диск» ham yo'q — audio olinmaydi.");
+  log("Biri yoqilgach bu ishchi o'zi ishlay boshlaydi, kodga tegish shart emas.");
   process.exit(0);
 }
 if (!stt.available()) { log("TO'XTADI: GROQ_API_KEY topilmadi — nutqdan matnga ishlamaydi."); process.exit(1); }

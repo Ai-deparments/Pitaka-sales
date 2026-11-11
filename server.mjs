@@ -34,6 +34,7 @@ import * as nazorat from "./lib/nazorat.mjs"; // Pitaka: CRM vs suhbat (KVAL) va
 import * as murabbiy from "./lib/murabbiy.mjs"; // Telegram «shaxsiy murabbiy» (2026-09-30)
 import * as olchov from "./lib/olchov.mjs";     // v2: yagona ko'rsatkichlar (2026-10-03)
 import { cached, stats as cacheStats, invalidate } from "./lib/cache.mjs";
+import * as autoagent from "./lib/autoagent.mjs"; // scheduled call-worker: calls are analysed automatically
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const PORT = Number(process.env.PORT || 8090);
@@ -226,7 +227,7 @@ const server = http.createServer(async (req, res) => {
     if (p === "/healthz") {
       const u0 = auth.userFromToken(db, cookies(req).sd_session);
       return json(res, 200, u0 && RL.FULL_VIEW.includes(u0.role)
-        ? { ok: true, cache: cacheStats(), uptime: Math.round(process.uptime()) }
+        ? { ok: true, cache: cacheStats(), uptime: Math.round(process.uptime()), agent: autoagent.status() }
         : { ok: true });
     }
 
@@ -1578,5 +1579,7 @@ server.listen(PORT, HOST, () => {
   const mbToldir = (n) => murabbiy.toldir(db, () => calls.registry(bx, db, { range: 30, limit: 100000, analyzedOnly: true }), { log: mbLog })
     .catch((e) => { mbLog(`to'ldirish XATO: ${e.message}`); if (n < 5) setTimeout(() => mbToldir(n + 1), 30 * 60e3).unref?.(); });
   setTimeout(() => mbToldir(1), 90e3).unref?.();
+  // Fresh analyses must show up on the dashboard right away, so cached views are dropped after a productive cycle
+  autoagent.start({ log: console.log, onAnalysed: () => invalidate("") });
 });
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { server.close(() => process.exit(0)); });
