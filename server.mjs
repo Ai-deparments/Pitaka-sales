@@ -33,7 +33,7 @@ import * as voronka from "./lib/voronka.mjs"; // sotuv voronkasi (TZ «Sales OS�
 import * as nazorat from "./lib/nazorat.mjs"; // Pitaka: CRM vs suhbat (KVAL) va menejerlar qoidabuzarliklari
 import * as murabbiy from "./lib/murabbiy.mjs"; // Telegram «shaxsiy murabbiy» (2026-09-30)
 import * as olchov from "./lib/olchov.mjs";     // v2: yagona ko'rsatkichlar (2026-10-03)
-import { cached, stats as cacheStats, invalidate } from "./lib/cache.mjs";
+import { cached, swr, expire, stats as cacheStats, invalidate } from "./lib/cache.mjs";
 import * as autoagent from "./lib/autoagent.mjs"; // scheduled call-worker: calls are analysed automatically
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
@@ -99,6 +99,32 @@ cstore.initCallSchema(db);
 murabbiy.init(db);
 
 const bx = new Bitrix(process.env.BITRIX_WEBHOOK_URL);
+
+// ---- dashboard view cache (stale-while-revalidate) ----
+// Cold Bitrix reads take 10-45 s per page; views are kept warm in the background and refreshed every
+// VIEW_TTL_MS, so a leader opening the panel gets the last snapshot at once.
+const VIEW_TTL_MS = Number(process.env.VIEW_TTL_SEC || 300) * 1000;
+const viewKey = (name, scope, R) => `view:${name}:${scope || "all"}:${R ? `${R.from}:${R.to}:${R.bucket || ""}` : "-"}`;
+const MARKAZ_BLOKS = {
+  kpi: (R) => olchov.markazKpi(bx, db, R),
+  voronka: () => olchov.voronkaQisqa(bx, db),
+  muammo: (R) => olchov.markazMuammo(bx, db, R),
+  operator: () => olchov.operatorlarBugun(bx, db),
+};
+// Default leader views (30 days, whole team) — what the panel opens on
+function warmViews() {
+  const R = rng.parseRange(new URLSearchParams(), 30);
+  const jobs = [
+    ...Object.entries(MARKAZ_BLOKS).map(([b, fn]) => [`markaz:${b}`, () => fn(R)]),
+    ["jamoa", () => olchov.jamoa(bx, db, R)],
+    ["lidlar:kpi", () => olchov.lidlarKpi(bx, R, null)],
+    ["lidlar:umumiy", () => olchov.lidlarUmumiy(bx, R, null)],
+    ["lidlar:muammo", () => olchov.lidlarMuammo(bx, db, R, null)],
+    ["nazorat:menejerlar:all", () => nazorat.violations(bx, db, { range: R, owner: null })],
+    ["nazorat:kval:all", () => nazorat.kvalCheck(bx, db, { range: R, owner: null })],
+  ];
+  return Promise.allSettled(jobs.map(([name, fn]) => swr(viewKey(name, null, R), VIEW_TTL_MS, fn)));
+}
 
 // ---- yordamchilar ----
 // AC-29: har xato {code,message,details,trace_id} ko'rinishida.
@@ -722,6 +748,8 @@ const server = http.createServer(async (req, res) => {
     // Sana oralig'i: ?from=YYYY-MM-DD&to=YYYY-MM-DD. Berilmasa — eski ?days=N xatti-harakati.
     // Har endpoint o'z standart oynasi bilan o'qiydi, shuning uchun alohida chaqiriladi.
     const range = (defDays) => rng.parseRange(q, defDays);
+    // Heavy dashboard blocks: served from the stale-while-revalidate cache, keyed by scope and resolved range
+    const fast = (name, R, fn) => swr(viewKey(name, mine, R), VIEW_TTL_MS, fn);
 
     // CRM'da qaysi ruxsat ochiq — panel buni halol ko'rsatadi.
     if (p === "/api/bitrix/caps") return json(res, 200, await dir.capabilities(bx));
@@ -739,12 +767,9 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/v2/markaz" && req.method === "GET") {
       if (ownerOnly()) return;
       const blok = String(q.get("blok") || "kpi"), R = range(30);
-      if (blok === "kpi") return json(res, 200, await olchov.markazKpi(bx, db, R), cid);
-      if (blok === "voronka") return json(res, 200, await olchov.voronkaQisqa(bx, db), cid);
-      if (blok === "muammo") return json(res, 200, await olchov.markazMuammo(bx, db, R), cid);
-      if (blok === "sotuv") return json(res, 200, await olchov.sotuv(bx, db), cid);
-      if (blok === "operator") return json(res, 200, await olchov.operatorlarBugun(bx, db), cid);
-      return fail(res, 400, "Noma'lum blok", cid);
+      const fn = MARKAZ_BLOKS[blok];
+      if (!fn) return fail(res, 400, "Noma'lum blok", cid);
+      return json(res, 200, await fast(`markaz:${blok}`, R, () => fn(R)), cid);
     }
     // Mening ishim (operator/sotuvchi) — faqat o'z doirasi: lidlar mine bo'yicha, qo'ng'iroqlar mineCall bo'yicha
     if (p === "/api/v2/men" && req.method === "GET") {
@@ -761,9 +786,9 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/v2/lidlar" && req.method === "GET") {
       if (mine === "__none__") return fail(res, 409, "Hisobingiz CRM'ga bog'lanmagan", cid);
       const blok = String(q.get("blok") || "kpi"), R = range(30);
-      if (blok === "kpi") return json(res, 200, await olchov.lidlarKpi(bx, R, mine), cid);
-      if (blok === "umumiy") return json(res, 200, await olchov.lidlarUmumiy(bx, R, mine), cid);
-      if (blok === "muammo") return json(res, 200, await olchov.lidlarMuammo(bx, db, R, mine), cid);
+      if (blok === "kpi") return json(res, 200, await fast("lidlar:kpi", R, () => olchov.lidlarKpi(bx, R, mine)), cid);
+      if (blok === "umumiy") return json(res, 200, await fast("lidlar:umumiy", R, () => olchov.lidlarUmumiy(bx, R, mine)), cid);
+      if (blok === "muammo") return json(res, 200, await fast("lidlar:muammo", R, () => olchov.lidlarMuammo(bx, db, R, mine)), cid);
       if (blok === "tasir") return json(res, 200, await olchov.javobTasiri(bx), cid);   // jamoa bo'yicha, shaxsiy ma'lumotsiz
       return fail(res, 400, "Noma'lum blok", cid);
     }
@@ -776,12 +801,13 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/v2/bitimlar" && req.method === "GET") {
       if (RL.isOp(mine)) return fail(res, 403, "Bitimlar sizning rolingiz uchun ochiq emas", cid);
       if (mine === "__none__") return fail(res, 409, "Hisobingiz CRM'ga bog'lanmagan", cid);
-      return json(res, 200, await olchov.bitimlar(bx, mine), cid);
+      return json(res, 200, await fast("bitimlar", null, () => olchov.bitimlar(bx, mine)), cid);
     }
     // Jamoa — xodim kartalari (davr bo'yicha), faqat rahbarlar
     if (p === "/api/v2/jamoa" && req.method === "GET") {
       if (ownerOnly()) return;
-      return json(res, 200, await olchov.jamoa(bx, db, range(30)), cid);
+      const R = range(30);
+      return json(res, 200, await fast("jamoa", R, () => olchov.jamoa(bx, db, R)), cid);
     }
     if (p === "/api/menyu" && req.method === "GET") {
       const out = await cached(`menyu:${user.id}:${mine || "all"}`, 5 * 60e3, async () => {
@@ -913,10 +939,11 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/nazorat/kval" || p === "/api/nazorat/menejerlar") {
       if (req.method !== "GET") return fail(res, 405, "Faqat GET", cid);
       const men = mineCall ? null : (String(q.get("menejer") || "").replace(/[^\w-]/g, "").slice(0, 20) || null);
-      const ow = mineCall || men;
-      return json(res, 200, p === "/api/nazorat/kval"
-        ? await nazorat.kvalCheck(bx, db, { range: range(30), owner: ow })
-        : await nazorat.violations(bx, db, { range: range(30), owner: ow }), cid);
+      const ow = mineCall || men, R = range(30);
+      const kind = p === "/api/nazorat/kval" ? "kval" : "menejerlar";
+      return json(res, 200, await swr(viewKey(`nazorat:${kind}:${ow || "all"}`, mine, R), VIEW_TTL_MS, () => kind === "kval"
+        ? nazorat.kvalCheck(bx, db, { range: R, owner: ow })
+        : nazorat.violations(bx, db, { range: R, owner: ow })), cid);
     }
     // ---- Telegram «shaxsiy murabbiy» (2026-09-30, lib/murabbiy.mjs) ----
     // Holat: har kim o'zinikini; rahbar — jamoa va bot holati. Namuna: operator — faqat o'z kartasi.
@@ -1580,6 +1607,9 @@ server.listen(PORT, HOST, () => {
     .catch((e) => { mbLog(`to'ldirish XATO: ${e.message}`); if (n < 5) setTimeout(() => mbToldir(n + 1), 30 * 60e3).unref?.(); });
   setTimeout(() => mbToldir(1), 90e3).unref?.();
   // Fresh analyses must show up on the dashboard right away, so cached views are dropped after a productive cycle
-  autoagent.start({ log: console.log, onAnalysed: () => invalidate("") });
+  autoagent.start({ log: console.log, onAnalysed: () => { expire(""); warmViews(); } });
+  // Views are refreshed in the background so nobody waits for a cold Bitrix read
+  warmViews();
+  setInterval(() => { expire("view:"); warmViews(); }, VIEW_TTL_MS).unref?.();
 });
 for (const sig of ["SIGINT", "SIGTERM"]) process.on(sig, () => { server.close(() => process.exit(0)); });
