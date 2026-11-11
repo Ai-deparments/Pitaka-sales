@@ -173,40 +173,9 @@ body.staging .drawer{top:var(--envh)}
 .gate-wrap{position:relative;display:grid;grid-template-columns:minmax(0,1.3fr) minmax(320px,400px);
   gap:48px;max-width:1120px;width:100%;align-items:center}
 
-/* --- chap: Pitaka chexoli — aramid tola to'qimasi, kamera bloki, logotip; tola ustidan yorug'lik o'tadi --- */
-.gate-art{position:relative;display:grid;justify-items:center;gap:18px;min-width:0}
-.gate-stage{position:relative;width:100%;max-width:520px;aspect-ratio:1.12;display:grid;place-items:center}
-.gate-stage::before{content:"";position:absolute;inset:6% 14%;border-radius:50%;pointer-events:none;
-  background:radial-gradient(closest-side,rgba(77,124,255,.32),rgba(77,124,255,.08) 60%,transparent)}
-.pk-case{position:relative;height:88%;aspect-ratio:.49;border-radius:15% / 7.4%;overflow:hidden;rotate:-9deg;
-  background:
-    conic-gradient(from 45deg,#1c2b4f 25%,#0c1630 0 50%,#18264a 0 75%,#0e1934 0) 0 0/12px 12px,
-    linear-gradient(160deg,#16244a,#070e20);
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.14),inset 0 2px 0 rgba(255,255,255,.12),inset 0 -18px 40px rgba(0,0,0,.45),
-    0 40px 80px -20px rgba(0,0,0,.75),0 0 70px rgba(77,124,255,.22)}
-/* tola relyefi: diagonal ip chiziqlari */
-.pk-case::before{content:"";position:absolute;inset:0;pointer-events:none;opacity:.55;
-  background:repeating-linear-gradient(45deg,rgba(255,255,255,.05) 0 1px,transparent 1px 6px),
-             repeating-linear-gradient(-45deg,rgba(0,0,0,.28) 0 1px,transparent 1px 6px)}
-/* yon qirra yaltirashi */
-.pk-case::after{content:"";position:absolute;inset:0;pointer-events:none;border-radius:inherit;
-  background:linear-gradient(100deg,rgba(255,255,255,.10),transparent 18% 82%,rgba(255,255,255,.06))}
-.pk-sheen{position:absolute;inset:-30% -60%;pointer-events:none;z-index:2;mix-blend-mode:screen;
-  background:linear-gradient(115deg,transparent 38%,rgba(150,180,255,.20) 46%,rgba(255,255,255,.42) 50%,rgba(150,180,255,.20) 54%,transparent 62%);
-  translate:-60% 0}
-.pk-cam{position:absolute;top:4.2%;left:8%;width:46%;aspect-ratio:1;border-radius:24%;z-index:1;
-  background:linear-gradient(150deg,rgba(255,255,255,.10),rgba(255,255,255,.02));
-  box-shadow:inset 0 0 0 1px rgba(255,255,255,.16),0 6px 18px rgba(0,0,0,.5);-webkit-backdrop-filter:blur(2px);backdrop-filter:blur(2px)}
-.pk-cam i{position:absolute;width:38%;aspect-ratio:1;border-radius:50%;
-  background:radial-gradient(circle at 38% 34%,#5d7cff 0 7%,#0d1530 16%,#03060f 48%,#1a2440 62%,#0a0f1e 70%);
-  box-shadow:0 0 0 2px rgba(255,255,255,.08),inset 0 0 6px rgba(0,0,0,.8)}
-.pk-cam i:nth-child(1){left:7%;top:7%}.pk-cam i:nth-child(2){left:7%;bottom:7%}.pk-cam i:nth-child(3){right:7%;top:31%}
-.pk-logo{position:absolute;left:50%;bottom:11%;width:62%;translate:-50% 0;z-index:1;opacity:.92;
-  filter:drop-shadow(0 1px 0 rgba(0,0,0,.6)) drop-shadow(0 0 10px rgba(143,166,255,.35))}
-.gate-tag{display:flex;align-items:center;gap:12px;font-size:12px;font-weight:700;letter-spacing:.42em;padding-left:.42em;
-  text-transform:uppercase;color:#9DB0FF}
-.gate-tag img{height:15px;width:auto;opacity:.95}
-.gate-tag i{width:4px;height:4px;border-radius:50%;background:#5D7CFF;box-shadow:0 0 8px #5D7CFF}
+/* --- chap: faqat oq Pitaka logotipi, qora fonda --- */
+.gate-art{display:grid;place-items:center;min-width:0}
+.gate-mark{width:min(440px,80%);height:auto;display:block;user-select:none}
 
 /* --- o'ng: qora shisha karta --- */
 .gate-box{position:relative;overflow:hidden;background:rgba(16,23,34,.76);
@@ -260,14 +229,8 @@ body.staging .drawer{top:var(--envh)}
 
 /* --- harakat: faqat harakatni kamaytirish so'ralmaganda --- */
 @media (prefers-reduced-motion:no-preference){
-  .pk-case{animation:caseFloat 7s ease-in-out infinite}
-  .pk-sheen{animation:caseSheen 5.5s cubic-bezier(.45,.05,.3,1) 1.2s infinite}
-  .gate-stage::before{animation:caseGlow 7s ease-in-out infinite}
   .gate-box{animation:gateIn .55s cubic-bezier(.22,1,.36,1) both}
 }
-@keyframes caseFloat{0%,100%{translate:0 0;rotate:-9deg}50%{translate:0 -12px;rotate:-6.5deg}}
-@keyframes caseSheen{0%{translate:-60% 0}55%,100%{translate:60% 0}}
-@keyframes caseGlow{0%,100%{opacity:.75;scale:1}50%{opacity:1;scale:1.06}}
 @keyframes gateIn{from{opacity:0;transform:translate3d(0,14px,0) scale(.985)}to{opacity:1;transform:none}}
 
 /* --- telefon va tor ekran: robot dumaloq medalyonda, karta ixcham, skrollsiz --- */
@@ -275,9 +238,7 @@ body.staging .drawer{top:var(--envh)}
   .gate{padding:18px 16px 22px}
   .gate-wrap{grid-template-columns:1fr;gap:14px;max-width:400px;justify-items:center}
   .gate-art{order:-1;width:100%;gap:10px}
-  .gate-stage{width:150px;aspect-ratio:1}
-  .pk-case{height:96%;background-size:8px 8px,auto}
-  .gate-tag{font-size:10px;letter-spacing:.32em;padding-left:.32em}
+  .gate-mark{width:min(220px,60%);margin:14px 0 6px}
   .gate-box{padding:20px 18px 16px;gap:12px;width:100%}
   .gate-box h2{font-size:18px}
   .gate-sub{font-size:12.5px}
@@ -288,8 +249,7 @@ body.staging .drawer{top:var(--envh)}
 @media(max-width:959px) and (max-height:700px){
   .gate{padding:12px 16px 14px}
   .gate-wrap{gap:10px}
-  .gate-stage{width:110px}
-  .gate-tag{display:none}
+  .gate-mark{width:min(160px,48%);margin:6px 0 2px}
   .gate-sub{display:none}
   .gate-box{gap:10px;padding:18px 18px 14px}
 }
@@ -2256,9 +2216,8 @@ button.who{border-radius:18px}
 
 /* Sign-in and splash: ultramarine instead of the old gold */
 .gate,.splash{--primary:#AFC0FF; --action:#7D97FF; --action-ink:#081028; --action-soft:rgba(125,151,255,.16)}
-.gate{background:#060D26}
-.gate::before{background:radial-gradient(900px 640px at 36% 46%,rgba(40,70,210,.32),transparent 64%),
-  radial-gradient(520px 420px at 84% 14%,rgba(255,106,61,.12),transparent 70%),linear-gradient(180deg,#0A1855 0%,#060D26 60%,#040919 100%)}
+.gate{background:#000}
+.gate::before,.gate::after{display:none}
 .gate-box .btn{color:#fff;background:linear-gradient(#2341bd,#082093);box-shadow:inset 0 1px 0 rgba(255,255,255,.3),0 10px 24px rgba(8,32,147,.45)}
 
 .glance{grid-template-columns:190px repeat(4,minmax(0,1fr));border-radius:20px;background:var(--g-block);border-color:var(--g-edge)}
@@ -2303,11 +2262,7 @@ button.who{border-radius:18px}
   <div class="langseg" role="group" aria-label="Til"><button type="button" data-l="uz">UZ</button><button type="button" data-l="ru">RU</button></div>
   <div class="gate-wrap">
     <div class="gate-art" aria-hidden="true">
-      <div class="gate-stage">
-        <div class="pk-case"><div class="pk-cam"><i></i><i></i><i></i></div>
-          <img class="pk-logo" src="/brand/pitaka-logo-white.svg" alt="" draggable="false"><span class="pk-sheen"></span></div>
-      </div>
-      <div class="gate-tag"><i></i>Aramid · Sales OS<i></i></div>
+      <img class="gate-mark" src="/brand/pitaka-logo-white.svg" alt="" draggable="false">
     </div>
     <form class="gate-box" id="loginForm">
       <div class="gate-brand">
