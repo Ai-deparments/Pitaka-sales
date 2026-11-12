@@ -71,7 +71,10 @@ Node.js 24, tashqi paketsiz (`node:http`, `node:sqlite`, `node:crypto`). Build v
 | `server.mjs` | HTTP server, router, sessiya, statik fayllar, foydalanuvchi buyruqlari |
 | `lib/bitrix.mjs` | Bitrix24 REST klienti; o'qish metodlaridan boshqasini rad etadi |
 | `lib/telephony.mjs` | Qo'ng'iroq yozuvi: Disk orqali (zaxira — telefoniya API) |
-| `lib/voronka.mjs` | Voronka, yo'qotish sabablari, qotib qolganlar, qayta ishlash ro'yxati |
+| `lib/voronka.mjs` | Voronka, yo'qotish sabablari, qotib qolganlar, qayta ishlash ro'yxati, oylar bo'yicha kohorta |
+| `lib/tovar.mjs` | Eng ko'p sotilgan tovarlar (yutilgan bitimlarning tovar qatorlari) |
+| `lib/nutq.mjs` | Akustik nutq tekshiruvi — suhbat bo'lmagan yozuvlar tahlil qilinmaydi |
+| `lib/rahbar.mjs` | Rahbar Telegram boti |
 | `lib/calls.mjs`, `lib/sla.mjs` | Qo'ng'iroqlar reyestri, javob tezligi |
 | `lib/pipeline.mjs` | Konveyer: qo'ng'iroq → audio → transkript → tahlil |
 | `lib/stt.mjs`, `lib/gemini.mjs` | Gemini orqali transkript, limitlar va navbat |
@@ -97,6 +100,9 @@ Node.js 24, tashqi paketsiz (`node:http`, `node:sqlite`, `node:crypto`). Build v
 | `BITRIX_WRITES_LOCKED` | `1` — yozish yopiq |
 | `PORT` | standart 8090 |
 | `MURABBIY_BOT_TOKEN` | Murabbiy bot tokeni (ixtiyoriy) |
+| `RAHBAR_BOT_TOKEN` | Rahbar boti tokeni (ixtiyoriy; bo'sh bo'lsa bot o'chiq) |
+| `RAHBAR_BOT_USERS` | Botdan so'rashga ruxsat berilgan Telegram ID'lar, vergul bilan |
+| `GEMINI_MODELS` | Gemini modellari tartibi (ixtiyoriy) |
 
 **Yozish qulfi.** `Bitrix.call` faqat o'qish metodlarini (`*.list`, `*.get`, `*.fields`, `app.info` …)
 yuboradi; boshqasi tarmoqqa chiqmasdan xato beradi. Ochish — faqat `BITRIX_ALLOW_WRITES=1` bilan, ataylab.
@@ -123,6 +129,25 @@ Demo ma'lumot bilan (haqiqiy Bitrix'siz):
 node tools/mock-bitrix.mjs --seed 42 --port 8099
 BITRIX_WEBHOOK_URL=http://127.0.0.1:8099/rest/1/demo/ node server.mjs
 ```
+
+## Rahbar boti (Telegram)
+
+Egasi savol beradi — bot qisqa javob qaytaradi. Sonlarni **kod** Bitrix'dan hisoblaydi, model faqat savolni tushunadi
+(to'qima raqam bo'lmaydi). Rus, o'zbek (lotin va kirill) va ingliz tilida; ovozli xabar, rasm va video ham qabul qilinadi.
+
+1. @BotFather'da bot yarating, tokenni `.env` ga `RAHBAR_BOT_TOKEN` qilib yozing.
+2. `RAHBAR_BOT_USERS` ga o'z Telegram ID'ingizni yozing (ruxsatsiz odamga bot ID'sini ko'rsatadi).
+3. `node server.mjs` — bot panel bilan birga ishga tushadi (`[rahbar] @… ulandi`).
+
+Savollar: nechta lid keldi · nechtasi ketdi, kimdan va nega · nechta sotuv · eng yaxshi / eng yomon sotuvchi va operator ·
+xodim bo'yicha («Azam bu hafta qanday ishladi») · suhbatdagi xatolar · voronka · eng ko'p sotilgan tovarlar · lid/bitim raqami.
+Davr: bugun, kecha, hafta, o'tgan oy, oy nomi, «30 kun». Reklama xarajati (bitta sdelka narxi, kreativlar) ulanmagan — bot buni ochiq aytadi.
+
+## Suhbat bo'lmagan yozuvlar (lib/nutq.mjs)
+
+Tahlildan oldin yozuv akustik tekshiriladi (ffmpeg, AI'siz): odam nutqi bo'lmasa (faqat gudok, signal, jimlik) —
+qo'ng'iroq tahlil qilinmaydi va ball qo'yilmaydi («Suhbat bo'lmagan»). Transkript gaplari yozuvdagi nutqqa mos kelmasa —
+to'qima deb rad etiladi. Sabab: 12.11.2026 da faqat gudokli yozuvga model 11 gapli suhbat to'qib, 53 ball qo'ygan edi.
 
 ## Testlar
 

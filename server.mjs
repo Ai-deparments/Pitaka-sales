@@ -32,6 +32,8 @@ import * as sifat from "./lib/sifat.mjs";     // AI lid sifati
 import * as voronka from "./lib/voronka.mjs"; // sotuv voronkasi (TZ «Sales OS» 2-bosqich)
 import * as nazorat from "./lib/nazorat.mjs"; // Pitaka: CRM vs suhbat (KVAL) va menejerlar qoidabuzarliklari
 import * as murabbiy from "./lib/murabbiy.mjs"; // Telegram «shaxsiy murabbiy» (2026-09-30)
+import * as tovar from "./lib/tovar.mjs"; // eng ko'p sotilgan tovarlar (2026-11-12)
+import * as rahbar from "./lib/rahbar.mjs"; // Telegram «Rahbar» — egasining savollariga qisqa javob (2026-11-12)
 import * as olchov from "./lib/olchov.mjs";     // v2: yagona ko'rsatkichlar (2026-10-03)
 import { cached, swr, expire, stats as cacheStats, invalidate } from "./lib/cache.mjs";
 import * as autoagent from "./lib/autoagent.mjs"; // scheduled call-worker: calls are analysed automatically
@@ -114,7 +116,9 @@ const MARKAZ_BLOKS = {
 };
 // Default leader views (30 days, whole team) — what the panel opens on
 function warmViews() {
-  const R = rng.parseRange(new URLSearchParams(), 30);
+  // The panel opens on «30 kun» = ?preset=d30 → rng.rolling(30). Warming the calendar window instead
+  // (parseRange with no params) produced different cache keys, so every first click still went to Bitrix.
+  const R = rng.rolling(30);
   const jobs = [
     ...Object.entries(MARKAZ_BLOKS).map(([b, fn]) => [`markaz:${b}`, () => fn(R)]),
     ["jamoa", () => olchov.jamoa(bx, db, R)],
@@ -124,7 +128,33 @@ function warmViews() {
     ["nazorat:menejerlar:all", () => nazorat.violations(bx, db, { range: R, owner: null })],
     ["nazorat:kval:all", () => nazorat.kvalCheck(bx, db, { range: R, owner: null })],
   ];
-  return Promise.allSettled(jobs.map(([name, fn]) => swr(viewKey(name, null, R), VIEW_TTL_MS, fn)));
+  // Not tied to the date range: keyed without R, exactly as their routes call fast(name, null, …)
+  const noRange = [
+    ["voronka:oylar:6", () => voronka.oylar(bx, db, { n: 6, owner: null })],
+    ["voronka:qayta", () => voronka.qayta(bx, db, { owner: null })],
+    ["bitimlar", () => olchov.bitimlar(bx, null)],
+  ];
+  const rangeJobs = [
+    ["tovarlar", () => tovar.top(bx, { range: R, limit: 40 })],
+    ["calls", () => calls.calls(bx, R, null)],
+    ["calls:kpi", () => calls.qualityKpi(bx, db, { range: R, owner: null })],
+    ["calls:quality", () => calls.leaderQuality(bx, db, { range: R })],
+  ];
+  // Bitimlar opens the direction with the most open deals (see loadKanban in index.html)
+  const kanban = api.pipelines(bx, R).then((pp) => {
+    const top = [...(pp.all || [])].map((r) => ({ id: String(r.id), open: r.openAll ?? r.open }))
+      .filter((r) => r.open > 0).sort((a, b) => b.open - a.open)[0];
+    const cat = top ? top.id : "0";
+    return swr(viewKey(`kanban:${cat}`, null, null), VIEW_TTL_MS, () => api.kanban(bx, cat, null, R));
+  });
+  return Promise.allSettled([
+    calls.registry(bx, db, { range: R, owner: null, limit: 1 }),   // fills the Bitrix part (rawCalls); analysis stays live
+    swr(viewKey("voronka:", null, R), VIEW_TTL_MS, () => voronka.voronka(bx, db, { range: R, owner: null })),
+    kanban,
+    ...noRange.map(([name, fn]) => swr(viewKey(name, null, null), VIEW_TTL_MS, fn)),
+    ...rangeJobs.map(([name, fn]) => swr(viewKey(name, null, R), VIEW_TTL_MS, fn)),
+    ...jobs.map(([name, fn]) => swr(viewKey(name, null, R), VIEW_TTL_MS, fn)),
+  ]);
 }
 
 // ---- yordamchilar ----
@@ -841,9 +871,14 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/voronka" || p.startsWith("/api/voronka/")) {
       if (p === "/api/voronka" && req.method === "GET") {
         const f = {}; for (const k of ["operator", "menejer", "manba", "segment", "hudud"]) { const v = String(q.get(k) || "").slice(0, 80); if (v) f[k] = v; }
-        return json(res, 200, await voronka.voronka(bx, db, { range: range(30), owner: mine, f }), cid);
+        const fk = Object.entries(f).map(([k, v]) => `${k}=${v}`).join("&");
+        return json(res, 200, await fast(`voronka:${fk}`, range(30), () => voronka.voronka(bx, db, { range: range(30), owner: mine, f })), cid);
       }
-      if (p === "/api/voronka/qayta" && req.method === "GET") return json(res, 200, await voronka.qayta(bx, db, { owner: mine }), cid);
+      if (p === "/api/voronka/oylar" && req.method === "GET") {
+        const n = Math.min(Math.max(Number(q.get("n")) || 6, 1), voronka.OYLAR_MAX);
+        return json(res, 200, await fast(`voronka:oylar:${n}`, null, () => voronka.oylar(bx, db, { n, owner: mine })), cid);
+      }
+      if (p === "/api/voronka/qayta" && req.method === "GET") return json(res, 200, await fast("voronka:qayta", null, () => voronka.qayta(bx, db, { owner: mine })), cid);
       if (p === "/api/voronka/lugat" && req.method === "GET") { if (ownerOnly()) return; return json(res, 200, await voronka.lugat(bx), cid); }
       if (p === "/api/voronka/sozlama") {
         if (req.method === "GET") return json(res, 200, voronka.sozlama(db), cid);
@@ -852,7 +887,7 @@ const server = http.createServer(async (req, res) => {
           const b = await readBody(req);
           const r = voronka.setSozlama(db, b || {}, user.id);
           audit("voronka.settings", "settings", "bosqichlar/normalar/qayta", { before: r.was, after: r.now });
-          invalidate("voronka:");
+          invalidate("voronka:"); invalidate("view:voronka:");
           return okWrite(200, r.now);
         }
       }
@@ -862,10 +897,16 @@ const server = http.createServer(async (req, res) => {
     if (p === "/api/leads/journey") return json(res, 200, await api.journey(bx, { range: range(30), owner: mine,
       operator: /^\d{1,10}$/.test(q.get("operator") || "") ? q.get("operator") : null }), cid);
     if (p === "/api/pipelines") return json(res, 200, await api.pipelines(bx, range(30)));
+    // Eng ko'p sotilgan tovarlar: davrda yutilgan bitimlarning tovar qatorlari. Faqat rahbarlar (butun kompaniya kesimi).
+    if (p === "/api/tovarlar" && req.method === "GET") {
+      if (ownerOnly()) return;
+      const R = range(30);
+      return json(res, 200, await fast("tovarlar", R, () => tovar.top(bx, { range: R, limit: 40 })), cid);
+    }
     if (p === "/api/kanban") {
       const cat = String(q.get("category") || "0");
       if (!/^\d{1,4}$/.test(cat)) return fail(res, 400, "Yo'nalish ID raqam bo'lishi kerak", cid);
-      return json(res, 200, await api.kanban(bx, cat, mine, range(30)));
+      return json(res, 200, await fast(`kanban:${cat}`, null, () => api.kanban(bx, cat, mine, range(30))));
     }
     if (p === "/api/stuck")     return json(res, 200, await api.stuck(bx, clampInt(q.get("idle"), 14, 1, 120), mine, range(30)));
     if (p === "/api/clients")   return json(res, 200, await api.clients(bx, mine, range(30)));
@@ -918,7 +959,7 @@ const server = http.createServer(async (req, res) => {
 
 
     // ---- Qo'ng'iroqlar ----
-    if (p === "/api/calls") return json(res, 200, await calls.calls(bx, range(30), mineCall));
+    if (p === "/api/calls") return json(res, 200, await fast(`calls${mineCall ? `:${mineCall}` : ""}`, range(30), () => calls.calls(bx, range(30), mineCall)));
 
     // ---- AI qo'ng'iroq tahlili (Pitaka qo'ng'iroq sifati agenti) ----
     // Telefon raqamini to'liq ko'rish alohida ruxsat (§8); o'z qo'ng'irog'ida operator ko'radi.
@@ -926,7 +967,7 @@ const server = http.createServer(async (req, res) => {
     const enumOf = (v, list) => (list.includes(v) ? v : null);
 
     if (p === "/api/calls/kpi")
-      return json(res, 200, await calls.qualityKpi(bx, db, { range: range(30), owner: mineCall }), cid);
+      return json(res, 200, await fast(`calls:kpi${mineCall ? `:${mineCall}` : ""}`, range(30), () => calls.qualityKpi(bx, db, { range: range(30), owner: mineCall })), cid);
 
     // Operator radari (2026-09-30): 8 mezon — operator va jamoa o'rtachasi, 30 kun. Operator/sotuvchi — faqat o'zi
     // (owner parametri e'tiborsiz), rahbar — istalgan operator. Jamoa o'rtachasi — umumiy son, shaxsiy ma'lumot emas.
@@ -990,7 +1031,7 @@ const server = http.createServer(async (req, res) => {
       return fail(res, 404, "Topilmadi", cid);
     }
     if (p === "/api/calls/quality") { if (ownerOnly()) return;
-      return json(res, 200, await calls.leaderQuality(bx, db, { range: range(30) }), cid); }
+      return json(res, 200, await fast("calls:quality", range(30), () => calls.leaderQuality(bx, db, { range: range(30) })), cid); }
 
     if (p === "/api/calls/registry") {
       const nb = (k) => (q.get(k) === null ? null : q.get(k) === "1" || q.get(k) === "true");
@@ -1006,6 +1047,8 @@ const server = http.createServer(async (req, res) => {
         hasNext: nb("hasNext"), term: (q.get("term") || "").slice(0, 60) || null,
         q: (q.get("q") || "").slice(0, 80) || null, stage: (q.get("stage") || "").slice(0, 60) || null,
         analyzedOnly: q.get("analyzedOnly") === "1",
+        // Bitta xodim (xodim kartasi): faqat rahbar/administrator — xodim baribir faqat o'zinikini ko'radi (owner: mineCall)
+        ownerFilter: mineCall ? null : (String(q.get("owner") || "").replace(/[^\w-]/g, "").slice(0, 20) || null),
       });
       audit("call.list", null, `${out.total} qator`);
       return json(res, 200, out, cid);
@@ -1129,8 +1172,15 @@ const server = http.createServer(async (req, res) => {
       if (rec.error) return fail(res, rec.code === "no_scope" ? 503 : 404, rec.error, cid,
         rec.code === "no_scope" ? { fix: "CRM → webhook sozlamalari → «Диск» (yoki «Телефония») katagini belgilang" } : null);
       const t0 = Date.now();
-      const out = await stt.transcribe(rec.url, {
-        outgoing: row.out, language: b.language || null, aiDiarize: cllm.diarize });
+      let out;
+      try {
+        out = await stt.transcribe(rec.url, { outgoing: row.out, language: b.language || null, aiDiarize: cllm.diarize });
+      } catch (e) {
+        // Akustik tekshiruv: yozuvda nutq yo'q — ball qo'yilmaydi; to'qima transkript — saqlanmaydi
+        if (e.noSpeech) { cstore.suhbatYoq(db, id, e.message); audit("call.transcribe", `call:${id}`, "suhbat yo'q"); return fail(res, 422, e.message, cid); }
+        if (e.hallu) { audit("call.transcribe", `call:${id}`, "to'qima rad etildi"); return fail(res, 422, e.message, cid); }
+        throw e;
+      }
       cstore.putTranscript(db, id, out.text, { source: "stt", lang: out.meta.language, userId: user.id, actor: user.login });
       audit("call.transcribe", `call:${id}`, `${out.meta.method} · ${out.segments.length} gap · ${Date.now() - t0} ms`);
       return okWrite(200, { ok: true, text: out.text, speakersAssumed: out.speakersAssumed,
@@ -1586,6 +1636,9 @@ server.listen(PORT, HOST, () => {
   const mbAudit = (action, entity, detail) => {
     try { db.prepare("INSERT INTO audit_events (actor,action,entity,detail,channel) VALUES (?,?,?,?,?)").run("murabbiy-bot", action, entity || null, detail || null, "telegram"); } catch {}
   };
+  // Rahbar boti: RAHBAR_BOT_TOKEN bo'lmasa o'chiq; javoblar shu jarayondagi (fonda isitilgan) keshdan
+  rahbar.ishgaTushir({ bx, db, log: (...a) => console.log(`[rahbar] ${new Date().toISOString()}`, ...a),
+    audit: (action, entity, detail) => { try { db.prepare("INSERT INTO audit_events (actor,action,entity,detail,channel) VALUES (?,?,?,?,?)").run("rahbar-bot", action, entity || null, detail || null, "telegram"); } catch {} } });
   murabbiy.ishgaTushir({ db, log: mbLog, audit: mbAudit,
     kunStat: async (sana) => new Map(((await calls.calls(bx, { from: sana, to: sana })).owners || []).map((o) => [String(o.owner), o])),
     // Tezkor raqamlar tugmalari (lib/menyu.mjs, 2026-10-29): agent yo'lidagi tezkor bilan bir xil manbalar;

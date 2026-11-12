@@ -1320,21 +1320,32 @@ button.kn-chip:focus-visible{outline:2px solid var(--action);outline-offset:1px}
 .vf-it{font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3);font-weight:700}
 .vf-in b{font-size:16px;line-height:1.3;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
 .vf-is{font-size:12.5px;color:var(--ink-2)}
-.vf{display:grid;grid-template-columns:repeat(var(--n),minmax(0,1fr));gap:14px;padding:6px 14px 10px}
-.vf-col{position:relative;display:flex;flex-direction:column;align-items:stretch;gap:3px;background:none;border:1px solid transparent;border-radius:14px;padding:8px 6px;font:inherit;color:inherit;text-align:center;cursor:pointer;min-width:0;transition:background .12s,border-color .12s}
-.vf-col:hover,.vf-col:focus-visible{background:var(--surface-2);border-color:var(--line-2);outline:none}
-.vf-n{font-size:20px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.1}
-.vf-p{font-size:11.5px;color:var(--ink-3)}
-.vf-bar{height:118px;display:flex;align-items:flex-end;margin:6px 6px 4px}
-.vf-bar i{display:block;width:100%;height:var(--h);border-radius:10px 10px 4px 4px;background:var(--action);background:linear-gradient(180deg,var(--action),color-mix(in srgb,var(--action) 45%,transparent))}
+/* Voronka oqimi — gorizontal qatorlar (2026-11-12): bosqich · chiziq · soni · o'tish «M / N» va to'xtaganlar · teglar.
+   Avvalgi tik ustunlarda 829 dan 3 gacha bo'lgan bosqichlar ko'rinmas, o'tish belgilari ustunlar ustiga tushardi. */
+.vf{display:flex;flex-direction:column;gap:2px;padding:6px 10px 12px}
+.vf-row{display:grid;grid-template-columns:150px minmax(220px,1.3fr) 64px 150px minmax(150px,1fr);align-items:center;gap:14px;
+  background:none;border:1px solid transparent;border-radius:12px;padding:7px 10px;font:inherit;color:inherit;text-align:left;cursor:pointer;min-width:0;transition:background .12s,border-color .12s}
+.vf-row:hover,.vf-row:focus-visible{background:var(--surface-2);border-color:var(--line-2);outline:none}
+.vf-row.lek{background:var(--risk-soft)}
+.vf-nm{font-size:13px;font-weight:650;line-height:1.25;display:flex;gap:8px;align-items:baseline;min-width:0}
+.vf-nm i{font-style:normal;font-size:11px;font-weight:700;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.vf-bar{height:22px;border-radius:7px;background:var(--surface-2);overflow:hidden}
+.vf-bar i{display:block;height:100%;width:var(--w);min-width:4px;border-radius:7px;background:linear-gradient(90deg,color-mix(in srgb,var(--action) 70%,transparent),var(--action))}
 .vf-bar i.g{background:var(--success)}
-.vf-nm{font-size:12.5px;font-weight:600;line-height:1.25;min-height:32px;display:flex;align-items:flex-start;justify-content:center}
-.vf-tags{display:flex;flex-wrap:wrap;gap:4px;justify-content:center;min-height:18px}
-.vf-tags em{font-style:normal;font-size:11px;padding:1px 6px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
+.vf-row.lek .vf-bar i{background:var(--risk)}
+.vf-n{font-size:18px;font-weight:800;font-variant-numeric:tabular-nums;text-align:right;line-height:1.1}
+.vf-cv{display:flex;flex-direction:column;gap:1px;font-size:12px;color:var(--ink-2);font-variant-numeric:tabular-nums;line-height:1.3}
+.vf-cv b{color:var(--ink);font-weight:700}
+.vf-cv .d{color:var(--ink-3)}.vf-row.lek .vf-cv .d{color:var(--risk-text,var(--risk));font-weight:700}
+.vf-tags{display:flex;flex-wrap:wrap;gap:4px;min-width:0}
+.vf-tags em{font-style:normal;font-size:11px;padding:1px 7px;border-radius:999px;background:var(--surface-2);color:var(--ink-2);white-space:nowrap}
 .vf-tags em.r{background:var(--risk-soft);color:var(--risk-text,var(--risk))}
-.vf-tags em.vf-m{display:none}
-.vf-cv{position:absolute;left:0;top:66px;transform:translateX(calc(-50% - 7px));z-index:2;font-size:11.5px;font-weight:800;line-height:1.2;padding:2px 6px;border-radius:999px;background:var(--surface);border:1px solid var(--line);color:var(--ink-2);white-space:nowrap}
-.vf-cv.r{border-color:var(--risk);color:var(--risk-text,var(--risk));background:var(--risk-soft)}
+.vf-head{display:grid;grid-template-columns:150px minmax(220px,1.3fr) 64px 150px minmax(150px,1fr);gap:14px;padding:4px 21px 2px;font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-3)}
+.vf-head span:nth-child(3){text-align:right}
+/* Tovarlar jadvali */
+.tv-t .tv-n{min-width:240px;max-width:460px;white-space:normal;overflow-wrap:anywhere}
+.tv-t .tv-b{height:5px;border-radius:99px;background:var(--surface-2);margin-top:5px;overflow:hidden}.tv-t .tv-b i{display:block;height:100%;border-radius:99px;background:var(--action)}
+.tv-t .tv-k{font-size:12px;color:var(--ink-2);white-space:normal;min-width:150px}.tv-t .tv-k b{color:var(--ink)}
 .vf-sum{display:flex;flex-wrap:wrap;gap:6px 16px;padding:0 16px 14px;font-size:12.5px;color:var(--ink-2)}
 .vf-sum b{color:var(--ink)}
 .vf-tabs{margin:14px 0 8px}
@@ -1381,14 +1392,9 @@ button.xn-kc{cursor:pointer}button.xn-kc:hover{border-color:var(--risk)}
 .ko-rl span{display:inline-flex;align-items:center;gap:6px}
 .ko-rs{font-size:12.5px;color:var(--ink-2);margin-top:8px;line-height:1.5}.ko-rs b{color:var(--ink)}
 @media(max-width:760px){
-  .vf{grid-template-columns:1fr;gap:6px;padding:6px 10px 10px}
-  .vf-col{display:grid;grid-template-columns:minmax(0,1fr) 84px 52px;grid-template-areas:"nm bar n" "tg tg p";text-align:left;align-items:center;gap:3px 10px;padding:8px 10px;border-color:var(--line)}
-  .vf-nm{grid-area:nm;min-height:0;justify-content:flex-start}
-  .vf-n{grid-area:n;text-align:right;font-size:17px}.vf-p{grid-area:p;text-align:right}
-  .vf-bar{grid-area:bar;height:10px;margin:0;align-items:stretch;background:var(--surface-2);border-radius:999px;overflow:hidden}
-  .vf-bar i{height:100%;width:var(--h);border-radius:999px}
-  .vf-tags{grid-area:tg;justify-content:flex-start}.vf-tags em.vf-m{display:inline}
-  .vf-cv{display:none}
+  .vf-head{display:none}
+  .vf-row{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"nm n" "bar bar" "cv cv" "tg tg";gap:5px 10px;border-color:var(--line)}
+  .vf-nm{grid-area:nm}.vf-n{grid-area:n}.vf-bar{grid-area:bar;height:12px}.vf-cv{grid-area:cv;flex-direction:row;gap:10px}.vf-tags{grid-area:tg}
   .vb-k{grid-template-columns:repeat(2,minmax(0,1fr))}
 }
 .kn-seg{display:inline-flex;gap:6px}
@@ -1952,6 +1958,23 @@ div.v2-li[data-open]{cursor:pointer}div.v2-li[data-open]:hover .tx b{color:var(-
 .xd-s{font-size:12px;color:var(--ink-2);font-weight:500;margin-top:2px}
 .xd-sec{margin:18px 0 8px;font-weight:700;font-size:13.5px;display:flex;align-items:center;gap:8px;color:var(--ink)}.xd-sec .n{margin-left:auto}
 .xd-li{border:1px solid var(--line);border-left-width:3px;border-radius:12px;padding:9px 12px;margin-bottom:6px;font-size:12.5px;background:var(--surface)}
+/* Xodim kartasi: mezonlar ro'yxati va oxirgi qo'ng'iroqlar (2026-11-12) */
+.xd-mz{display:flex;flex-direction:column;gap:7px;margin:6px 0 4px}
+.xd-mr{display:grid;grid-template-columns:minmax(0,190px) minmax(60px,1fr) 44px minmax(0,120px);gap:10px;align-items:center;font-size:12.5px}
+.xd-mr .nm{min-width:0;overflow-wrap:anywhere}
+.xd-mr .bar{position:relative;height:8px;border-radius:99px;background:var(--surface-2)}
+.xd-mr .bar i{display:block;height:100%;border-radius:99px;background:var(--action)}
+.xd-mr .bar i.g{background:var(--success)}.xd-mr .bar i.r{background:var(--risk)}.xd-mr .bar i.w{background:var(--warning,#d97706)}
+.xd-mr .bar em{position:absolute;top:-3px;width:2px;height:14px;background:var(--ink-3);transform:translateX(-1px)}
+.xd-mr b{text-align:right;font-variant-numeric:tabular-nums}.xd-mr b.r{color:var(--risk-text,var(--risk))}.xd-mr b.g{color:var(--success-text,var(--success))}
+.xd-calls{display:flex;flex-direction:column;gap:4px}
+.xd-call{display:grid;grid-template-columns:92px 130px minmax(0,1fr) auto;gap:10px;align-items:center;width:100%;text-align:left;font:inherit;font-size:12.5px;color:inherit;
+  background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:7px 10px;cursor:pointer}
+.xd-call:hover{border-color:var(--line-2);background:var(--surface-2)}
+.xd-call .t{color:var(--ink-3);font-variant-numeric:tabular-nums}.xd-call .d.r{color:var(--risk-text,var(--risk))}
+.xd-call .who{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-weight:600}
+@media(max-width:620px){.xd-mr{grid-template-columns:minmax(0,1fr) 44px;grid-template-areas:"nm v" "bar bar" "s s"}.xd-mr .nm{grid-area:nm}.xd-mr b{grid-area:v}.xd-mr .bar{grid-area:bar}.xd-mr .xd-s{grid-area:s}
+  .xd-call{grid-template-columns:minmax(0,1fr) auto;grid-template-areas:"who sc" "t d"}.xd-call .who{grid-area:who}.xd-call .v2-chip{grid-area:sc}.xd-call .t{grid-area:t}.xd-call .d{grid-area:d}}
 .xd-li.g{border-left-color:var(--success)}.xd-li.r{border-left-color:var(--risk)}.xd-li.w{border-left-color:var(--warning)}.xd-li q{display:block;color:var(--ink-2);font-style:italic;margin-top:4px}.xd-a{display:flex;gap:12px;margin-top:4px}
 @media (max-width:560px){.xd-k{grid-template-columns:repeat(2,minmax(0,1fr))}}
 .v2-pc .h{display:flex;align-items:center;gap:9px;min-width:0}
@@ -2205,7 +2228,12 @@ button.who{border-radius:18px}
 
 /* Drawers and scrim */
 .drawer{background:var(--g-win);-webkit-backdrop-filter:blur(24px) saturate(160%);backdrop-filter:blur(24px) saturate(160%);
-  border:1px solid var(--g-edge);border-radius:24px;top:14px;bottom:14px;right:14px;height:auto;box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow-2)}
+  border:1px solid var(--g-edge);border-radius:24px;top:14px;bottom:14px;right:14px;height:auto;box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow-2);
+  max-width:calc(100% - 28px)}   /* right:14px + width up to 100% pushed the left edge 14px off-screen (wide cards) */
+/* Profil oynasi: .card'da ichki chekinish yo'q — matn va maydonlar karta chetiga yopishib, kartalar bir-biriga tegib turardi */
+#secDrawer .card{padding:16px 18px}
+#secDrawer .card+.card{margin-top:12px}
+#secDrawer .card>b:first-child{display:block;font-size:14.5px}
 .scrim{-webkit-backdrop-filter:blur(4px);backdrop-filter:blur(4px)}
 .drawer:not(.on){transform:translateX(calc(100% + 40px));box-shadow:none}
 .topbar,:root[data-theme="dark"] .topbar{flex-wrap:nowrap}
@@ -2242,7 +2270,7 @@ button.who{border-radius:18px}
   .botnav{left:8px;right:8px;bottom:8px;border-radius:24px;border:1px solid var(--g-edge);background:var(--g-panel);
     -webkit-backdrop-filter:blur(20px) saturate(160%);backdrop-filter:blur(20px) saturate(160%);box-shadow:inset 0 1px 0 var(--g-hi),var(--shadow-2)}
   .botnav button[aria-current="page"]{color:var(--pk)}
-  .drawer{top:auto;left:8px;right:8px;bottom:8px;width:auto;max-height:88dvh;border-radius:22px}
+  .drawer{top:auto;left:8px;right:8px;bottom:8px;width:auto;max-width:none;max-height:88dvh;border-radius:22px}
   .drawer:not(.on){transform:translateY(calc(100% + 24px))}
   .topbar,:root[data-theme="dark"] .topbar{flex-wrap:wrap}
   .topbar .menuBtn{order:0}
@@ -2473,7 +2501,7 @@ button.who{border-radius:18px}
 
     <!-- BITIMLAR -->
     <section class="view" id="v-bitimlar">
-      <div class="ovtabs" data-ov="bitimlar" role="tablist"><button type="button" data-p="ov" aria-pressed="true">Umumiy</button><button type="button" data-p="list" id="ovt-bitimlar-list" aria-pressed="false">Kanban</button><button type="button" data-p="dir" id="ovt-bitimlar-dir" aria-pressed="false">Qotib qolganlar</button></div>
+      <div class="ovtabs" data-ov="bitimlar" role="tablist"><button type="button" data-p="ov" aria-pressed="true">Umumiy</button><button type="button" data-p="list" id="ovt-bitimlar-list" aria-pressed="false">Kanban</button><button type="button" data-p="tovar" data-owner aria-pressed="false">Tovarlar</button><button type="button" data-p="dir" id="ovt-bitimlar-dir" aria-pressed="false">Qotib qolganlar</button></div>
       <div class="ov" id="ov-bitimlar"></div>
       <div id="ovp-bitimlar-list" hidden>
       <div class="card float" style="margin-bottom:14px"><div class="card-h"><div style="flex:1"><h3 id="kanTitle">Pipeline</h3><p id="kanSub"></p></div>
@@ -2484,6 +2512,7 @@ button.who{border-radius:18px}
         </div>
         <div class="card-b"><div class="kan" id="kanban"></div></div></div>
       </div>
+      <div id="ovp-bitimlar-tovar" hidden></div>
       <div id="ovp-bitimlar-dir" hidden><div class="v2-col">
         <div class="v2-c"><div class="v2-ch"><div><h3>Qotib qolgan bitimlar<button class="v2-i" type="button" data-v2i="14 kundan ortiq bosqichi o‘zgarmagan ochiq bitimlar. Eng yiriklari birinchi; summa kiritilmaganlari oxirida." aria-label="Izoh">i</button></h3><p id="bqSub"></p></div></div>
           <div class="tw"><table><thead><tr><th class="gut">#</th><th>Bitim</th><th>Bosqich</th><th>Mas’ul</th><th class="r">Summa</th><th class="r">Harakatsiz</th></tr></thead><tbody id="tb-bq"></tbody></table></div><div id="tb-bq-pg"></div></div>
@@ -2619,6 +2648,9 @@ button.who{border-radius:18px}
 const $=(s,r=document)=>r.querySelector(s), $$=(s,r=document)=>[...r.querySelectorAll(s)];
 const esc=s=>String(s??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
 const fmt=n=>Number(n||0).toLocaleString("ru-RU").replace(/ /g," ");
+// «M / N» — aniq son (egasi 2026-11-12: foiz o'rniga haqiqiy son). Foiz faqat sichqoncha ustida (title).
+const nOf=(a,b)=>a==null||b==null?"—":`${fmt(a)} / ${fmt(b)}`;
+const nOfT=(a,b)=>b?`${String(Math.round(a/b*1000)/10).replace(".",",")}%`:"";
 /* TZI P0-01/P0-05: foiz maxraji bo'lmasa «—» chiqadi, soxta 0% emas. */
 const P100=v=>v===null||v===undefined||Number.isNaN(v)?"—":`${v}%`;
 const Pinv=(v,k=1)=>v===null||v===undefined||Number.isNaN(v)?"—":`${(100-v).toFixed(k)}%`;
@@ -2794,7 +2826,7 @@ function paintCrumb(){
 }
 function setRange(r){
   RANGE=r; try{localStorage.setItem(RKEY,JSON.stringify(r))}catch{}
-  paintRange();
+  paintRange(); urlSync();
   // Belgilar oldingi oraliqniki edi — bo'limlari qayta ochilmaguncha
   // ular noto'g'ri son ko'rsatadi. "Ma'lumot yo'q" ga qaytaramiz.
   // Boshqa bo‘limlar ham eskirdi — ochilganda qaytadan yuklansin.
@@ -2926,7 +2958,64 @@ let cur="command"; const loaded=new Set();
 const GO_MAP={javobtezligi:["lidlar","javob"],skoring:null,audit:["tizim","audit"],qoriqchi:["tizim","xavf"],
   parol:"profil",moliya:null,mijozlar:null,qaytasotuv:null,kampus:null,agentlar:null,roadmap:null,kunlik:null,vazifalar:null,workbench:null};
 let START_VIEW="lidlar";
-function go(v){
+// Joriy bo'lim manzilda (#voronka): F5, Chrome tabni xotiradan tushirib qayta yuklashi va versiya yangilanishi
+// foydalanuvchini Markazga emas, turgan joyiga qaytaradi; «Orqaga» tugmasi oldingi bo'limga o'tadi (2026-11-12).
+// Manzil to'liq holatni saqlaydi (egasi 12.11: «hamma joyda params bo'lsin»):
+//   #voronka?p=d30&vt=yq&f.operator=…&lead=29957   — bo'lim · davr · ichki tab · filtrlar · ochiq oyna (lead/deal/call/x)
+// Havolani nusxalab yuborsa yoki F5 bossa — aynan shu ko'rinish ochiladi.
+const parseHash=()=>{ const h=location.hash.slice(1), i=h.indexOf("?"); const v=decodeURIComponent(i<0?h:h.slice(0,i));
+  return { v:/^[a-z0-9]+$/.test(v)?v:"", q:new URLSearchParams(i<0?"":h.slice(i+1)) } };
+const viewFromHash=()=>parseHash().v;
+const UQ={};   // ochiq oyna: lead | deal | call | x (xodim)
+const callTabNow=()=>$('#callTab button[aria-pressed="true"]')?.dataset.t||"ov";
+function hashOf(v){
+  const p=new URLSearchParams();
+  if(RANGE_VIEWS.has(v)){ if(RANGE.preset==="custom"){ p.set("from",RANGE.from); p.set("to",RANGE.to) } else p.set("p",RANGE.preset) }
+  if(v==="qongiroq"){ if(callTabNow()!=="ov") p.set("tab",callTabNow()) }
+  else if(OVTAB[v]&&OVTAB[v]!=="ov") p.set("tab",OVTAB[v]);
+  if(v==="voronka"){ if(VR_TAB!=="qt") p.set("vt",VR_TAB); for(const [k,val] of Object.entries(VR_F)) if(val) p.set("f."+k,val) }
+  for(const k of ["lead","deal","call","x"]) if(UQ[k]) p.set(k,UQ[k]);
+  const s=p.toString(); return "#"+v+(s?"?"+s:"");
+}
+function syncHash(v,push){
+  const h=hashOf(v); if(location.hash===h) return;
+  const u=location.pathname+location.search+h;
+  try{ push?history.pushState({v},"",u):history.replaceState({v},"",u) }catch{}
+}
+const urlSync=()=>{ if(ME&&typeof cur==="string") syncHash(cur,false) };
+// #drawer bitta oynani ko'rsatadi: lid, bitim yoki xodim — kalitlardan faqat bittasi qoladi
+function drKey(k,id){ for(const x of ["lead","deal","x"]) delete UQ[x]; if(k&&id!=null) UQ[k]=String(id); urlSync() }
+// Manzildagi holatni qo'llash (yuklanishda va «Orqaga/Oldinga»da): davr, tab, filtrlar. Oynalar — openFromHash.
+function applyHashState(q,v){
+  const pr=q.get("p"), f=q.get("from"), t=q.get("to");
+  let R=null;
+  if(pr&&pr!=="custom"){ const hit=PRESETS.find(x=>x[0]===pr); if(hit){ const [a,b]=hit[2](); R={from:a,to:b,preset:pr} } }
+  else if(isYmd(f)&&isYmd(t)) R={from:f<=t?f:t,to:f<=t?t:f,preset:"custom"};
+  const rangeChanged=!!R&&(R.from!==RANGE.from||R.to!==RANGE.to||R.preset!==RANGE.preset);
+  if(rangeChanged){ RANGE=R; try{localStorage.setItem(RKEY,JSON.stringify(R))}catch{} paintRange(); loaded.clear() }
+  const tab=q.get("tab");
+  if(v&&v!=="qongiroq") OVTAB[v]=tab&&/^[a-z0-9]+$/.test(tab)?tab:"ov";
+  if(v==="voronka"){ const vt=q.get("vt"); VR_TAB=["qt","yq","xn","qa"].includes(vt)?vt:"qt";
+    const F={}; for(const k of ["operator","menejer","manba","segment","hudud"]){ const val=q.get("f."+k); if(val) F[k]=val.slice(0,80) }
+    if(JSON.stringify(F)!==JSON.stringify(Object.fromEntries(Object.entries(VR_F).filter(([,x])=>x)))){ VR_F=F; loaded.delete("voronka") } }
+  return { tab, rangeChanged };
+}
+function openFromHash(q){
+  const ok=x=>x&&/^[\w-]{1,40}$/.test(x)?x:null, lead=ok(q.get("lead")), deal=ok(q.get("deal")), x=ok(q.get("x")), call=ok(q.get("call"));
+  const run=p=>Promise.resolve(p).catch(e=>{ if(!e||!e.bekor) toast(e.message) });
+  if(lead) run(openLead(lead)); else if(deal) run(openDeal(deal)); else if(x) run(openXodim(x));
+  if(call) run(openCall(call));
+}
+addEventListener("popstate",()=>{ if(!ME) return; const {v,q}=parseHash(); if(!v) return;
+  closeAllDrawers();
+  const st=applyHashState(q,v);
+  if(v!==cur||st.rangeChanged||!loaded.has(v)) go(v,{noPush:true});
+  else if(v==="voronka") vrDraw();
+  if(v!=="qongiroq"&&loaded.has(v)&&$(`.ovtabs[data-ov="${v}"]`)) ovShow(v,OVTAB[v]||"ov");
+  if(v==="qongiroq"&&st.tab){ const b=$(`#callTab button[data-t="${st.tab}"]`); if(b) b.click() }
+  openFromHash(q);
+});
+function go(v,{noPush=false}={}){
   if(Object.prototype.hasOwnProperty.call(GO_MAP,v)){
     const t=GO_MAP[v];
     if(t==="profil"){ openSec(); return }
@@ -2934,6 +3023,7 @@ function go(v){
     const yuk=loaded.has(t[0]); OVTAB[t[0]]=t[1]; go(t[0]); if(yuk) ovShow(t[0],t[1]); return;
   }
   if(!$("#v-"+v)||!VIEW[v]) v=START_VIEW;
+  syncHash(v,!noPush&&cur!==v);
   cur=v;
   $$(".navbtn,.botnav button").forEach(x=>x.dataset.v===v?x.setAttribute("aria-current","page"):x.removeAttribute("aria-current"));
   $$(".view").forEach(x=>x.classList.remove("on"));
@@ -2972,9 +3062,21 @@ function wireMissionClicks(){
 /* ---------- §8.1 Deal Room ---------- */
 const scrim=$("#scrim"),drawer=$("#drawer");
 const closeDeal=()=>{drawer.classList.remove("on","wide");scrim.classList.remove("on")};
-const closeAllDrawers=()=>{closeDeal();for(const id of ["secDrawer","callDr","usrDrawer","ovDr"]){const d=$("#"+id);if(d)d.classList.remove("on")}};
+const closeAllDrawers=()=>{closeDeal();$$(".drawer.on").forEach(d=>d.classList.remove("on"))};
+// «X» — bitta umumiy ishlov (2026-11-12): #drClose'ga umuman ishlov ulanmagan edi (lid, bitim, bosqich, xodim kartasi yopilmasdi),
+// #cdClose esa faqat «Qo‘ng‘iroqlar» bo'limi ochilgach ulanardi. Faqat o'sha oyna yopiladi; ostida boshqa oyna qolsa — fon qoladi.
+document.addEventListener("click",e=>{
+  const b=e.target.closest?.('.drawer .drawer-h .iconbtn[aria-label="Yopish"]'); if(!b) return;
+  e.stopImmediatePropagation(); e.preventDefault();
+  const d=b.closest(".drawer"); d.classList.remove("on"); if(d.id==="drawer") d.classList.remove("wide");
+  d.querySelectorAll("audio").forEach(a=>{ try{ a.pause() }catch{} });   // yopilgan oynada yozuv o'ynab qolmasin
+  if(!document.querySelector(".drawer.on")) scrim.classList.remove("on");
+},true);
 $("#ovDrClose")&&($("#ovDrClose").onclick=()=>{$("#ovDr").classList.remove("on");scrim.classList.remove("on")});
 scrim.onclick=closeAllDrawers;
+// Oyna qaysi yo'l bilan yopilmasin (X, fon, Esc) — manzildagi kaliti ham o'chadi
+new MutationObserver(()=>{ if(!drawer.classList.contains("on")&&(UQ.lead||UQ.deal||UQ.x)) drKey(null) }).observe(drawer,{attributes:true,attributeFilter:["class"]});
+new MutationObserver(()=>{ if(!$("#callDr").classList.contains("on")&&UQ.call){ delete UQ.call; urlSync() } }).observe($("#callDr"),{attributes:true,attributeFilter:["class"]});
 addEventListener("keydown",e=>{if(e.key==="Escape")closeAllDrawers()});
 /* ---------- Lid oynasi: hamma narsa panel ichida, CRM'ga o'tilmaydi ---------- */
 function wireLeadClicks(){
@@ -3018,7 +3120,7 @@ function aiSifatHTML(q){
     ${rows.length?`<dl class="kv" style="margin-top:8px">${rows.map(([a,v])=>`<dt>${esc(a)}</dt><dd>${esc(String(v))}</dd>`).join("")}</dl>`:""}`;
 }
 async function openLead(id){
-  drawer.classList.add("on");scrim.classList.add("on");
+  drawer.classList.add("on");scrim.classList.add("on"); drKey("lead",id);
   $("#drTitle").textContent="Yuklanmoqda…";$("#drSub").textContent="";
   $("#drBody").innerHTML='<div class="sk sk-r" style="height:14px;margin-bottom:10px"></div>'.repeat(6);
   try{
@@ -3081,7 +3183,7 @@ async function openLead(id){
   }catch(x){ $("#drBody").innerHTML=empty("Ochib bo‘lmadi",x.message) }
 }
 async function openDeal(id){
-  drawer.classList.add("on");scrim.classList.add("on");
+  drawer.classList.add("on");scrim.classList.add("on"); drKey("deal",id);
   $("#drTitle").textContent="Yuklanmoqda…";$("#drSub").textContent="";
   $("#drBody").innerHTML='<div class="sk sk-r" style="height:14px;margin-bottom:10px"></div>'.repeat(6);
   try{
@@ -3122,7 +3224,7 @@ async function openDeal(id){
 const JR_ST={open:"jarayonda",won:"yutildi",lost:"yo‘qotildi"};
 const jrState=s=>`<span class="jr-st ${s||"open"}">${JR_ST[s]||JR_ST.open}</span>`;
 function journeyHTML(j,{showOp=false}={}){
-  const f=j.funnel||{}; const pc=(a,b)=>b?`${Math.round(a/b*100)}%`:"—";
+  const f=j.funnel||{}; const pc=(a,b)=>b?`${fmt(b)} dan`:"—";
   const step=(l,v,p)=>`<div class="jr-step"><div class="l">${l}</div><div class="v">${fmt(v||0)}${p?`<span class="p">${p}</span>`:""}</div></div>`;
   const flow=`<div class="jr-flow">${step("Kelgan lid",f.total)}<span class="jr-arr">→</span>${step("Managerga o‘tgan",f.converted,pc(f.converted,f.total))}<span class="jr-arr">→</span>${step("Yutilgan",f.won,pc(f.won,f.converted))}
     <span class="jr-side">bitim jarayonda <b>${fmt(f.dealOpen||0)}</b> · yo‘qotilgan <b>${fmt(f.lost||0)}</b> · lid holatida <b>${fmt(f.open||0)}</b> · otkaz <b>${fmt(f.junk||0)}</b></span></div>`;
@@ -3461,12 +3563,12 @@ document.addEventListener("keydown",e=>{
    6 ko'rsatkich → voronka (30 kun) → muammolar → reja sur'ati → operatorlar bugun. Ta'riflar — lib/olchov.mjs. */
 const V2M_INFO={
   yangi:"Tanlangan davrda Bitrix’da yaratilgan lidlar (Bitrix lidlari bilan bir xil).",
-  uzat:"Davrda menejerga uzatilgan lidlar ÷ davrda kelgan yangi lidlar.",
+  uzat:"Davrda menejerga uzatilgan lidlar / davrda kelgan yangi lidlar — ikkalasi ham aniq son.",
   jav:"Ochiq, 24 soatdan oshgan va hali javob berilgan chiquvchi qo‘ng‘iroq yo‘q lidlar (oxirgi 30 kun). Hozirgi holat.",
   sotuv:"Shu oyda yutilgan bitimlar summasi (so‘m). Reja — rahbar kiritgan oylik reja.",
   tolov:"«Shartnoma berildi» bosqichidagi ochiq bitimlar summasi (so‘m, 1 yildan eskilarisiz). Hozirgi holat.",
   ball:"Tanlangan davrda tahlil qilingan qo‘ng‘iroqlarning o‘rtacha bali (100 dan).",
-  voronka:"Oxirgi 30 kunda kelgan lidlar qaysi bosqichgacha yetgani. Foiz — oldingi bosqichdan o‘tganlar.",
+  voronka:"Oxirgi 30 kunda kelgan lidlar qaysi bosqichgacha yetgani. Har qatorda: shu bosqichga yetgan lidlar / oldingi bosqichdagilar.",
   qoida:"Pitaka sotuv skriptining qoidalari. Har bir o‘q — bitta qoida: AI tahlil qilgan qo‘ng‘iroqlarda shu qoida qanchalik bajarilgan. Markaz — 0%, chet — 100%. Shakl chetga qanchalik yaqin bo‘lsa, qoida shuncha yaxshi bajarilgan.",
   op:"Bugungi kunlik hisobot: uzatgani bo‘yicha, keyin ball bo‘yicha.",
 };
@@ -3496,7 +3598,7 @@ function v2mKpi(d){
   const sm=S?V2.mln(S.fakt):null, tm=T?V2.mln(T.summa):null;
   V2.qoy("#v2mK",[
     V2.kpi({l:"Yangi lidlar",n:L.yangi!=null?fmt(L.yangi):null,s:L.yangi!=null&&LO.yangi!=null?`${old} ${fmt(LO.yangi)} · ${V2.taq(L.yangi,LO.yangi,LO.yangi)}`:"",info:V2M_INFO.yangi,go:"lidlar"}),
-    V2.kpi({l:"Uzatish",n:L.uzatishPct!=null?`${String(L.uzatishPct).replace(".",",")}%`:null,s:L.uzatildi!=null?`${fmt(L.uzatildi)} lid${LO.uzatishPct!=null&&L.uzatishPct!=null?` · ${V2.farq(L.uzatishPct,LO.uzatishPct,{suf:" p.p."})}`:""}`:"",info:V2M_INFO.uzat,go:"voronka"}),
+    V2.kpi({l:"Uzatish",n:L.uzatildi!=null&&L.yangi!=null?nOf(L.uzatildi,L.yangi):null,s:L.uzatildi!=null?`uzatildi / kelgan lid${LO.uzatildi!=null&&LO.yangi!=null?` · ${old} ${nOf(LO.uzatildi,LO.yangi)}`:""}`:"",info:V2M_INFO.uzat,go:"voronka"}),
     V2.kpi({l:"Javobsiz >24 soat",n:J?fmt(J.soni):null,ton:J&&J.soni?"risk":J?"ok":"",s:J?(J.soni?`hozir${J.engEski?` · eng eskisi ${J.engEski} soat`:""}`:"hammasi vaqtida"):"",info:V2M_INFO.jav,go:"lidlar:javob"}),
     V2.kpi({l:"Sotuv · oy",n:sm?sm.v:null,u:sm?sm.u:"",s:S?(S.reja?`reja ${V2.mln(S.reja).v} ${V2.mln(S.reja).u} · ${String(S.rejaPct).replace(".",",")}%`:"reja kiritilmagan"):"",info:V2M_INFO.sotuv,go:"bitimlar"}),
     V2.kpi({l:"To‘lov kutilmoqda",n:tm?tm.v:null,u:tm?tm.u:"",s:T?`${fmt(T.soni)} bitim${T.kech?` · ${fmt(T.kech)} tasi 30+ kun`:""} · hozir`:"",info:V2M_INFO.tolov,go:"bitimlar"}),
@@ -3512,13 +3614,15 @@ function v2mVoronka(v){
   CH.draw($("#v2mFun"),c=>({...CH.base(c),
     grid:{left:6,right:92,top:4,bottom:4,containLabel:true},
     tooltip:{...CH.base(c).tooltip,trigger:"item",formatter:p=>{ const x=st[p.dataIndex];
-      return `<b>${esc(CH.t(x.nom))}</b><div>${fmt(x.soni||0)} lid</div>${p.dataIndex&&x.otish!=null?`<div>${esc(CH.t("oldingi bosqichdan"))} ${pc(x.otish)}</div>`:""}` }},
+      const pr=p.dataIndex?st[p.dataIndex-1].soni||0:null;
+      return `<b>${esc(CH.t(x.nom))}</b><div>${fmt(x.soni||0)} lid</div>${pr!=null?`<div>${esc(CH.t("oldingi bosqichdan"))} ${nOf(x.soni||0,pr)} (${pc(x.otish??0)})</div>`:""}` }},
     xAxis:{type:"value",show:false,max:Math.max(1,...st.map(x=>x.soni||0))},
     yAxis:{type:"category",inverse:true,data:st.map(x=>CH.t(x.nom)),axisLine:{show:false},axisTick:{show:false},axisLabel:{color:c.ink2,fontSize:12,fontWeight:600}},
     series:[{type:"bar",barWidth:"64%",barMinHeight:6,showBackground:true,backgroundStyle:{color:c.rule,borderRadius:9},
       data:st.map(x=>({value:x.soni||0,itemStyle:{borderRadius:9,color:x.engKatta?c.risk:new window.echarts.graphic.LinearGradient(0,0,1,0,[{offset:0,color:c.seq4||c.action},{offset:1,color:c.action}])}})),
       label:{show:true,position:"right",color:c.ink,fontWeight:700,fontSize:12.5,
-        formatter:p=>{ const x=st[p.dataIndex]; return `${fmt(x.soni||0)}${p.dataIndex&&x.otish!=null?`  {p|${pc(x.otish)}${x.engKatta?" ▼":""}}`:""}` },
+        formatter:p=>{ const x=st[p.dataIndex], pr=p.dataIndex?st[p.dataIndex-1].soni||0:null;
+          return `${fmt(x.soni||0)}${pr!=null?`  {p|/ ${fmt(pr)}${x.engKatta?" ▼":""}}`:""}` },
         rich:{p:{color:c.ink3,fontWeight:500,fontSize:11}}}}]}));
   const p=$("#v2mV .v2-ch p")||$("#v2mV .v2-ch>div").appendChild(document.createElement("p")); p.textContent=`${fmt(v.jami)} lid → ${fmt(v.yutildi)} to‘lov · eng katta yo‘qotish qizil`;
 }
@@ -3620,7 +3724,7 @@ function v2oKpi(d){
   V2.qoy("#v2oK",[
     V2.kpi({l:"Yangi lidlarim",n:L.yangi!=null?fmt(L.yangi):null,s:LO.yangi!=null?`kecha ${fmt(LO.yangi)} · ${V2.farq(L.yangi,LO.yangi)}`:"",info:V2O_INFO.yangi,go:"lidlar"}),
     V2.kpi({l:"Qo‘ng‘iroqsiz",n:L.qongiroqsiz!=null?fmt(L.qongiroqsiz):null,ton:L.qongiroqsiz?"risk":L.qongiroqsiz===0?"ok":"",s:L.qongiroqsiz?"darhol qo‘ng‘iroq qiling":"hammasiga qo‘ng‘iroq qilingan",info:V2O_INFO.qsiz}),
-    V2.kpi({l:"Uzatdim",n:L.uzatildi!=null?fmt(L.uzatildi):null,s:L7.uzatishPct!=null?`7 kun ${pc(L7.uzatishPct)}${JL7.uzatishPct!=null?` · jamoa ${pc(JL7.uzatishPct)}`:""}`:(JL7.uzatishPct!=null?`jamoa 7 kun ${pc(JL7.uzatishPct)}`:""),info:V2O_INFO.uzat}),
+    V2.kpi({l:"Uzatdim",n:L.uzatildi!=null?fmt(L.uzatildi):null,s:L7.yangi!=null?`7 kun ${nOf(L7.uzatildi,L7.yangi)}${JL7.uzatishPct!=null?` · jamoa ${pc(JL7.uzatishPct)}`:""}`:(JL7.uzatishPct!=null?`jamoa 7 kun ${pc(JL7.uzatishPct)}`:""),info:V2O_INFO.uzat}),
     V2.kpi({l:"Qo‘ng‘iroqlarim",n:Q?fmt(Q.jami):null,s:Q?`${fmt(Q.javobli)} javob · o‘rtacha ${V2.mmss(Q.ortachaSek)}`:"",info:V2O_INFO.qong,go:"qongiroq"}),
     V2.kpi({l:"Ballim",n:B.ortacha,ton:B.ortacha==null?"":B.ortacha>=70?"ok":B.ortacha<50?"risk":"",s:B.ortacha!=null?`jamoa ${JB.ortacha??"—"} · ${V2.farq(B.ortacha,JB.ortacha)}`:"30 kunda tahlil yo‘q",info:V2O_INFO.ball,go:"qongiroq"}),
   ].join(""));
@@ -3649,7 +3753,7 @@ function v2oMezon(m){
       <div class="v"><b>${r.op}%</b><br>jamoa ${r.jamoa??"—"}%</div></div>`).join(""):V2.bosh("30 kunda tahlil yo‘q",""));
 }
 function v2oTaqdir(t){
-  const p=(a,b)=>b?`${Math.round(a/b*100)}%`:"";
+  const p=(a,b)=>b?`${fmt(b)} dan`:"";
   V2.qoy("#v2oT .v2-cb",t.kelgan?`<div class="v2-steps"><b>${fmt(t.kelgan)}</b> lid <span class="ar">→</span> <b>${fmt(t.ishlangan)}</b> ishlandi <span class="pc">${p(t.ishlangan,t.kelgan)}</span>
       <span class="ar">→</span> <b>${fmt(t.uzatildi)}</b> uzatildi <span class="pc">${p(t.uzatildi,t.ishlangan)}</span> <span class="ar">→</span> <b style="color:var(--success-text,var(--success))">${fmt(t.yutildi)}</b> yutildi</div>
       ${t.sifatliUzatilmagan?`<div style="margin-top:10px;font-size:12.5px;color:var(--ink-2)">${fmt(t.sifatliUzatilmagan)} ta sifatli lid hali uzatilmagan → <button class="v2-lnk" style="margin:0" type="button" data-v2go="lidlar">ro‘yxat</button></div>`:""}`
@@ -3830,20 +3934,24 @@ function v2jChiz(){
    Bitta oynada: raqamlari (lid, uzatish, qo'ng'iroq, bitim), qoidalar radari (jamoa bilan), yutuqlari va
    qoidabuzarliklari (zaif qoidalar, tashlab ketilgan skript qadamlari, KVAL xatolari, eng past qo'ng'iroqlar). */
 async function openXodim(id){
+  id=String(id);
+  // «Qo‘ng‘iroqlar» bo'limidan ochilganda Jamoa ma'lumoti hali yuklanmagan bo'lishi mumkin
+  if(!V2J_D){ try{ V2J_D=await api("/api/v2/jamoa?"+rq()) }catch{} }
   const d=V2J_D||{}, op=(d.operatorlar||[]).find(x=>String(x.id)===id), mg=(d.menejerlar||[]).find(x=>String(x.id)===id);
   const ism=(op||mg)?.ism||`#${id}`;
-  drawer.classList.add("on"); scrim.classList.add("on");
+  drawer.classList.add("on"); scrim.classList.add("on"); drKey("x",id);
   $("#drTitle").textContent=ism; $("#drSub").textContent=`${RANGE.from} — ${RANGE.to} · Bitrix #${id}`;
   $("#drBody").innerHTML='<div class="sk sk-r" style="height:14px;margin-bottom:10px"></div>'.repeat(8);
   try{
     const q=rq(), e=encodeURIComponent(id);
-    const [N,K,T]=await Promise.all([api(`/api/nazorat/menejerlar?${q}&menejer=${e}`),api(`/api/nazorat/kval?${q}&menejer=${e}`),api(`/api/nazorat/menejerlar?${q}`)]);
+    const [N,K,T,RG]=await Promise.all([api(`/api/nazorat/menejerlar?${q}&menejer=${e}`),api(`/api/nazorat/kval?${q}&menejer=${e}`),api(`/api/nazorat/menejerlar?${q}`),
+      api(`/api/calls/registry?${q}&owner=${e}&limit=12`).catch(()=>null)]);
     const m=(N.managers||[]).find(x=>String(x.id)===id)||null, team=T.team||{}, crit=team.criteria||[];
     const st=(v,l,c="")=>`<div class="s${c?" "+c:""}"><b>${v}</b><span>${esc(l)}</span></div>`;
     const ops=d.operatorlar||[], tY=ops.reduce((a,x)=>a+x.yangi,0), tU=ops.reduce((a,x)=>a+x.uzatildi,0), tPct=tY?Math.round(tU*1000/tY)/10:null;
     const qong=op?.qongiroq??mg?.qongiroq??0, jav=op?.javobPct??mg?.javobPct??null, ball=m?.avgScore??op?.ball??mg?.ball??null;
     const kpi=`<div class="xd-k">
-      ${op?st(fmt(op.yangi),"lid oldi")+st(fmt(op.uzatildi),"bitimga uzatdi")+st(op.uzatishPct!=null?v2Pc(op.uzatishPct):"—","uzatish %"):""}
+      ${op?st(fmt(op.yangi),"lid oldi")+st(nOf(op.uzatildi,op.yangi),"bitimga uzatdi"):""}
       ${st(fmt(qong),"qo‘ng‘iroq")}${st(jav!=null?v2Pc(jav):"—","javob olgan")}
       ${mg?st(fmt(mg.yutildi),"yutgan bitim")+st(v2Sum(mg.yutSumma),"yutgan summa")+st(fmt(mg.ochiq),"ochiq bitim")+st(fmt(mg.qotgan),"qotgan bitim",mg.qotgan?"r":""):""}
       ${st(ball??"—","AI ball",ball==null?"":ball>=70?"g":ball<50?"r":"")}</div>`;
@@ -3864,9 +3972,24 @@ async function openXodim(id){
     const worst=(m?.worstCalls||[]).filter(x=>x.score!=null&&x.score<50).slice(0,5);
     const li=x=>`<div class="xd-li ${x.c}"><b>${esc(x.t)}</b>${x.s?`<div class="xd-s">${esc(x.s)}</div>`:""}${x.q?`<q>${esc(x.q)}</q>`:""}
       ${x.lead||x.call?`<div class="xd-a">${x.lead?`<button type="button" class="v2-lnk" data-xlead="${esc(x.lead)}">Lid →</button>`:""}${x.call?`<button type="button" class="v2-lnk" data-xcall="${esc(x.call)}">Qo‘ng‘iroq →</button>`:""}</div>`:""}</div>`;
+    // Har mezon: xodim / jamoa bajarilishi va nechta qo'ng'iroqda bajarilmagani — radar ostida aniq sonlar bilan
+    const mz=m&&crit.length?`<div class="xd-mz">${crit.map(t=>{ const c=(m.criteria||[]).find(y=>y.id===t.id), v=c?.avgPct??null, tone=v==null?"":v>=70?"g":v<50?"r":"w";
+      return `<div class="xd-mr"><span class="nm">${esc(CH.t(NZ_CR[t.id]||t.label))}</span>
+        <span class="bar"><i class="${tone}" style="width:${v??0}%"></i><em style="left:${t.avgPct??0}%" title="${esc(CH.t("jamoa"))} ${t.avgPct??"—"}%"></em></span>
+        <b class="${tone}">${v==null?"—":v+"%"}</b><span class="xd-s">${c&&c.of?`${fmt(c.of-c.failed)} / ${fmt(c.of)} ${CH.t("bajarildi")}`:""}</span></div>` }).join("")}</div>`:"";
+    // Oxirgi qo'ng'iroqlari — reyestrdan (rahbar: ?owner=ID), bosilsa qo'ng'iroq kartasi
+    const RR=RG?.rows||[], tm=a=>Number.isFinite(Date.parse(a))?new Date(Date.parse(a)+5*3600e3).toISOString().slice(5,16).replace("T"," "):"—";
+    const callsH=RG?`<div class="xd-sec">Oxirgi qo‘ng‘iroqlari<span class="n xd-s">${CH.t("jami")}: ${fmt(RG.total||0)}</span></div>
+      ${RR.length?`<div class="xd-calls">${RR.map(r=>{ const sc=r.analysis?.score, tone=sc==null?"n":sc>=70?"ok":sc<50?"risk":"warn";
+        return `<button type="button" class="xd-call" data-xcall="${esc(r.id)}"><span class="t">${tm(r.at)}</span>
+          <span class="d ${r.missed?"r":""}">${r.missed?"javobsiz":r.out?"chiquvchi":"kiruvchi"} · ${r.dur?V2.mmss(r.dur):"0:00"}</span>
+          <span class="who">${esc(r.entity?.title||r.phone||"—")}</span>
+          <span class="v2-chip ${tone}">${sc!=null?sc:r.statusLabel?esc(r.statusLabel):"—"}</span></button>` }).join("")}</div>`
+        :V2.bosh("Bu davrda qo‘ng‘irog‘i yo‘q","")}`:"";
     $("#drBody").innerHTML=`${kpi}
       <div class="xd-sec">Qoidalarga rioya<span class="n xd-s">${CH.t("tahlil")}: ${fmt(m?.calls||0)}</span></div>
-      ${m&&crit.length?`<div class="ch-box" id="xdRadar" style="height:320px"></div>`:V2.bosh("Bu davrda tahlil qilingan qo‘ng‘irog‘i yo‘q","Agent yangi qo‘ng‘iroqlarni tahlil qilgach, shu yerda chiqadi.")}
+      ${m&&crit.length?`<div class="ch-box" id="xdRadar" style="height:320px"></div>${mz}`:V2.bosh("Bu davrda tahlil qilingan qo‘ng‘irog‘i yo‘q","Agent yangi qo‘ng‘iroqlarni tahlil qilgach, shu yerda chiqadi.")}
+      ${callsH}
       <div class="xd-sec">Yutuqlari<span class="n v2-chip ok">${plus.length}</span></div>
       ${plus.length?plus.map(t=>li({t,c:"g"})).join(""):V2.bosh("Hozircha alohida yutuq yo‘q","")}
       <div class="xd-sec">Qoidabuzarliklari<span class="n v2-chip ${minus.length?"risk":"ok"}">${minus.length}</span></div>
@@ -4012,6 +4135,7 @@ function wireCallTabs(){
     for(const t of ["ov","ai","mb"]) $("#tab-"+t).hidden = t!==b.dataset.t;
     if(b.dataset.t==="ov"&&CALLS) drawCalls();   // yashirin paytda chizilmagan bo'lishi mumkin
     if(b.dataset.t==="mb") mbLoad().catch(e=>toast(e.message)); else mbStop();
+    urlSync();
   });
   const bind=(id,key)=>{const e=$(id); if(e) e.onchange=()=>{RF[key]=e.value;RF.offset=0;loadRegistry().catch(x=>toast(x.message))}};
   bind("#fq","q");bind("#fdir","dir");bind("#fowner","owner");bind("#frisk","risk");
@@ -4075,7 +4199,7 @@ async function loadRegistry(){
 /* ---------- §4 + §11: tahlil oynasi ---------- */
 async function openCall(id){
   CALLID=id; CD=null;
-  $("#callDr").classList.add("on"); scrim.classList.add("on");
+  $("#callDr").classList.add("on"); scrim.classList.add("on"); UQ.call=String(id); urlSync();
   $("#cdTitle").textContent="Yuklanmoqda…"; $("#cdSub").textContent="";
   $("#cdBody").innerHTML='<div class="sk sk-r" style="height:14px;margin-bottom:10px"></div>'.repeat(8);
   try{
@@ -4643,13 +4767,43 @@ function ovWire(v){
   ovShow(v,OVTAB[v]||"ov");
 }
 function ovShow(v,p){
-  OVTAB[v]=p; const bar=$(`.ovtabs[data-ov="${v}"]`); if(!bar) return;
+  OVTAB[v]=p; urlSync(); const bar=$(`.ovtabs[data-ov="${v}"]`); if(!bar) return;
   bar.querySelectorAll("button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.p===p)));
   const ov=$("#ov-"+v); if(ov) ov.hidden=p!=="ov";
   $$(`[id^="ovp-${v}-"]`).forEach(e=>e.hidden=e.id!==`ovp-${v}-${p}`);
+  if(v==="bitimlar"&&p==="tovar") viewTovarlar().catch(e=>{ if(!e||!e.bekor){ const b=$("#ovp-bitimlar-tovar"); if(b) b.innerHTML=V2.xato(e) } });
   if(v==="lidlar"&&p==="javob") viewJavobTezligi().catch(e=>{if(!e||!e.bekor)toast(e.message)});
   if(v==="tizim"&&p==="lugat"){ const b=$("#dAdd"); if(b&&!b.dataset.w){ b.dataset.w="1"; b.onclick=addTerm } loadDict().catch(e=>{if(!e||!e.bekor)toast(e.message)}) }
   else if(v==="tizim") (p==="audit"?viewAudit():viewQoriqchi()).catch(e=>{if(!e||!e.bekor)toast(e.message)});
+}
+/* Tovarlar (2026-11-12): davrda yutilgan bitimlardagi tovarlar — nechta dona, qancha summa, kim sotgan, qaysi yo'nalishda.
+   «Nega sotilyapti» degan savolga CRM javob bermaydi: bu yerda faqat faktlar. Tovar qatori yo'q bitimlar soni alohida aytiladi. */
+let TV=null, TV_Q="";
+async function viewTovarlar(){
+  const box=$("#ovp-bitimlar-tovar"); if(!box) return;
+  box.innerHTML=`<div class="v2"><div class="v2-k" style="--n:4">${Array.from({length:4},()=>V2.sk(92)).join("")}</div>${V2.sk(320)}</div>`;
+  TV=await api("/api/tovarlar?"+rq()); tvChiz();
+}
+function tvChiz(){
+  const box=$("#ovp-bitimlar-tovar"), d=TV; if(!box||!d) return;
+  const J=d.jami, S=V2.mln(J.summa);
+  const L=TV_Q?d.tovarlar.filter(t=>t.qurilma===TV_Q):d.tovarlar, mx=Math.max(1,...L.map(t=>t.soni));
+  const kpi=[V2.kpi({l:"Sotilgan tovar",n:fmt(J.dona),u:"dona",s:`${fmt(J.tur)} xil tovar`}),
+    V2.kpi({l:"Tovarlar summasi",n:S.v,u:S.u,s:"tovar qatorlari bo‘yicha"}),
+    V2.kpi({l:"Yutilgan bitim",n:fmt(J.bitim),s:`${fmt(J.qatorli)} tasida tovar ko‘rsatilgan`}),
+    V2.kpi({l:"Tovarsiz bitim",n:fmt(J.qatorsiz),ton:J.qatorsiz?"risk":"ok",s:J.qatorsiz?"CRM’da tovar qatori kiritilmagan":"hammasida tovar bor"})].join("");
+  const chips=`<span class="kn-seg"><button type="button" class="ov-btn${!TV_Q?" p":""}" data-tvq="">Hammasi ${fmt(J.dona)}</button>${d.qurilmalar.slice(0,10).map(q=>`<button type="button" class="ov-btn${TV_Q===q.nom?" p":""}" data-tvq="${esc(q.nom)}">${esc(q.nom)} ${fmt(q.soni)}</button>`).join("")}</span>`;
+  const kim=a=>a.map(k=>`${esc(k.n)} <b>${fmt(k.c)}</b>`).join(" · ");
+  const t=L.length?`<div class="tw"><table class="ov-t tv-t"><thead><tr><th class="gut">#</th><th>Tovar</th><th class="r">Dona</th><th class="r">Summa</th><th class="r">Bitim</th><th>Kim sotgan</th><th>Qayerda</th></tr></thead><tbody>${L.map((x,i)=>`<tr>
+      <td class="gut">${i+1}</td><td class="tv-n"><b>${esc(x.nom)}</b><div class="idc">${esc(x.qurilma)}</div><div class="tv-b"><i style="width:${(x.soni*100/mx).toFixed(1)}%"></i></div></td>
+      <td class="r"><b>${fmt(x.soni)}</b></td><td class="r">${V2.mln(x.summa).v} ${V2.mln(x.summa).u}</td><td class="r">${fmt(x.bitim)}</td>
+      <td class="tv-k">${kim(x.kim)}</td><td class="tv-k">${kim(x.qayer)}</td></tr>`).join("")}</tbody></table></div>`
+    :`<div style="padding:14px">${empty("Bu davrda sotilgan tovar yo‘q","Yutilgan bitimlarda tovar qatori topilmadi.")}</div>`;
+  box.innerHTML=`<div class="v2"><div class="v2-k" style="--n:4">${kpi}</div>
+    ${ovC("Eng ko‘p sotilgan tovarlar",`${esc(d.range?.label||"")} · yutilgan bitimlar bo‘yicha · eng ko‘p sotilgani birinchi`,`<div class="vf-subbar">${chips}</div>${t}
+      <div style="padding:0 14px 14px">${ovNote(`Sonlar — Bitrix’dagi yutilgan bitimlarning tovar qatorlaridan. «Nega aynan shu tovar» degan savolga CRM javob bermaydi: bu yerda faqat qayerda va kim orqali sotilgani ko‘rinadi.${J.qatorsiz?` ${fmt(J.qatorsiz)} ta bitimda tovar kiritilmagan — ular bu ro‘yxatga kirmagan.`:""}`)}</div>`)}</div>`;
+  $$("#ovp-bitimlar-tovar [data-tvq]").forEach(b=>b.onclick=()=>{ TV_Q=b.dataset.tvq; tvChiz() });
+  cardifyTables();
 }
 const ovTabLabel=(id,txt)=>{const b=$("#"+id); if(b) b.textContent=txt};
 function ovJumps(root){
@@ -4693,8 +4847,8 @@ function v2lKpi(d){
   const L=d.lid||{}, LO=d.lidOldin||{}, S=d.sifat||{}, SO=d.sifatOldin||{}, J=d.javobsiz, old=v2Oldin();
   V2.qoy("#v2lK",[
     V2.kpi({l:"Yangi lidlar",n:L.yangi!=null?fmt(L.yangi):null,s:LO.yangi!=null?`${old} ${fmt(LO.yangi)} · ${V2.taq(L.yangi,LO.yangi,LO.yangi)}`:"",info:V2L_INFO.yangi,go:"lidlar:list"}),
-    V2.kpi({l:"Sifatli",n:S.sifatliPct!=null?v2Pc(S.sifatliPct):null,ton:S.sifatliPct!=null&&S.sifatliPct<50?"risk":"",s:S.jami!=null?`${fmt(S.yaroqsiz)} yaroqsiz${SO.sifatliPct!=null&&S.sifatliPct!=null?` · ${V2.taq(S.sifatliPct,SO.sifatliPct,SO.jami,{suf:" p.p."})}`:""}`:"",info:V2L_INFO.sifat}),
-    V2.kpi({l:"Uzatish",n:L.uzatishPct!=null?v2Pc(L.uzatishPct):null,s:L.uzatildi!=null?`${fmt(L.uzatildi)} lid${LO.uzatishPct!=null&&L.uzatishPct!=null?` · ${V2.farq(L.uzatishPct,LO.uzatishPct,{suf:" p.p."})}`:""}`:"",info:V2L_INFO.uzat,go:IS_LEADER?"voronka":""}),
+    V2.kpi({l:"Sifatli",n:S.jami!=null?nOf(S.sifatli,S.jami):null,ton:S.sifatliPct!=null&&S.sifatliPct<50?"risk":"",s:S.jami!=null?`${fmt(S.yaroqsiz)} yaroqsiz${SO.sifatliPct!=null&&S.sifatliPct!=null?` · ${V2.taq(S.sifatliPct,SO.sifatliPct,SO.jami,{suf:" p.p."})}`:""}`:"",info:V2L_INFO.sifat}),
+    V2.kpi({l:"Uzatish",n:L.uzatildi!=null&&L.yangi!=null?nOf(L.uzatildi,L.yangi):null,s:L.uzatildi!=null?`uzatildi / kelgan lid${LO.uzatildi!=null&&LO.yangi!=null?` · ${old} ${nOf(LO.uzatildi,LO.yangi)}`:""}`:"",info:V2L_INFO.uzat,go:IS_LEADER?"voronka":""}),
     V2.kpi({l:"Javobsiz >24 soat",n:J?fmt(J.soni):null,ton:J&&J.soni?"risk":J?"ok":"",s:J?(J.soni?`hozir${J.engEski?` · eng eskisi ${J.engEski} soat`:""}`:"hammasi vaqtida"):"",info:V2L_INFO.jav,go:"lidlar:javob"}),
   ].join(""));
 }
@@ -4814,7 +4968,7 @@ function v2qOperator(c,q){
     .filter(r=>r.jami||r.tahlil).sort((x,y)=>(y.ball??-1)-(x.ball??-1)||y.jami-x.jami);
   const bc=b=>b==null?"n":b>=70?"ok":b<50?"risk":"warn";
   V2.qoy("#v2qO .v2-cb",rows.length?`<div class="tw"><table class="ov-t v2-qt"><thead><tr><th class="nm">Operator</th><th>Qo‘ng‘iroq</th><th>Javobsiz</th><th>O‘rt. suhbat</th><th>Tahlil</th><th>Ball</th><th>Kritik</th></tr></thead><tbody>${
-    rows.map(r=>`<tr><td class="nm"><b>${esc(r.ism)}</b>${r.jami&&r.jami<20?` <span class="chip n" title="20 tadan kam qo‘ng‘iroq — foiz ishonchsiz">kam</span>`:""}</td>
+    rows.map(r=>`<tr class="clickable" role="button" tabindex="0" data-jx="${esc(r.id)}" title="${esc(r.ism)} — qo‘ng‘iroqlari, xatolari va mezonlar"><td class="nm"><b>${esc(r.ism)}</b>${r.jami&&r.jami<20?` <span class="chip n" title="20 tadan kam qo‘ng‘iroq — foiz ishonchsiz">kam</span>`:""}</td>
       <td>${fmt(r.jami)}</td><td>${r.jav!=null&&r.jami?`<span class="${r.jav>=25?"v2-dn":""}">${v2Pc(r.jav)}</span>`:"—"}</td><td>${r.ort?V2.mmss(r.ort):"—"}</td>
       <td>${fmt(r.tahlil)}</td><td><span class="v2-chip ${bc(r.ball)}">${r.ball??"—"}</span></td><td>${r.kritik?`<span class="v2-chip risk">${fmt(r.kritik)}</span>`:"0"}</td></tr>`).join("")}</tbody></table></div>`
     :V2.bosh("Davrda qo‘ng‘iroq yo‘q",""));
@@ -4953,7 +5107,7 @@ let VR_TAB="qt";
 // faqat foizga qaralsa, 12 ta lidli bosqichdagi 17% 422 ta lid to'xtagan joydan «yomonroq» chiqib qolardi.
 function vrLeak(B){ let w=null;
   for(let i=1;i<B.length;i++){ const p=B[i-1]; if(p.yetdi<10) continue; const lost=p.yetdi-B[i].yetdi, sc=lost*(1-(B[i].otish??0)/100);
-    if(lost>0&&(!w||sc>w.sc)) w={i,sc,lost,o:B[i].otish,from:p.nom,to:B[i].nom} }
+    if(lost>0&&(!w||sc>w.sc)) w={i,sc,lost,o:B[i].otish,otdi:B[i].yetdi,edi:p.yetdi,from:p.nom,to:B[i].nom} }
   return w }
 function vrXulosa(r){
   const B=r.bosqichlar, lk=vrLeak(B);
@@ -4962,10 +5116,10 @@ function vrXulosa(r){
   const top=[...cnt.entries()].sort((a,b)=>b[1]-a[1])[0];
   const card=(tone,t,v,sub,attr)=>`<button type="button" class="vf-in ${tone}" ${attr||"disabled"}><span class="vf-it">${t}</span><b title="${esc(v.replace(/<[^>]+>/g,""))}">${v}</b><span class="vf-is">${sub}</span></button>`;
   return `<div class="vf-ins">${[
-    lk?card("r","Eng katta yo‘qotish",`${esc(lk.from)} → ${esc(lk.to)}`,`faqat ${vrPct(lk.o)} o‘tdi · ${fmt(lk.lost)} ta lid to‘xtadi`,`data-vfb="${lk.i}"`):"",
+    lk?card("r","Eng katta yo‘qotish",`${esc(lk.from)} → ${esc(lk.to)}`,`${nOf(lk.otdi,lk.edi)} o‘tdi · ${fmt(lk.lost)} ta lid to‘xtadi`,`data-vfb="${lk.i}"`):"",
     st?card("w","Eng ko‘p qotgan joy",esc(st.nom),`${fmt(st.q)} ta lid ${st.norma} kundan uzoq turibdi`,`data-vfb="${st.i}"`)
       :card("g","Qotib qolgan lid yo‘q","Oqim bir tekis","normadan uzoq turgan ochiq lid topilmadi",""),
-    top?card("n","Asosiy yo‘qotish sababi",`«${esc(top[0])}»`,`${fmt(top[1])} ta · yo‘qotilganlarning ${vrPct(Math.round(top[1]/Y.length*1000)/10)}i${r.kpi.sababsiz?` · ${fmt(r.kpi.sababsiz)} tasi sababsiz`:""}`,`data-vfs="${esc(top[0])}"`):"",
+    top?card("n","Asosiy yo‘qotish sababi",`«${esc(top[0])}»`,`${nOf(top[1],Y.length)} yo‘qotilgan lid${r.kpi.sababsiz?` · ${fmt(r.kpi.sababsiz)} tasi sababsiz`:""}`,`data-vfs="${esc(top[0])}"`):"",
   ].join("")}</div>`;
 }
 function vrOqim(r){
@@ -4974,13 +5128,14 @@ function vrOqim(r){
   // Pitaka bosqichlari: 0 Yangi lid · 1 Bog'lanildi · 2 Kvalifikatsiya · 3 Bitim ochildi · 4 Ma'lumot · 5 Hisob · 6 To'lov
   const tez={1:v.javobSoat!=null?`${String(v.javobSoat).replace(".",",")} soat`:null,3:kn(v.uzatishKun),6:kn(v.yopishKun)};
   const tezT={1:"lid kelgandan birinchi suhbatgacha (median)",3:"lid kelgandan bitim ochilgunicha (median)",6:"bitimdan to‘lovgacha (median)"};
-  return `<div class="vf" style="--n:${B.length}">${B.map((b,i)=>{ const lek=lk&&lk.i===i;
-      return `<button type="button" class="vf-col" data-vfb="${i}" aria-label="${esc(b.nom)}: ${fmt(b.yetdi)} ta — bosqich kartasi">
-        <span class="vf-n">${fmt(b.yetdi)}</span><span class="vf-p">${vrPct(b.ulush)}</span>
-        <span class="vf-bar"><i class="${i>=6?"g":""}" style="--h:${Math.max(3,b.yetdi*100/n0).toFixed(1)}%"></i></span>
-        <span class="vf-nm">${esc(b.nom)}</span>
-        <span class="vf-tags">${i?`<em class="vf-m${lek?" r":""}">↓ ${vrPct(b.otish)}</em>`:""}${tez[i]?`<em title="${tezT[i]}">⏱ ${tez[i]}</em>`:""}${b.hozir?`<em title="Hozir shu bosqichda · o‘rtacha ${vrKun(b.ortacha)}">${fmt(b.hozir)} hozir</em>`:""}${b.qotgan?`<em class="r" title="Normadan (${b.norma} kun) uzoq turibdi">${fmt(b.qotgan)} qotgan</em>`:""}${b.key==="kval"&&ai.jami&&ai.baholangan<ai.jami*0.8?`<em title="AI hali hamma lidni baholamagan — bu bosqich to‘liq emas">AI ${fmt(ai.baholangan)}/${fmt(ai.jami)}</em>`:""}</span>
-        ${i?`<span class="vf-cv${lek?" r":""}" title="${esc(B[i-1].nom)} → ${esc(b.nom)}: ${fmt(B[i-1].yetdi)} dan ${fmt(b.yetdi)} tasi o‘tdi">${vrPct(b.otish)}</span>`:""}
+  const head=`<div class="vf-head" aria-hidden="true"><span>Bosqich</span><span>Shu bosqichga yetgan lidlar</span><span>Soni</span><span>Oldingi bosqichdan</span><span>Hozir</span></div>`;
+  return `<div class="vf">${head}${B.map((b,i)=>{ const lek=lk&&lk.i===i, pr=i?B[i-1].yetdi:null, drop=i?pr-b.yetdi:0;
+      return `<button type="button" class="vf-row${lek?" lek":""}" data-vfb="${i}" aria-label="${esc(b.nom)}: ${fmt(b.yetdi)} ta — bosqich kartasi">
+        <span class="vf-nm"><i>${i+1}</i>${esc(b.nom)}</span>
+        <span class="vf-bar" title="Birinchi bosqichdan: ${nOf(b.yetdi,n0)} (${vrPct(b.ulush)})"><i class="${b.key==="tolov"?"g":""}" style="--w:${(b.yetdi*100/n0).toFixed(2)}%"></i></span>
+        <span class="vf-n">${fmt(b.yetdi)}</span>
+        <span class="vf-cv" title="${i?`${esc(B[i-1].nom)} → ${esc(b.nom)}: ${vrPct(b.otish)}`:""}">${i?`<span><b>${nOf(b.yetdi,pr)}</b> o‘tdi</span>${drop>0?`<span class="d">−${fmt(drop)} to‘xtadi</span>`:""}`:`<span>davrda kelgan lidlar</span>`}</span>
+        <span class="vf-tags">${tez[i]?`<em title="${tezT[i]}">⏱ ${tez[i]}</em>`:""}${b.hozir?`<em title="Hozir shu bosqichda · o‘rtacha ${vrKun(b.ortacha)}">${fmt(b.hozir)} hozir</em>`:""}${b.qotgan?`<em class="r" title="Normadan (${b.norma} kun) uzoq turibdi">${fmt(b.qotgan)} qotgan</em>`:""}${b.key==="kval"&&ai.jami&&ai.baholangan<ai.jami*0.8?`<em title="AI hali hamma lidni baholamagan — bu bosqich to‘liq emas">AI ${fmt(ai.baholangan)}/${fmt(ai.jami)}</em>`:""}</span>
       </button>` }).join("")}</div>`;
 }
 function vrDraw(){
@@ -4989,22 +5144,44 @@ function vrDraw(){
   const fbar=`<div class="kn-bar"><div class="kn-date">${VR_FL.map(([key,lab])=>`<select class="vr-sel" data-vf="${key}" aria-label="${lab}"><option value="">${lab}: hammasi</option>${(r.tanlov[key]||[]).slice(0,60).map(o=>`<option value="${esc(o.v)}"${VR_F[key]===o.v?" selected":""}>${esc(o.v)} (${fmt(o.n)})</option>`).join("")}</select>`).join("")}
       ${Object.values(VR_F).some(Boolean)?`<button class="ov-btn" type="button" id="vrClear">Filtrni tozalash</button>`:""}</div>
     <div class="kn-act">${IS_LEADER?`<button class="ov-btn" type="button" id="vrSetBtn">Sozlamalar</button>`:""}</div></div>`;
-  const sum=`<div class="vf-sum"><span><b>${fmt(k.tushgan)}</b> yangi lid → <b>${fmt(k.tolov)}</b> to‘lov</span><span>to‘lovgacha <b>${vrPct(k.umumiy)}</b></span><span>bitimga <b>${vrPct(k.uzatildiUlush)}</b></span><span>yo‘qotilgan <b>${fmt(k.yoqotilgan)}</b> (${vrPct(k.yoqotilganUlush)})</span>${k.nekval!=null?`<span>NE KVAL <b>${fmt(k.nekval)}</b> (${vrPct(k.nekvalUlush)})</span>`:""}${k.boglanilmagan!=null?`<span class="${k.boglanilmagan?"r":""}">bog‘lanilmagan <b>${fmt(k.boglanilmagan)}</b></span>`:""}<span>ochiq <b>${fmt(k.ochiq)}</b></span></div>`;
+  const sum=`<div class="vf-sum"><span><b>${fmt(k.tushgan)}</b> yangi lid → <b>${fmt(k.tolov)}</b> to‘lov</span><span>bitim ochildi <b>${fmt(k.uzatildi)}</b></span><span>yo‘qotilgan <b>${fmt(k.yoqotilgan)}</b></span>${k.nekval!=null?`<span>shundan NE KVAL <b>${fmt(k.nekval)}</b></span>`:""}${k.boglanilmagan!=null?`<span class="${k.boglanilmagan?"r":""}">bog‘lanilmagan <b>${fmt(k.boglanilmagan)}</b></span>`:""}<span>ochiq <b>${fmt(k.ochiq)}</b></span></div>`;
   const tabs=[["qt",`Qotib qolgan lidlar · ${fmt(r.qotganJami||0)}`],["yq",`Yo‘qotish sabablari · ${fmt((r.yoqotilgan||[]).length)}`],["xn","Xatolar narxi"],["qa","Qayta ishlash"]];
   body.innerHTML=`${fbar}${vrXulosa(r)}
-    ${ovC(`Voronka oqimi${V2.info(VR_INFO)}`,`${esc(r.range?.label||"")} · shu davrda kelgan ${fmt(r.soni)} lid · ustunni bosing — bosqich tafsiloti`,vrOqim(r)+sum)}
+    ${ovC(`Voronka oqimi${V2.info(VR_INFO)}`,`${esc(r.range?.label||"")} · shu davrda kelgan ${fmt(r.soni)} lid · qatorni bosing — bosqich tafsiloti`,vrOqim(r)+sum)}
+    <div id="vr-oy">${VR_OY?vrOylarHTML(VR_OY):ovC("Oylar bo‘yicha","Bitrix'dan o‘qilmoqda…",`<div style="padding:14px"><div class="sk" style="height:160px;width:100%;border-radius:8px"></div></div>`)}</div>
     <div class="vf-tabs"><span class="kn-seg">${tabs.map(([key,l])=>`<button type="button" class="ov-btn${VR_TAB===key?" p":""}" data-vtab="${key}">${l}</button>`).join("")}</span></div>
     <div id="vr-qt"${VR_TAB!=="qt"?" hidden":""}>${vrQotgan(r)}</div><div id="vr-yq"${VR_TAB!=="yq"?" hidden":""}>${vrYoqot(r)}</div><div id="vr-xn"${VR_TAB!=="xn"?" hidden":""}>${vrXato(r)}</div><div id="vr-qa"${VR_TAB!=="qa"?" hidden":""}></div>`;
-  $$("[data-vf]").forEach(s=>s.onchange=()=>{VR_F[s.dataset.vf]=s.value;vrLoad().catch(e=>toast(e.message))});
-  const cl=$("#vrClear"); if(cl) cl.onclick=()=>{VR_F={};vrLoad().catch(e=>toast(e.message))};
+  $$("[data-vf]").forEach(s=>s.onchange=()=>{VR_F[s.dataset.vf]=s.value;urlSync();vrLoad().catch(e=>toast(e.message))});
+  const cl=$("#vrClear"); if(cl) cl.onclick=()=>{VR_F={};urlSync();vrLoad().catch(e=>toast(e.message))};
   const sb=$("#vrSetBtn"); if(sb) sb.onclick=()=>vrSet().catch(e=>toast(e.message));
   $$("#vr-body [data-vfb]").forEach(b=>b.onclick=()=>vrBosqich(Number(b.dataset.vfb)));
   $$("#vr-body .vf-in[data-vfs]").forEach(b=>b.onclick=()=>vrSababDr(b.dataset.vfs));
-  $$("[data-vtab]").forEach(b=>b.onclick=()=>{ VR_TAB=b.dataset.vtab; $$("[data-vtab]").forEach(x=>x.classList.toggle("p",x===b));
+  $$("[data-vtab]").forEach(b=>b.onclick=()=>{ VR_TAB=b.dataset.vtab; urlSync(); $$("[data-vtab]").forEach(x=>x.classList.toggle("p",x===b));
     for(const key of ["qt","yq","xn","qa"]){ const el=$("#vr-"+key); if(el) el.hidden=key!==VR_TAB } });
   $$("#vr-xn [data-xnm]").forEach(b=>b.onclick=()=>vrXatoDr(b.dataset.xnm));
   vrWire();
   vrQayta().catch(e=>{const q=$("#vr-qa");if(q)q.innerHTML=ovNote(`Qayta ishlash ro‘yxati olinmadi: ${esc(e.message)}`)});
+  if(!VR_OY) vrOylar().catch(e=>{const o=$("#vr-oy");if(o)o.innerHTML=ovC("Oylar bo‘yicha","",`<div style="padding:14px">${ovNote(`Oylik hisob olinmadi: ${esc(e.message)}`)}</div>`)});
+}
+/* Oylar bo'yicha (2026-11-12, egasi: «oyda 1000 lid keldi, 300 tasi sotib oldi — aniq son, foiz emas»).
+   Har oy: shu oyda kelgan lidlar va ulardan bugungacha qanchasi kvalifikatsiya / bitim / to'lovga yetgani (lib/voronka.mjs → oylar).
+   Davr va filtrlardan mustaqil — 6 kalendar oy, joriy oy bugungacha. */
+let VR_OY=null;
+async function vrOylar(){
+  const d=await api("/api/voronka/oylar?n=6");
+  VR_OY=d; const o=$("#vr-oy"); if(o) o.innerHTML=vrOylarHTML(d);
+}
+function vrOylarHTML(d){
+  const R=[...(d.oylar||[])].reverse(), J=d.jami||{};
+  const c=(a,b,cls="")=>`<td class="r${cls}" title="${nOfT(a,b)}"><b>${fmt(a)}</b></td>`;
+  const row=(nom,x,cls="")=>`<tr${cls}><td><b>${esc(nom)}</b></td><td class="r"><b>${fmt(x.lidlar)}</b></td>${c(x.kval,x.lidlar)}${c(x.bitim,x.lidlar)}
+    <td class="r" title="${nOfT(x.tolov,x.lidlar)}"><b style="color:var(--success-text,var(--success))">${fmt(x.tolov)}</b></td>${c(x.yoqotilgan,x.lidlar)}<td class="r">${fmt(x.ochiq)}</td></tr>`;
+  const t=`<div class="tw"><table class="ov-t"><thead><tr><th>Oy</th><th class="r">Lid keldi</th><th class="r">Kvalifikatsiya</th><th class="r">Bitim ochildi</th><th class="r">Sotib oldi (to‘lov)</th><th class="r">Yo‘qotildi</th><th class="r">Hali ochiq</th></tr></thead>
+    <tbody>${R.map(x=>row(x.joriy?`${x.nom} (bugungacha)`:x.nom,x)).join("")}${row("Jami 6 oy",J,' style="border-top:2px solid var(--rule)"')}</tbody></table></div>`;
+  const top=R[1]||R[0];
+  return ovC("Oylar bo‘yicha: nechta lid keldi, nechtasi sotib oldi",
+    top?`Masalan, ${esc(top.nom)}: <b>${fmt(top.lidlar)}</b> lid keldi → <b>${fmt(top.tolov)}</b> tasi sotib oldi · sonlar Bitrix'dan, sichqonchani ustiga olib boring — foiz`:"",
+    `${t}<div style="padding:0 14px 14px">${ovNote(`Lid qaysi oyda kelgan bo‘lsa, o‘sha oyga yoziladi — keyin sotib olgan bo‘lsa ham. Shuning uchun yaqin oylarda «hali ochiq» ko‘p, sotuv soni keyin o‘sadi. Lidsiz (to‘g‘ridan-to‘g‘ri ochilgan) bitimlar bu jadvalga kirmaydi.${d.toliq===false?` <b>Diqqat:</b> Bitrix ${fmt(d.total)} ta lid qaytardi, hammasi o‘qilmadi.`:""}`)}</div>`);
 }
 /* Xatolar narxi (2026-09-30): qaysi qo'ng'iroq xatosi yo'qotilgan lidlarda ko'proq uchraydi. Har mezon: yo'qotilganlarda va
    uzatilganlarda xato ulushi, farq (p.p.), shu xato bo'lgan yo'qotilgan mijozlar soni (bosilsa ro'yxat). Bu bog'liqlik, sabab emas. */
@@ -5026,7 +5203,7 @@ function vrXato(r){
     `${kpi}<div class="xn-l">${M.map(row).join("")}</div>
      <div style="padding:0 14px 14px">${ovNote(`Xato — mezon bo‘yicha ${x.chegara}% dan past ball (lidning barcha tahlil qilingan qo‘ng‘iroqlari o‘rtachasi). Bu <b>bog‘liqlik</b>, sabab emas: qarorni qo‘ng‘iroqni tinglab, dalil bilan qiling.${x.nOk<30?` Uzatilgan lidlar soni kam (${fmt(x.nOk)}) — farqlar taxminiy.`:""}`)}</div>`);
 }
-function vrXatoDr(id){
+function vrXatoDr(id){ drKey(null);
   const m=(VR?.xato?.mezon||[]).find(x=>x.id===id); if(!m) return;
   const Y=new Map((VR.yoqotilgan||[]).map(y=>[String(y.id),y]));
   drawer.classList.remove("wide"); drawer.classList.add("on");scrim.classList.add("on");
@@ -5039,13 +5216,13 @@ function vrXatoDr(id){
     el.onclick=e=>{ e.stopPropagation(); go() }; el.onkeydown=e=>{ if(e.key==="Enter"||e.key===" "){ e.preventDefault(); go() } } });
 }
 /* Bosqich kartasi — keng oyna: shu bosqichdan o'tish, hozir turganlar qancha kutyapti (taqsimot, norma), sabablar, qotganlar */
-function vrBosqich(i){
+function vrBosqich(i){ drKey(null);
   const r=VR, B=r?.bosqichlar||[], b=B[i]; if(!b) return;
   drawer.classList.add("on","wide");scrim.classList.add("on");
   $("#drTitle").textContent=`${i+1}. ${b.nom}`;
   $("#drSub").textContent=[r.range?.label, b.qoida, b.odoo?.length?`Bitrix bosqichlari: ${b.odoo.join(", ")}`:""].filter(Boolean).join(" · ");
   const nx=B[i+1], tile=(v,t,c)=>`<div class="km-k${c?" "+c:""}"><b>${v}</b><span>${t}</span></div>`;
-  const kpi=`<div class="km-kpi vb-k">${tile(fmt(b.yetdi),`yetdi · yangi lidning ${vrPct(b.ulush)}i`)}${tile(nx?vrPct(nx.otish):"—",nx?`keyingisiga o‘tdi`:"oxirgi bosqich",nx&&nx.otish!=null&&nx.otish<30?"r":"")}${tile(fmt(b.hozir),`hozir shu yerda · o‘rt. ${vrKun(b.ortacha)}`)}${tile(fmt(b.qotgan),`qotgan · norma ${b.norma} kun`,b.qotgan?"r":"")}${tile(fmt(b.yoqotildi),"shu yerda yo‘qoldi",b.yoqotildi?"r":"")}</div>`;
+  const kpi=`<div class="km-kpi vb-k">${tile(i?nOf(b.yetdi,B[0].yetdi):fmt(b.yetdi),i?"yetdi · kelgan lidlardan":"lid keldi")}${tile(nx?nOf(nx.yetdi,b.yetdi):"—",nx?`keyingi bosqichga o‘tdi`:"oxirgi bosqich",nx&&nx.otish!=null&&nx.otish<30?"r":"")}${tile(fmt(b.hozir),`hozir shu yerda · o‘rt. ${vrKun(b.ortacha)}`)}${tile(fmt(b.qotgan),`qotgan · norma ${b.norma} kun`,b.qotgan?"r":"")}${tile(fmt(b.yoqotildi),"shu yerda yo‘qoldi",b.yoqotildi?"r":"")}</div>`;
   const K=b.kutish||[], lab=["<1 kun","1–3","3–7","7–14","14–30","30+"], lo=[0,1,3,7,14,30], hi=[1,3,7,14,30,1e9], mx=Math.max(1,...K);
   const ton=j=>lo[j]>=b.norma?" r":hi[j]>b.norma?" w":"";   // qizil — hammasi normadan oshgan, to'q sariq — norma shu oraliq ichida
   const hist=b.hozir&&K.length?`<div class="vb-h">${K.map((c,j)=>`<div class="vb-hc${ton(j)}" title="${lab[j]}: ${fmt(c)} ta"><em>${c?fmt(c):""}</em><i style="height:${c?Math.max(4,c*100/mx):0}%"></i><span>${lab[j]}</span></div>`).join("")}</div>
@@ -5101,7 +5278,7 @@ function vrYoqot(r){
   const sz=(r.kpi||{}).sababsiz;
   return ovC("Yo‘qotish sabablari",`${fmt(Y.length)} ta yo‘qotilgan lid · kesim: ${VR_DIMS.find(d=>d[0]===VR_DIM)?.[1]||""} · qatorni bosing — lidlar ro‘yxati${sz?` · <b style="color:var(--risk-text,var(--risk))">${fmt(sz)} tasi sababsiz</b>`:""}`,`<div class="vf-subbar">${seg}</div>${t}`);
 }
-function vrSababDr(sabab){
+function vrSababDr(sabab){ drKey(null);
   const Y=(VR?.yoqotilgan||[]).filter(y=>y.sabab===sabab);
   drawer.classList.remove("wide"); drawer.classList.add("on");scrim.classList.add("on");
   $("#drTitle").textContent=sabab; $("#drSub").textContent=`${fmt(Y.length)} ta yo‘qotilgan lid · ${VR?.range?.label||""}`;
@@ -5519,8 +5696,14 @@ async function boot(user){
   $$("#botnav button").forEach(b=>b.onclick=()=>b.dataset.v==="more"?setRailOpen(true):go(b.dataset.v));
   // Versiya yangilanishidan keyin foydalanuvchi turgan bo'limga qaytamiz (ko'rinadigan bo'lsa)
   let want=null; try{ want=sessionStorage.getItem("os-view"); sessionStorage.removeItem("os-view") }catch{}
+  const HQ=parseHash(); want=want||HQ.v;
   const wantBtn=want&&$(`.navbtn[data-v="${want}"]`);
-  loaded.clear(); go(wantBtn&&!wantBtn.hidden&&VIEW[want]?want:start);
+  const birinchi=wantBtn&&!wantBtn.hidden&&VIEW[want]?want:start;
+  // Manzildagi davr, tab va filtrlar — bo'lim yuklanishidan OLDIN qo'llanadi; ochiq oyna — keyin
+  const HS=birinchi===HQ.v?applyHashState(HQ.q,birinchi):null;
+  loaded.clear(); go(birinchi,{noPush:true});
+  if(HS){ if(birinchi==="qongiroq"&&HS.tab) setTimeout(()=>{ const b=$(`#callTab button[data-t="${HS.tab}"]`); if(b) b.click() },0);
+    setTimeout(()=>openFromHash(HQ.q),600) }
   mbDeepLink();
   menyuRaqamlar();
 }
