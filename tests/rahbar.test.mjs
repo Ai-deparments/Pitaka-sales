@@ -89,8 +89,8 @@ test("yangi niyatlar: lid/bitim raqami, suhbat xatolari, voronka", () => {
 });
 
 test("xodimTop: kirill ism lotin yoki kirillda so'ralsa topiladi, savol so'zlari ism emas", () => {
-  const P = [{ id: "1", ism: "Ашрафханов Азам" }, { id: "2", ism: "Илёсов Хусан" }, { id: "3", ism: "Абдулхакимова Мохисанам" }, { id: "4", ism: "Turdibayev Firdavs" }];
-  assert.equal(lotin("Ашрафханов"), "ashrafhanov");
+  const P = [{ id: "1", ism: "Каримов Азам" }, { id: "2", ism: "Юсупов Хусан" }, { id: "3", ism: "Рахимова Мохисанам" }, { id: "4", ism: "Tursunov Firdavs" }];
+  assert.equal(lotin("Каримов"), "karimov");
   assert.deepEqual(xodimTop("Как работал Азам на этой неделе?", P).map((p) => p.id), ["1"]);
   assert.deepEqual(xodimTop("Azam qanday ishladi", P).map((p) => p.id), ["1"]);
   assert.deepEqual(xodimTop("Husan bu oy", P).map((p) => p.id), ["2"]);
@@ -102,7 +102,7 @@ test("xodimTop: kirill ism lotin yoki kirillda so'ralsa topiladi, savol so'zlari
 test("xodim / xatolar / voronka / yozuv javoblari qisqa va aniq sonli", () => {
   const v = { calls: 17, avgScore: 62, criteria: [
     { label: "Ochiq savollar", avgPct: 35, failed: 11, of: 17 }, { label: "E'tirozlar", avgPct: 94, failed: 1, of: 17 }] };
-  const x = javobXodim("ru", "Ноябрь (1–12)", "Саидкаримов Саидахмад", { yangi: 126, uzatildi: 3, qongiroq: 584, javobPct: 74 }, { yutildi: 4, yutSumma: 4.8e6, ochiq: 710 }, v);
+  const x = javobXodim("ru", "Ноябрь (1–12)", "Алиев Саид", { yangi: 126, uzatildi: 3, qongiroq: 584, javobPct: 74 }, { yutildi: 4, yutSumma: 4.8e6, ochiq: 710 }, v);
   assert.match(x, /передал менеджерам <b>3<\/b>/);
   assert.match(x, /Слабо: Ochiq savollar 35% \(6\/17\)/);
   assert.match(x, /Хорошо: E'tirozlar 94% \(16\/17\)/);
@@ -114,7 +114,7 @@ test("xodim / xatolar / voronka / yozuv javoblari qisqa va aniq sonli", () => {
   assert.match(javobXatolar("ru", "Ноябрь", V, "yaxshi"), /1\. B —/);
   const vr = javobVoronka("ru", "Ноябрь", { bosqichlar: [{ nom: "Yangi lid", yetdi: 830 }, { nom: "To'lov", yetdi: 3 }], kpi: { yoqotilgan: 344, ochiq: 483 } });
   assert.match(vr, /Yangi lid: <b>830<\/b>\n↓ To'lov: <b>3<\/b> \/ 830/);
-  assert.match(javobYozuv("ru", { tur: "lead", id: "29957", nom: "Jamshidbek", holat: "Yangi mijoz", masul: "Саидкаримов", sana: "2026-10-13T14:01:00", bitim: [] }), /Статус: <b>Yangi mijoz<\/b>/);
+  assert.match(javobYozuv("ru", { tur: "lead", id: "29957", nom: "Namuna Mijoz", holat: "Yangi mijoz", masul: "Алиев", sana: "2026-10-13T14:01:00", bitim: [] }), /Статус: <b>Yangi mijoz<\/b>/);
   assert.equal(javobYozuv("uz", null), "Bitrix'da topilmadi.");
 });
 
