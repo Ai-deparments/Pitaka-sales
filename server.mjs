@@ -37,6 +37,17 @@ import { cached, swr, expire, stats as cacheStats, invalidate } from "./lib/cach
 import * as autoagent from "./lib/autoagent.mjs"; // scheduled call-worker: calls are analysed automatically
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
+
+// ---- .env ---- (PORT / HOST / SOTUV_DB below must already see it)
+for (const f of [path.join(HERE, ".env"), "/home/claude/secrets/bitrix-sotuv.env"]) {
+  if (!fs.existsSync(f)) continue;
+  for (const line of fs.readFileSync(f, "utf8").split("\n")) {
+    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
+    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
+  }
+}
+if (!process.env.BITRIX_WEBHOOK_URL) { console.error("XATO: BITRIX_WEBHOOK_URL topilmadi"); process.exit(1); }
+
 const PORT = Number(process.env.PORT || 8090);
 const HOST = process.env.HOST || "127.0.0.1";
 const DB_PATH = process.env.SOTUV_DB || path.join(HERE, "data", "sotuv.db");
@@ -56,16 +67,6 @@ function buildId() {
   }
   return _build.id;
 }
-
-// ---- .env ----
-for (const f of [path.join(HERE, ".env"), "/home/claude/secrets/bitrix-sotuv.env"]) {
-  if (!fs.existsSync(f)) continue;
-  for (const line of fs.readFileSync(f, "utf8").split("\n")) {
-    const m = line.match(/^\s*([A-Z0-9_]+)\s*=\s*(.*)\s*$/);
-    if (m && !process.env[m[1]]) process.env[m[1]] = m[2].replace(/^["']|["']$/g, "");
-  }
-}
-if (!process.env.BITRIX_WEBHOOK_URL) { console.error("XATO: BITRIX_WEBHOOK_URL topilmadi"); process.exit(1); }
 
 fs.mkdirSync(path.dirname(DB_PATH), { recursive: true });
 const db = new DatabaseSync(DB_PATH);
