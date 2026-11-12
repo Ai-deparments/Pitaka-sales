@@ -103,7 +103,11 @@ yuboradi; boshqasi tarmoqqa chiqmasdan xato beradi. Ochish — faqat `BITRIX_ALL
 
 ## Lokal ishga tushirish
 
+Talab: Node.js 24+, `ffmpeg` (qo'ng'iroq audiosi uchun). `npm install` kerak emas.
+
 ```bash
+git clone https://github.com/Ai-deparments/Pitaka-sales.git && cd Pitaka-sales
+cp .env.example .env                  # BITRIX_WEBHOOK_URL va GEMINI_API_KEY ni yozing
 node server.mjs adduser <login> "<Ism>" <rol> [parol] [bitrix_user_id]
 node server.mjs                       # http://127.0.0.1:8090
 node tools/call-worker.mjs --limit 5  # yangi qo'ng'iroqlarni tahlil qilish (bir sikl)
